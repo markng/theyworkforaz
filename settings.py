@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.gis',
+    'django.contrib.gis', # GIS
+    'south', # migrations
 )
 
 from localsettings import *
