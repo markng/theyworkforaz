@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.gis', # GIS
     'south', # migrations
+    'reps',
 )
 
 from localsettings import *
