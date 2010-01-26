@@ -19,6 +19,10 @@ class Party(models.Model):
     """political party"""
     name = models.CharField("Name", max_length=255)
 
+    class Meta:
+        """docstring for Meta"""
+        verbose_name_plural = "parties"
+
 
 class Vote(models.Model):
     """Vote for a bill"""
