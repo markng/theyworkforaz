@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.gis', # GIS
+    'django.contrib.admin',
     'south', # migrations
     'reps',
 )
