@@ -15,8 +15,12 @@ class District(geomodels.Model):
 
 class Representative(models.Model):
     """a representative (either house or senate)"""
+    HOUSES = (
+        ('SENATE', )
+    )
     name = models.CharField("Name", max_length=255)
     party = models.ForeignKey('Party')
+    district = models.ForeignKey('District')
 
 
 class Party(models.Model):
