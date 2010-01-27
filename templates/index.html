@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>How are your Arizona state legislation members voting?</h1>
+  <p>Keep track of the people you voted for.  First, tell us where you live.</p>
+  <form action="{% url home %}" method="post" accept-charset="utf-8">
+    {{ form }}
+    <input type="submit" value="Find &rarr;">
+  </form>
+{% endblock %}
