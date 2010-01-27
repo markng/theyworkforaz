@@ -20,7 +20,6 @@ class Party(models.Model):
     name = models.CharField("Name", max_length=255)
 
     class Meta:
-        """docstring for Meta"""
         verbose_name_plural = "parties"
 
 
