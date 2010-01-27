@@ -28,3 +28,4 @@ ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '53_1hobpy5%mbzct1ik4eia)7-h!9_g!k=_281pb=$$3par$ut'
+GOOGLE_MAPS_API_KEY = ''
