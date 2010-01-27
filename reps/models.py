@@ -8,6 +8,10 @@ class District(geomodels.Model):
     area = geomodels.MultiPolygonField()
     objects = geomodels.GeoManager()
 
+    @models.permalink
+    def get_absolute_url(self):
+        return('reps.views.district', [str(self.id)])
+
     def __unicode__(self):
         """unicode representation"""
         return str(self.id)
