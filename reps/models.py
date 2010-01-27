@@ -8,6 +8,10 @@ class District(geomodels.Model):
     area = geomodels.MultiPolygonField()
     objects = geomodels.GeoManager()
 
+    def __unicode__(self):
+        """unicode representation"""
+        return str(self.id)
+
 
 class Representative(models.Model):
     """a representative (either house or senate)"""
