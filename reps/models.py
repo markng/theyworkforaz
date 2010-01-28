@@ -24,9 +24,17 @@ class Representative(models.Model):
     district = models.ForeignKey('District')
     house = models.ForeignKey('House')
 
+    def __unicode__(self):
+        """unicode representation"""
+        return self.name
+
 class House(models.Model):
     """a legislative house"""
     name = models.CharField("Name", max_length=255)
+
+    def __unicode__(self):
+        """unicode representation"""
+        return self.name
 
 
 class Party(models.Model):
@@ -59,3 +67,6 @@ class Bill(models.Model):
     id = models.CharField("Bill ID", primary_key=True, max_length=255) # use the alphanumeric bill ID as primary key
     short_title = models.TextField("Short Title")
 
+    def __unicode__(self):
+        """unicode representation"""
+        return short_title
