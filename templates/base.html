@@ -7,8 +7,10 @@
       body{
       }
     </style>
+    {% block jshead %}{% endblock %}
+    {% block extrastyle %}{% endblock %}
   </head>
-  <body id="{% block bodyid %}base{% endblock %}">
+  {% block bodytag %}<body id="{% block bodyid %}base{% endblock %}">{% endblock %}
     {% block content %}
 
     {% endblock %}

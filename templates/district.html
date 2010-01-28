@@ -1,4 +1,21 @@
 {% extends "base.html" %}
+{% block jshead %}
+  {{ gmap.api_script }}
+  <style type="text/css" media="screen">
+    div#map{
+      height: 300px;
+    }
+  </style>
+{% endblock %}
+{% block bodytag %}
+  {{ gmap.body }}
+{% endblock %}
 {% block content %}
-  Test district.
+  <h1>Arizona District {{ district }}</h1>
+  <script type="text/javascript" charset="utf-8">
+      {{ gmap.render }}
+  </script>
+  <div id="map">
+    &nbsp;
+  </div>
 {% endblock %}
