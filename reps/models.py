@@ -34,6 +34,10 @@ class Party(models.Model):
     class Meta:
         verbose_name_plural = "parties"
 
+    def __unicode__(self):
+        """unicode representation"""
+        return self.name
+
 
 class Vote(models.Model):
     """Vote for a bill"""
