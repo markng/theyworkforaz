@@ -51,10 +51,17 @@ class House(models.Model):
 
 class Party(models.Model):
     """political party"""
-    name = models.CharField("Name", max_length=255)
-
+    name = models.CharField("Name", max_length=255, blank=True, null=True)
+    code = models.CharField("Short Code", max_length=1, unique=True)
     class Meta:
         verbose_name_plural = "parties"
+
+    def __unicode__(self):
+        """unicode representation"""
+        if self.name:
+            return self.name
+        else:
+            return self.code
 
     def __unicode__(self):
         """unicode representation"""
