@@ -19,10 +19,19 @@ class District(geomodels.Model):
 
 class Representative(models.Model):
     """a representative (either house or senate)"""
+    # alot of this stuff is nullable for when reps leave office
+    id = models.IntegerField("Representative ID", primary_key=True) # override default so we can keep azleg ids
     name = models.CharField("Name", max_length=255)
+    role = models.CharField("Role", max_length=255, blank=True, null=True)
     party = models.ForeignKey('Party')
-    district = models.ForeignKey('District')
-    house = models.ForeignKey('House')
+    email = models.EmailField("Email", blank=True, null=True)
+    room = models.CharField("Room", max_length=255, blank=True, null=True)
+    phone = models.CharField("Phone", max_length=255, blank=True, null=True)
+    fax = models.CharField("Fax", max_length=255, blank=True, null=True)
+    district = models.ForeignKey('District', blank=True, null=True) 
+    house = models.ForeignKey('House', blank=True, null=True)
+    current = models.BooleanField('Current House Member', default=True)
+    link = models.URLField('Link to Bio', blank=True, null=True) # not sure if azleg will remove bios after left
 
     def __unicode__(self):
         """unicode representation"""
@@ -31,7 +40,7 @@ class Representative(models.Model):
 class House(models.Model):
     """a legislative house"""
     name = models.CharField("Name", max_length=255)
-
+    code = models.CharField("Short Code", max_length=1)
     def __unicode__(self):
         """unicode representation"""
         return self.name
