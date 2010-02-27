@@ -63,10 +63,6 @@ class Party(models.Model):
         else:
             return self.code
 
-    def __unicode__(self):
-        """unicode representation"""
-        return self.name
-
 
 class Vote(models.Model):
     """Vote for a bill"""
