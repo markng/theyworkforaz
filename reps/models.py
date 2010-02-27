@@ -39,11 +39,14 @@ class Representative(models.Model):
 
 class House(models.Model):
     """a legislative house"""
-    name = models.CharField("Name", max_length=255)
-    code = models.CharField("Short Code", max_length=1)
+    name = models.CharField("Name", max_length=255, blank=True, null=True)
+    code = models.CharField("Short Code", max_length=1, unique=True)
     def __unicode__(self):
         """unicode representation"""
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return self.code
 
 
 class Party(models.Model):
