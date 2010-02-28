@@ -19,4 +19,10 @@
   <div id="map">
     &nbsp;
   </div>
+  <h2>Your Representatives</h2>
+  <ul>
+    {% for rep in district.representative_set.all %}
+      <li><a href="{{ rep.link }}">{{ rep }} ({{ rep.house }}{% if rep.role  %} {{ rep.role }}{% endif %})</a></li>
+    {% endfor %}    
+  </ul>
 {% endblock %}
