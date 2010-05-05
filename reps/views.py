@@ -19,7 +19,12 @@ def home(request):
             try:
                 district = District.objects.get(area__contains=Point(location[1]))
             except District.DoesNotExist, e:
-                return render_to_response('index.html', { 'form' : form, }) # isn't in arizona. Handle better
+                try:
+                    location = geocode("%s, Arizona, USA" % (form.cleaned_data['where']))
+                    request.session['location'] = location
+                    district = District.objects.get(area__contains=Point(location[1]))
+                except District.DoesNotExist, e:
+                    return render_to_response('index.html', { 'form' : form, })
             return HttpResponseRedirect(district.get_absolute_url())
     else:
         form = WhereForm()
