@@ -12,17 +12,23 @@
   {{ gmap.body }}
 {% endblock %}
 {% block content %}
-  <h1>Arizona District {{ district }}</h1>
-  <script type="text/javascript" charset="utf-8">
-      {{ gmap.render }}
-  </script>
-  <div id="map">
-    &nbsp;
+  <div class="grid_12">
+    <h2>Arizona District {{ district }}</h2>
   </div>
-  <h2>Your Representatives</h2>
-  <ul>
-    {% for rep in district.representative_set.all %}
-      <li><a href="{{ rep.link }}">{{ rep }} ({{ rep.house }}{% if rep.role  %} {{ rep.role }}{% endif %})</a></li>
-    {% endfor %}    
-  </ul>
+  <div class="grid_12">
+    <script type="text/javascript" charset="utf-8">
+        {{ gmap.render }}
+    </script>
+    <div id="map">
+      &nbsp;
+    </div>
+  </div>
+  <div class="grid_12">
+    <h2>Your Representatives</h2>
+    <ul>
+      {% for rep in district.representative_set.all %}
+        <li><a href="{{ rep.get_absolute_url }}">{{ rep }}</a> {{ rep.party }} ({{ rep.house }}{% if rep.role  %} {{ rep.role }}{% endif %})</li>
+      {% endfor %}    
+    </ul>    
+  </div>
 {% endblock %}

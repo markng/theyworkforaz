@@ -1,8 +1,8 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from geocoders.google import geocoder
-from models import District
+from models import District, Representative
 from forms import WhereForm
 from django.contrib.gis.geos import Point
 from django.contrib.gis.maps.google.overlays import GPolygon
@@ -45,10 +45,12 @@ def district(request, district_id=None):
     totemplate['gmap'] = gmap
     return render_to_response('district.html', totemplate)
 
-def senator(request):
+def senator(request, representative_id=None):
     """senator page"""
-    return render_to_response('senator.html')
+    senator = get_object_or_404(Representative, pk=representative_id)
+    return render_to_response('senator.html', { 'senator' : senator })
 
-def housemember(request):
+def housemember(request, representative_id=None):
     """house member page"""
-    return render_to_response('member.html')
+    member = get_object_or_404(Representative, pk=representative_id)
+    return render_to_response('member.html', { 'member' : member })

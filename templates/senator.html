@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="grid_12">
+    <h2>{{ senator }} ({{ senator.party }})</h2>
+    {% if senator.role %}
+      <p>{{ senator.role }}, District {{ senator.district }}</p>
+    {% else %}
+      <p>Senator for District {{ senator.district }}</p>
+    {% endif %}
+  </div>
+{% endblock %}
