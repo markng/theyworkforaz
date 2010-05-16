@@ -70,19 +70,22 @@ class Command(NoArgsCommand):
         for link in links:
             if link.attrib['href'][:46] == 'http://www.azleg.gov/FormatDocument.asp?inDoc=':
                 # we have a link to an html document, add it to documents list.
-                docpath = urllib2.unquote(link.attrib['href'][46:])
-                documenturl = "http://www.azleg.gov%s" % (docpath)
-                document, created = BillDocument.objects.get_or_create(pk=documenturl, bill=bill)
-                if created:                    
-                    print "waiting %d seconds to fetch %s" % (self.speed_limit, docpath)
-                    time.sleep(self.speed_limit)
-                    document.document = unicode(urllib2.urlopen(documenturl).read(), 'windows-1252').encode('utf-8')
-                    document.title = self.tr_link_text_sanitizer(link).encode('utf-8')
-                    document.type = ' '.join(title.split()[1:]) # remove the show
-                    document.bill = bill
-                    document.save()
-                else:
-                    print "skipping %s, because we already have a copy" % (docpath) # skip this while we're building crawler
+                try:
+                    docpath = urllib2.unquote(link.attrib['href'][46:])
+                    documenturl = "http://www.azleg.gov%s" % (docpath)
+                    document, created = BillDocument.objects.get_or_create(pk=documenturl, defaults={'bill':bill})
+                    if created:                    
+                        print "waiting %d seconds to fetch %s" % (self.speed_limit, docpath)
+                        time.sleep(self.speed_limit)
+                        document.document = unicode(urllib2.urlopen(documenturl).read(), 'windows-1252').encode('utf-8')
+                        document.title = self.tr_link_text_sanitizer(link).encode('utf-8')
+                        document.type = ' '.join(title.split()[1:]) # remove the show
+                        document.bill = bill
+                        document.save()
+                    else:
+                        print "skipping %s, because we already have a copy" % (docpath) # skip this while we're building crawler                    
+                except Exception, e:
+                    print e
                 
         #if title == "Show Sponsors":
         #    # deal with sponsors
