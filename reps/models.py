@@ -90,7 +90,7 @@ class Vote(models.Model):
 class Bill(models.Model):
     """a bill"""
     id = models.CharField("Bill ID", primary_key=True, max_length=255) # use the alphanumeric bill ID as primary key
-    short_title = models.TextField("Short Title")
+    short_title = models.TextField("Short Title", blank=True)
 
     def __unicode__(self):
         """unicode representation"""
