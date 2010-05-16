@@ -73,6 +73,15 @@ class Party(models.Model):
         else:
             return self.code
 
+class Sponsorship(models.Model):
+    """sponsoring a bill"""
+    representative = models.ForeignKey('Representative')
+    bill = models.ForeignKey('Bill')
+    type = models.CharField(max_length=10)
+    
+    def __unicode__(self):
+        """string rep"""
+        return "%s %s %s" % (str(self.member), self.type, str(self.bill))
 
 class Vote(models.Model):
     """Vote for a bill"""
