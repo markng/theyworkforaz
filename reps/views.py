@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from geocoders.google import geocoder
-from models import District, Representative
+from models import District, Representative, Bill
 from forms import WhereForm
 from django.contrib.gis.geos import Point
 from django.contrib.gis.maps.google.overlays import GPolygon
@@ -54,3 +54,8 @@ def housemember(request, representative_id=None):
     """house member page"""
     member = get_object_or_404(Representative, pk=representative_id)
     return render_to_response('member.html', { 'member' : member })
+
+def bill(request, bill_id=None):
+    """bill page"""
+    bill = get_object_or_404(Bill, pk=bill_id)
+    return render_to_response('bill.html', { 'bill' : bill })
