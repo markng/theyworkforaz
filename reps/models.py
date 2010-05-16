@@ -94,7 +94,10 @@ class Bill(models.Model):
 
     def __unicode__(self):
         """unicode representation"""
-        return "%s %s" % (self.id, short_title)
+        if self.short_title:
+            return self.short_title
+        else:
+            return self.id
 
 class BillDocument(models.Model):
     """model for a document associated to a bill"""
