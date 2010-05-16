@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.gis.db import models as geomodels
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
+
 
 # Create your models here.
 class District(geomodels.Model):
@@ -92,3 +95,16 @@ class Bill(models.Model):
     def __unicode__(self):
         """unicode representation"""
         return short_title
+
+class BillDocument(models.Model):
+    """model for a document associated to a bill"""
+    url = models.URLField("Source URL", primary_key=True) # use the source URL for the Document as primary key
+    type = models.CharField("Document Type", max_length=255) # document type, eg "Bill Revision", "House Agenda", "Fact Sheet"
+    found_at = models.DateTimeField(auto_now_add=True)
+    title = models.TextField()
+    document = models.TextField()
+    bill = models.ForeignKey(Bill)
+    
+    def __unicode__(self):
+        """unicode/str rep"""
+        return "%s %s" % (self.title, str(self.bill))
