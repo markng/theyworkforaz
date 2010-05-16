@@ -33,6 +33,13 @@ class Representative(models.Model):
     current = models.BooleanField('Current House Member', default=True)
     link = models.URLField('Link to Bio', blank=True, null=True) # not sure if azleg will remove bios after left
 
+    @models.permalink
+    def get_absolute_url(self):
+        if self.house.name == 'House':
+            return('reps.views.housemember', [str(self.id)])
+        elif self.house.name == 'Senate':
+            return('reps.views.senator', [str(self.id)])
+
     def __unicode__(self):
         """unicode representation"""
         return self.name
