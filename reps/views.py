@@ -52,10 +52,10 @@ def senator(request, representative_id=None):
 
 def housemember(request, representative_id=None):
     """house member page"""
-    member = get_object_or_404(Representative, pk=representative_id)
+    member = get_object_or_404(Representative.objects.select_related(), pk=representative_id)
     return render_to_response('member.html', { 'member' : member })
 
 def bill(request, bill_id=None):
     """bill page"""
-    bill = get_object_or_404(Bill, pk=bill_id)
+    bill = get_object_or_404(Bill.objects.select_related(), pk=bill_id)
     return render_to_response('bill.html', { 'bill' : bill })
