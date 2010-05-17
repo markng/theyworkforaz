@@ -19,6 +19,29 @@ class District(geomodels.Model):
     def __unicode__(self):
         """unicode representation"""
         return str(self.id)
+        
+    def balance(self):
+        """return power balance"""
+        reps = self.representative_set.all()
+        balance = {
+            'all' : {
+                'D' : 0,
+                'R' : 0,
+            },
+            'House' : {
+                'D' : 0,
+                'R' : 0,
+            },
+            'Senate' : {
+                'D' : 0,
+                'R' : 0,
+            },
+        }
+        # do balance for all, house and senate
+        for rep in reps:
+            balance['all'][rep.party.code] = balance['all'][rep.party.code] + 1
+            balance[rep.house.name][rep.party.code] = balance[rep.house.name][rep.party.code] + 1
+        return balance
 
 class RepresentativeManager(models.Manager):
     """representative manager, add selects by party for templates, etc"""
@@ -154,6 +177,9 @@ class Bill(models.Model):
     def get_absolute_url(self):
         return('reps.views.bill', [str(self.id)])
     
+    def official_url(self):
+        """return official URL"""
+        pass
             
 class BillDocumentManager(models.Manager):
     """manager for bill docs"""
