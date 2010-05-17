@@ -11,7 +11,7 @@ class Command(NoArgsCommand):
     """command for loading bills directly from the azleg website"""
     # wait time for each document. Robots.txt on their website requests it. I ignore their ignore patterns,
     # because it's public data, and I want the bills, but lets not kill their servers spidering and *really* annoy someone
-    speed_limit = 15
+    speed_limit = 5
     # speed_limit = 120 
     
     def handle_noargs(self, **options):        
@@ -53,6 +53,9 @@ class Command(NoArgsCommand):
         bill, created = Bill.objects.get_or_create(pk=bill_name)
         bill.short_title = d('.ContentPageTitle').text() # amalgamate the text of all ContentPageTitle elements.
         bill.save()
+        # find bill overview link
+        overviewitem = d('.TableHeaderBackground')[0].getnext()
+        self.process_documents_row('Show Overview', bill, overviewitem)
         # find "show" links
         links = d(".InactiveItem")
         items = d("div.BillsLayer")
@@ -74,7 +77,8 @@ class Command(NoArgsCommand):
                     docpath = urllib2.unquote(link.attrib['href'][46:])
                     documenturl = "http://www.azleg.gov%s" % (docpath)
                     document, created = BillDocument.objects.get_or_create(pk=documenturl, defaults={'bill':bill})
-                    if created:                    
+                    if created or document.type == 'Overview':
+                        # fetch newly created documents, always refetch overviews
                         print "waiting %d seconds to fetch %s" % (self.speed_limit, docpath)
                         time.sleep(self.speed_limit)
                         document.document = unicode(urllib2.urlopen(documenturl).read(), 'windows-1252').encode('utf-8')
