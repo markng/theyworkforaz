@@ -87,9 +87,13 @@ class Command(NoArgsCommand):
                 except Exception, e:
                     print e
                 
-        #if title == "Show Sponsors":
-        #    # deal with sponsors
-        #    pass
+        if title == "Show Sponsors":
+            # deal with sponsors
+            for link in links:
+                r = re.search('Member_ID=(?P<member_id>\d+)&legislature=(?P<legislature_id>\d+)$', link.attrib['href'])
+                representative = Representative(pk=r.groupdict()['member_id'])
+                sponstype = link.getparent().getnext().text_content()
+                sponsorship, created = Sponsorship.objects.get_or_create(representative=representative, bill=bill, defaults={'type' : str(sponstype)})
         #elif title == u'\xa0Show Versions':
         #    # deal with bill versions
         #    pass
