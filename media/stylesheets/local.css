@@ -27,3 +27,7 @@ h3 img{
     position: relative;
     left: 7px;
 }
+
+.sponsorships li.grid_3{
+    height: 90px;
+}
