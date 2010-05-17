@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="grid_12">
-  <h2>{{ member }}</h2>
+  <h2>{{ member }} ({{ member.party.code }})</h2>
+  {% if member.role %}
+    <p>{{ member.role }}, <a href="{{ member.district.get_absolute_url }}">District {{ member.district }}</a></p>
+  {% else %}
+    <p>Member for <a href="{{ member.district.get_absolute_url }}">District {{ member.district }}</a></p>
+  {% endif %}
+  
   {% if member.sponsored_bills.count %}
   <p>Sponsored Bills</p>
   <ul class="sponsorships">

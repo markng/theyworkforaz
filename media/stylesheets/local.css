@@ -23,9 +23,13 @@ div#footer{
 h3 img{
     /* graphs inside headlines - piecharts, sparklines style */
     margin: -10px;
-    padding: 0;
     position: relative;
     left: 7px;
+}
+
+p img{
+    margin: -5px;
+    margin-bottom: -10px;
 }
 
 .sponsorships li.grid_3{

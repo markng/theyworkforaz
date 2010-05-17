@@ -22,12 +22,14 @@
     {% endfor %}
     </ul>
     <br class="clear">
+    {% if bill.sponsorship_set.cosponsors.count %}
     <p>Co-sponsors</p>
     <ul id='csponsors' class='longlist'>
     {% for sponsor in bill.sponsorship_set.cosponsors %}
       <li class="grid_3"><a href="{{ sponsor.representative.get_absolute_url }}">{{ sponsor.representative }} ({{ sponsor.representative.party.code }})</a></li>
     {% endfor %}
     </ul>
-    <br class="clear">
+    <br class="clear">      
+    {% endif %}
 </div>
 {% endblock %}
