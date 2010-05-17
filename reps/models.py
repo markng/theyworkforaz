@@ -19,7 +19,17 @@ class District(geomodels.Model):
         """unicode representation"""
         return str(self.id)
 
-
+class RepresentativeManager(models.Manager):
+    """representative manager, add selects by party for templates, etc"""
+    use_for_related_fields = True
+    def democrats(self):
+        """add a filter for democrats"""
+        return self.filter(party__code='D')
+    
+    def republicans(self):
+        """add a filter for republicans"""
+        return self.filter(party__code='R')
+    
 class Representative(models.Model):
     """a representative (either house or senate)"""
     # alot of this stuff is nullable for when reps leave office
@@ -35,6 +45,7 @@ class Representative(models.Model):
     house = models.ForeignKey('House', blank=True, null=True)
     current = models.BooleanField('Current House Member', default=True)
     link = models.URLField('Link to Bio', blank=True, null=True) # not sure if azleg will remove bios after left
+    objects = RepresentativeManager()
 
     @models.permalink
     def get_absolute_url(self):
@@ -73,15 +84,28 @@ class Party(models.Model):
         else:
             return self.code
 
+class SponsorshipManager(models.Manager):
+    """sponsorship manager"""
+    use_for_related_fields = True
+    
+    def republicans(self):
+        """return only republicans"""
+        return self.filter(representative__party__code='R')
+    
+    def democrats(self):
+        """return only democrats"""
+        return self.filter(representative__party__code='D')
+
 class Sponsorship(models.Model):
     """sponsoring a bill"""
     representative = models.ForeignKey('Representative')
     bill = models.ForeignKey('Bill')
     type = models.CharField(max_length=10)
+    objects = SponsorshipManager()
     
     def __unicode__(self):
         """string rep"""
-        return "%s %s %s" % (str(self.member), self.type, str(self.bill))
+        return "%s %s %s" % (str(self.representative), self.type, str(self.bill))
 
 class Vote(models.Model):
     """Vote for a bill"""
