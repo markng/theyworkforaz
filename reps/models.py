@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.gis.db import models as geomodels
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+import pyquery
 
 
 # Create your models here.
@@ -57,6 +58,15 @@ class Representative(models.Model):
     def __unicode__(self):
         """unicode representation"""
         return self.name
+        
+    def sponsored_bills(self):
+        """return a queryset with sponsored bills"""
+        return self.sponsorship_set.filter(type="P")
+
+    def cosponsored_bills(self):
+        """return a queryset with sponsored bills"""
+        return self.sponsorship_set.filter(type="C")
+    
 
 class House(models.Model):
     """a legislative house"""
@@ -95,6 +105,14 @@ class SponsorshipManager(models.Manager):
     def democrats(self):
         """return only democrats"""
         return self.filter(representative__party__code='D')
+    
+    def primary(self):
+        """return primary sponsors"""
+        return self.filter(type="P")
+    
+    def cosponsors(self):
+        """return cosponsors"""
+        return self.filter(type="C")
 
 class Sponsorship(models.Model):
     """sponsoring a bill"""
@@ -131,6 +149,17 @@ class Bill(models.Model):
             return self.short_title
         else:
             return self.id
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return('reps.views.bill', [str(self.id)])
+    
+            
+class BillDocumentManager(models.Manager):
+    """manager for bill docs"""
+    def versions(self):
+        """show only versions"""
+        return self.filter(type="Versions")
 
 class BillDocument(models.Model):
     """model for a document associated to a bill"""
@@ -140,6 +169,7 @@ class BillDocument(models.Model):
     title = models.TextField()
     document = models.TextField()
     bill = models.ForeignKey(Bill)
+    objects = BillDocumentManager()
     
     def __unicode__(self):
         """unicode/str rep"""
