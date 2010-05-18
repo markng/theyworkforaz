@@ -1,5 +1,5 @@
 Django==1.2
--e git+http://github.com/simonw/geocoders.git
+-e git+http://github.com/simonw/geocoders.git#egg=geocoders
 South==0.6.2
 django-extensions==0.5
 lxml==2.2.6
