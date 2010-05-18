@@ -32,4 +32,12 @@
       {% endfor %}    
     </ul>    
   </div>
+  <div class="grid_12">
+    <h2>Borders</h2>
+    <ul>
+      {% for borderdistrict in borders %}
+        <li class="grid_2"><a href="{{ borderdistrict.get_absolute_url }}">District {{ borderdistrict }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

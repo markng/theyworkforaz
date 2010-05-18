@@ -35,6 +35,7 @@ def district(request, district_id=None):
     """district page"""
     totemplate = {}
     district = District.objects.get(id=district_id)
+    totemplate['borders'] = District.objects.filter(area__touches=district.area)
     totemplate['district'] = district
     poly = GPolygon(district.area[0])
     slocation = request.session.get('location', False)
