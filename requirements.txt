@@ -1,0 +1,7 @@
+Django==1.2
+-e git+http://github.com/simonw/geocoders.git
+South==0.6.2
+django-extensions==0.5
+lxml==2.2.6
+pyquery==0.5
+wsgiref==0.1.2
