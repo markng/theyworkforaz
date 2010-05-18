@@ -44,6 +44,9 @@ class Command(NoArgsCommand):
                         sbs['end'] = ids['end_id'][2:]
         for hbno in range(int(hbs['start']), int(hbs['end']) + 1):
             self.process_bill("HB%s" % (hbno))
+        for sbno in range(int(sbs['start']), int(sbs['end']) + 1):
+            self.process_bill("SB%s" % (sbno))
+        
     
     def process_bill(self, bill_name):
         """get and process a bill"""
