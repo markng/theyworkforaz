@@ -7,5 +7,24 @@
     {% else %}
       <p>Senator for District {{ senator.district }}</p>
     {% endif %}
+    {% if senator.sponsored_bills.count %}
+    <p>Sponsored Bills</p>
+    <ul class="sponsorships">
+      {% for sponsorship in senator.sponsored_bills.all %}
+      <li class="grid_3"><a href="{{ sponsorship.bill.get_absolute_url }}">{{ sponsorship.bill }}</a></li>
+      {% endfor %}
+    </ul>    
+    <br class="clear">
+    {% endif %}
+    {% if senator.cosponsored_bills.count %}
+    <p>Co-sponsored Bills</p>
+    <ul class="sponsorships">
+      {% for sponsorship in senator.cosponsored_bills.all %}
+      <li class="grid_3"><a href="{{ sponsorship.bill.get_absolute_url }}">{{ sponsorship.bill }}</a></li>
+      {% endfor %}
+    </ul>    
+    <br class="clear">
+    {% endif %}
+    
   </div>
 {% endblock %}
