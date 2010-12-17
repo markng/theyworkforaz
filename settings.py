@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.gis', # GIS
     'django.contrib.admin',
+    'django_extensions',
     'south', # migrations
     'reps',
 )
