@@ -252,3 +252,11 @@ class Session(models.Model):
         self.start = isodate.parse_datetime(session['Session_Start_Date'])
         self.end = isodate.parse_datetime(session['Sine_Die_Date'])
         self.save()
+
+class Place(geomodels.Model):
+    """
+    Place
+    
+    """
+    name = models.CharField(max_length=255, blank=True, null=True)
+    feature_type = models.CharField(max_length=255, blank=True, null=True)
