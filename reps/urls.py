@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     (r'^member/(?P<representative_id>\d+)$', 'reps.views.housemember', {}, 'senator'),
     (r'^bill/(?P<bill_id>.*)$', 'reps.views.bill', {}, 'bill'),
     (
-        r'^session', 
+        r'^session$', 
         'django.views.generic.list_detail.object_list', 
         {
             'queryset' : sessionquery,
@@ -18,4 +18,14 @@ urlpatterns = patterns('',
             'template_object_name' : 'session',
         }, 
         'sessions'),
+        
+        (
+            r'^session/(?P<object_id>\d+)$',
+            'django.views.generic.list_detail.object_detail',
+            {
+                'queryset' : sessionquery,
+                'template_name' : 'session.html',
+                'template_object_name' : 'session',
+            }, 
+            'session'),
 )
