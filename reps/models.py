@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.gis.db import models as geomodels
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from django.core.exceptions import ObjectDoesNotExist
+import datetime
 import pyquery
 
 
@@ -200,3 +202,28 @@ class BillDocument(models.Model):
     def __unicode__(self):
         """unicode/str rep"""
         return "%s %s" % (self.title, str(self.bill))
+
+class SessionManager(models.Manager):
+    """manager for sessions"""
+    def current_session(self):
+        """return the current, or last session"""
+        try:
+            session = Session.objects.get(start__lt=datetime.datetime.now(), end__gt=datetime.datetime.now())
+        except ObjectDoesNotExist, e:
+            session = Session.objects.order_by('-start')[0]
+        except Exception, e:
+            raise e
+        return session
+
+class Session(models.Model):
+    """model for a legislature session"""
+    id = models.IntegerField(primary_key=True) # actual session ID
+    name = models.CharField(max_length=255)
+    year = models.IntegerField()
+    start = models.DateTimeField(blank=True, null=True)
+    end = models.DateTimeField(blank=True, null=True)
+    objects = SessionManager()
+    
+    def __unicode__(self):
+        return self.name
+
