@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="grid_12">
-    <p>Find out who your representatives in the state legislature are:</p>
+    <p>Search the elected officials who work for you by:</p>
+    <ul>
+        <li>Address</li>
+        <li>ZIP Code</li>
+        <li>Name</li>
+    </ul>
   </div>
   <div class="grid_6 push_2">
     <form action="{% url home %}" method="post" accept-charset="utf-8" class="whereform">
