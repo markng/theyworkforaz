@@ -228,7 +228,11 @@ class Session(models.Model):
             return self.name
         else:
             return str(self.id)
-    
+
+    @models.permalink
+    def get_absolute_url(self):
+        return('session', [self.id])
+
     def from_session_dict(self, session):
         """
             from session xml dictionary

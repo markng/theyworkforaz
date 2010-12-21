@@ -3,7 +3,7 @@
 	<div class="grid_12">
 	    <h2>Sessions</h2>
 		{% for session in session_list %}
-	      	<li class="grid_3">{{ session.name }}</li>
+	      	<li class="grid_3"><a href="{{ session.get_absolute_url }}">{{ session.name }}</a></li>
 		{% endfor %}
 	</div>
 {% endblock %}
