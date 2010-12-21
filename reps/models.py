@@ -3,8 +3,7 @@ from django.contrib.gis.db import models as geomodels
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.core.exceptions import ObjectDoesNotExist
-import datetime
-import pyquery
+import datetime, isodate, pyquery
 
 
 # Create your models here.
@@ -218,12 +217,34 @@ class SessionManager(models.Manager):
 class Session(models.Model):
     """model for a legislature session"""
     id = models.IntegerField(primary_key=True) # actual session ID
-    name = models.CharField(max_length=255)
-    year = models.IntegerField()
+    name = models.CharField(max_length=255, blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
     start = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
     objects = SessionManager()
     
     def __unicode__(self):
-        return self.name
-
+        if self.name:
+            return self.name
+        else:
+            return str(self.id)
+    
+    def from_session_dict(self, session):
+        """
+            from session xml dictionary
+            {
+                'Legislature': '49', 
+                'Session_Start_Date': '2010-08-09T15:00:00', 
+                'Session_ID': '103', 
+                'Legislation_Year': '2010', 
+                'Session': '9S', 
+                'Sine_Die_Date': '2010-08-11T10:56:00', 
+                'Session_Full_Name': 'Forty-ninth Legislature - Ninth Special Session'
+            }
+        """
+        self.id = session['Session_ID']
+        self.name = session['Session_Full_Name']
+        self.year = session['Legislation_Year']
+        self.start = isodate.parse_datetime(session['Session_Start_Date'])
+        self.end = isodate.parse_datetime(session['Sine_Die_Date'])
+        self.save()
