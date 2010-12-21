@@ -3,10 +3,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>they work for arizona</title>
-    <link rel="stylesheet" href="/stylesheets/reset.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="/stylesheets/text.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="/stylesheets/grid.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="/stylesheets/local.css" type="text/css" media="screen">{% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
+    {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
   </head>
   {% block bodytag %}<body id="{% block bodyid %}base{% endblock %}">{% endblock %}
     <div class="container_12">
