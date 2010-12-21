@@ -1,0 +1,48 @@
+REPUTATION IS MORE IMPORTANT THAN TRAFFIC
+
+theyworkforaz :
+    files are all from nov 30 onwards in basecamp
+
+home page notes:
+    top right field autocompletes - addresses, zip codes, town names, rep/senator names, issues, bill names, committee names, district names, party <-- all of these entities have pages
+    track anything that's a result : track blanket stuff within your district, individual reps/sens, issues, bills, committee activity, party activity <-- all of these entities
+    track az issues search, merge into top right field, not lower
+    
+issues percentages:
+    what they worked on
+        bill sponsorship
+        bill co-sponsorship
+        bill activity - how many times has this appeared before committees and houses
+        bill activity - how many hours of video has been recorded for a bill
+        how many versions of the bill
+        how long the bill is
+        
+"campaign tracking" - secondary space ideas:
+    1. pertinent news stories to the particular topic
+    2. campaign tracking
+    
+district pointer:
+    ask nathan about how it moves
+    
+senator/rep page:
+    key votes:
+        currently from vote smart
+        could we build this based upon users concerns, rather than highlighted bills
+        public appearances and interest group ratings are from votesmart
+    "Yard Sign":
+        some kind of display of support on facebook for a politician...
+    social network graph
+
+issue page:
+    votes etc pull from votesmart
+    committee listings for issues - this is a manual thing per committee per session per issue
+    blue highlight is for your reps on the committees
+    bills / votes on issues - auto-categorise, but possibly with a human filter first?
+    right hand side, people you're tracking/district you're tracking..
+    bottom left - links to external sites (manual)
+    If there's a huge list, link out to an external list.
+
+google earth:
+    export various bits of AZ geodata to google earth for visualisation
+
+no commentary, no petitions, at least in this phase - consider linking out to hashtags on things like twitter - reputation is more important than traffic
