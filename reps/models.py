@@ -260,3 +260,4 @@ class Place(geomodels.Model):
     """
     name = models.CharField(max_length=255, blank=True, null=True)
     feature_type = models.CharField(max_length=255, blank=True, null=True)
+    area = geomodels.MultiPolygonField()
