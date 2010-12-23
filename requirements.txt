@@ -8,3 +8,4 @@ wsgiref
 psycopg2
 django-debug-toolbar
 isodate
+django-haystack

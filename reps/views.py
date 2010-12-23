@@ -42,7 +42,7 @@ def district(request, district_id=None):
     if slocation and district.area.contains(Point(slocation[1])):
         gmap = GoogleMap(polygons=[poly], markers=[Point(slocation[1])])
     else:
-        gmap = GoogleMap(polygons=[poly])
+        gmap = district.gmap()
     totemplate['gmap'] = gmap
     return render_to_response('district.html', totemplate)
 

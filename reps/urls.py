@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import *
-from models import Session
+from models import Session, Place
 
 sessionquery = Session.objects.all()
-
+placequery = Place.objects.all()
 urlpatterns = patterns('',
     (r'^$', 'reps.views.home', {}, 'home'),
     (r'^district/(?P<district_id>\d+)$', 'reps.views.district', {}, 'district'),
@@ -19,13 +19,22 @@ urlpatterns = patterns('',
         }, 
         'sessions'),
         
-        (
-            r'^session/(?P<object_id>\d+)$',
-            'django.views.generic.list_detail.object_detail',
-            {
-                'queryset' : sessionquery,
-                'template_name' : 'session.html',
-                'template_object_name' : 'session',
-            }, 
-            'session'),
+    (
+        r'^session/(?P<object_id>\d+)$',
+        'django.views.generic.list_detail.object_detail',
+        {
+            'queryset' : sessionquery,
+            'template_name' : 'session.html',
+            'template_object_name' : 'session',
+        }, 
+        'session'),
+    (
+        r'^place/(?P<object_id>\d+)$',
+        'django.views.generic.list_detail.object_detail',
+        {
+            'queryset' : placequery,
+            'template_name' : 'place.html',
+            'template_object_name' : 'place',
+        }, 
+        'place'),
 )

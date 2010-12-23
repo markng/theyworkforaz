@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block jshead %}
+  {{ place.gmap.api_script }}
+  <style type="text/css" media="screen">
+    div#map{
+      height: 200px;
+      width: 450px;
+    }
+  </style>
+{% endblock %}
+{% block bodytag %}
+  {{ place.gmap.body }}
+{% endblock %}
+{% block content %}
+	<div class="grid_12">
+	    <h2>{{ place }}</h2>
+	    <script type="text/javascript" charset="utf-8">
+            {{ place.gmap.render }}
+        </script>
+        <div id="map">
+          &nbsp;
+        </div>
+	</div>
+{% endblock %}

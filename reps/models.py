@@ -43,6 +43,16 @@ class District(geomodels.Model):
             balance['all'][rep.party.code] = balance['all'][rep.party.code] + 1
             balance[rep.house.name][rep.party.code] = balance[rep.house.name][rep.party.code] + 1
         return balance
+    
+    def gmap(self):
+        """return a gmap object that we can use in templates"""
+        from django.contrib.gis.maps.google.overlays import GPolygon
+        from django.contrib.gis.maps.google.gmap import GoogleMap
+        area_polygons = []
+        for polygon in self.area:
+            area_polygons.append(GPolygon(polygon))
+        gmap = GoogleMap(polygons=area_polygons)
+        return gmap
 
 class RepresentativeManager(models.Manager):
     """representative manager, add selects by party for templates, etc"""
@@ -261,3 +271,20 @@ class Place(geomodels.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     feature_type = models.CharField(max_length=255, blank=True, null=True)
     area = geomodels.MultiPolygonField()
+    
+    def __unicode__(self):
+        return self.name
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('place', [self.id])
+
+    def gmap(self):
+        """return a gmap object that we can use in templates"""
+        from django.contrib.gis.maps.google.overlays import GPolygon
+        from django.contrib.gis.maps.google.gmap import GoogleMap
+        area_polygons = []
+        for polygon in self.area:
+            area_polygons.append(GPolygon(polygon))
+        gmap = GoogleMap(polygons=area_polygons)
+        return gmap
