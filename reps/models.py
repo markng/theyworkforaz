@@ -284,6 +284,10 @@ class Place(geomodels.Model):
         from django.contrib.gis.maps.google.overlays import GPolygon
         from django.contrib.gis.maps.google.gmap import GoogleMap
         area_polygons = []
+        districts = District.objects.filter(area__overlaps=self.area)
+        for district in districts:
+            for polygon in district.area:
+                area_polygons.append(GPolygon(polygon, "#f33f00", 1, 0.5, "#f33f00", 0.4))
         for polygon in self.area:
             area_polygons.append(GPolygon(polygon))
         gmap = GoogleMap(polygons=area_polygons)
