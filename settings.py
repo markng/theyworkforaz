@@ -33,6 +33,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -52,13 +53,16 @@ INSTALLED_APPS = (
     'django.contrib.gis', # GIS
     'django.contrib.admin',
     'django_extensions',
+    'debug_toolbar',
     'south', # migrations
     'reps',
     'haystack'
 )
 
+CACHE_BACKEND = 'file:///var/tmp/django_cache'
 HAYSTACK_SITECONF = 'search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = 'haystack'
+INTERNAL_IPS = ('127.0.0.1',)
 
 from localsettings import *

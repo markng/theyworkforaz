@@ -6,6 +6,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django import forms
 from haystack.forms import SearchForm
 import datetime, isodate, pyquery
+import pickle
+from django.core.cache import cache
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 # Create your models here.
 class District(geomodels.Model):
@@ -24,35 +30,41 @@ class District(geomodels.Model):
         
     def balance(self):
         """return power balance"""
-        reps = self.representative_set.all()
-        balance = {
-            'all' : {
-                'D' : 0,
-                'R' : 0,
-            },
-            'House' : {
-                'D' : 0,
-                'R' : 0,
-            },
-            'Senate' : {
-                'D' : 0,
-                'R' : 0,
-            },
-        }
-        # do balance for all, house and senate
-        for rep in reps:
-            balance['all'][rep.party.code] = balance['all'][rep.party.code] + 1
-            balance[rep.house.name][rep.party.code] = balance[rep.house.name][rep.party.code] + 1
+        balance = cache.get('district_%s_balance' % self.id)
+        if not balance:
+            reps = self.representative_set.select_related('house', 'party').all()
+            balance = {
+                'all' : {
+                    'D' : 0,
+                    'R' : 0,
+                },
+                'House' : {
+                    'D' : 0,
+                    'R' : 0,
+                },
+                'Senate' : {
+                    'D' : 0,
+                    'R' : 0,
+                },
+            }
+            # do balance for all, house and senate
+            for rep in reps:
+                balance['all'][rep.party.code] = balance['all'][rep.party.code] + 1
+                balance[rep.house.name][rep.party.code] = balance[rep.house.name][rep.party.code] + 1
+            cache.set('district_%s_balance' % self.id, balance)
         return balance
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
         from django.contrib.gis.maps.google.overlays import GPolygon
         from django.contrib.gis.maps.google.gmap import GoogleMap
-        area_polygons = []
-        for polygon in self.area:
-            area_polygons.append(GPolygon(polygon))
-        gmap = GoogleMap(polygons=area_polygons)
+        gmap = cache.get('district_%s_gmap' % (self.id))
+        if not gmap:
+            area_polygons = []
+            for polygon in self.area:
+                area_polygons.append(GPolygon(polygon))
+            gmap = GoogleMap(polygons=area_polygons)
+            cache.set('district_%s_gmap' % (self.id), gmap)
         return gmap
 
 class RepresentativeManager(models.Manager):
@@ -288,11 +300,14 @@ class Place(geomodels.Model):
         """return a gmap object that we can use in templates"""
         from django.contrib.gis.maps.google.overlays import GPolygon
         from django.contrib.gis.maps.google.gmap import GoogleMap
-        area_polygons = []
-        for district in self.in_districts():
-            for polygon in district.area:
-                area_polygons.append(GPolygon(polygon, "#f33f00", 1, 0.5, "#f33f00", 0.4))
-        for polygon in self.area:
-            area_polygons.append(GPolygon(polygon))
-        gmap = GoogleMap(polygons=area_polygons)
+        gmap = cache.get('place_%s_gmap' % (self.id))
+        if not gmap: 
+            area_polygons = []
+            for district in self.in_districts():
+                for polygon in district.area:
+                    area_polygons.append(GPolygon(polygon, "#f33f00", 1, 0.5, "#f33f00", 0.4))
+            for polygon in self.area:
+                area_polygons.append(GPolygon(polygon))
+            gmap = GoogleMap(polygons=area_polygons)
+            cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
