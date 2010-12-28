@@ -3,8 +3,9 @@ from django.contrib.gis.db import models as geomodels
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.core.exceptions import ObjectDoesNotExist
+from django import forms
+from haystack.forms import SearchForm
 import datetime, isodate, pyquery
-
 
 # Create your models here.
 class District(geomodels.Model):
