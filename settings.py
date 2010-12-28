@@ -54,6 +54,11 @@ INSTALLED_APPS = (
     'django_extensions',
     'south', # migrations
     'reps',
+    'haystack'
 )
+
+HAYSTACK_SITECONF = 'search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = 'haystack'
 
 from localsettings import *

@@ -1,0 +1,7 @@
+{{object}}
+{{object.id}}
+{{object.short_title}}
+{% for bills in object.billdocument_set.all %}
+	{{bills}}
+{% endfor %}
+
