@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('haystack.views',
-    url(r'^$', search_view_factory(
+    url(r'^search/whole$', search_view_factory(
         view_class=SearchView,
         searchqueryset=sqs,
         form_class=SearchForm

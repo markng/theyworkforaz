@@ -1,8 +1,5 @@
 {% extends "base.html" %}
-{% block wholenav %}
-
-{% endblock %}
-{% block body %}
+{% block content %}
 <form method="get" action="{% url haystack_search %}">
 	{{ form }}
 	<input type="submit" value="Search">
