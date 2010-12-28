@@ -278,14 +278,17 @@ class Place(geomodels.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('place', [self.id])
-
+    
+    def in_districts(self):
+        """return the districts that this place is in"""
+        return District.objects.filter(area__overlaps=self.area)
+    
     def gmap(self):
         """return a gmap object that we can use in templates"""
         from django.contrib.gis.maps.google.overlays import GPolygon
         from django.contrib.gis.maps.google.gmap import GoogleMap
         area_polygons = []
-        districts = District.objects.filter(area__overlaps=self.area)
-        for district in districts:
+        for district in self.in_districts():
             for polygon in district.area:
                 area_polygons.append(GPolygon(polygon, "#f33f00", 1, 0.5, "#f33f00", 0.4))
         for polygon in self.area:
