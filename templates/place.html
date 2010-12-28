@@ -14,6 +14,7 @@
 {% block content %}
 	<div class="grid_12">
 	    <h2>{{ place }}</h2>
+	    <p>In district{{ place.in_districts|pluralize }} {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}</p>
 	    <script type="text/javascript" charset="utf-8">
             {{ place.gmap.render }}
         </script>
