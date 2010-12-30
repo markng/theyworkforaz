@@ -9,6 +9,9 @@ import datetime, isodate, pyquery
 import pickle
 from django.core.cache import cache
 import logging
+from django.contrib.gis.maps.google.overlays import GPolygon
+from django.contrib.gis.maps.google.gmap import GoogleMap
+from django.contrib.gis.geos import Point
 
 logger = logging.getLogger(__name__)
 
@@ -56,8 +59,6 @@ class District(geomodels.Model):
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
-        from django.contrib.gis.maps.google.overlays import GPolygon
-        from django.contrib.gis.maps.google.gmap import GoogleMap
         gmap = cache.get('district_%s_gmap' % (self.id))
         if not gmap:
             area_polygons = []
@@ -284,6 +285,7 @@ class Place(geomodels.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     feature_type = models.CharField(max_length=255, blank=True, null=True)
     area = geomodels.MultiPolygonField()
+    districts = models.ManyToManyField('District')
     
     def __unicode__(self):
         return self.name
@@ -298,8 +300,6 @@ class Place(geomodels.Model):
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
-        from django.contrib.gis.maps.google.overlays import GPolygon
-        from django.contrib.gis.maps.google.gmap import GoogleMap
         gmap = cache.get('place_%s_gmap' % (self.id))
         if not gmap: 
             area_polygons = []
