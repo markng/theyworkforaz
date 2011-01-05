@@ -296,7 +296,7 @@ class Place(geomodels.Model):
     
     def in_districts(self):
         """return the districts that this place is in"""
-        return District.objects.filter(area__overlaps=self.area)
+        return District.objects.filter(area__intersects=self.area)
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
@@ -305,7 +305,7 @@ class Place(geomodels.Model):
             area_polygons = []
             for district in self.in_districts():
                 for polygon in district.area:
-                    area_polygons.append(GPolygon(polygon, "#f33f00", 1, 0.5, "#f33f00", 0.4))
+                    area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
             for polygon in self.area:
                 area_polygons.append(GPolygon(polygon))
             gmap = GoogleMap(polygons=area_polygons)
