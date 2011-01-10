@@ -22,6 +22,7 @@ class District(geomodels.Model):
     id = geomodels.IntegerField("District ID", primary_key=True) # override default ID field, as we don't want autoincrement
     area = geomodels.MultiPolygonField()
     objects = geomodels.GeoManager()
+    #sessions = models.ManyToManyField('Session')
 
     @models.permalink
     def get_absolute_url(self):
@@ -94,6 +95,7 @@ class Representative(models.Model):
     house = models.ForeignKey('House', blank=True, null=True)
     current = models.BooleanField('Current House Member', default=True)
     link = models.URLField('Link to Bio', blank=True, null=True) # not sure if azleg will remove bios after left
+    sessions = models.ManyToManyField('Session')
     objects = RepresentativeManager()
 
     @models.permalink
@@ -189,6 +191,7 @@ class Vote(models.Model):
 class Bill(models.Model):
     """a bill"""
     id = models.CharField("Bill ID", primary_key=True, max_length=255) # use the alphanumeric bill ID as primary key
+    #session = models.ForeignKey('Session')
     short_title = models.TextField("Short Title", blank=True)
 
     def __unicode__(self):

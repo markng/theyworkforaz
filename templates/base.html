@@ -3,6 +3,11 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>they work for arizona</title>
+    <script type="text/javascript">
+      function searchSubmit(event) {
+        event.target.form.submit();
+      }
+    </script>
     {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
   </head>
   {% block bodytag %}<body id="{% block bodyid %}base{% endblock %}">{% endblock %}
