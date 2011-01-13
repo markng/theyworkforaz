@@ -28,8 +28,12 @@ def home(request):
             return HttpResponseRedirect(district.get_absolute_url())
     else:
         form = WhereForm()
-
-    return render_to_response('index.html', { 'form' : form, })
+    #districts = District.objects.all()
+    #district_areas = []
+    #for district in districts:
+    #    district_areas.append(GPolygon(district.area[0]))
+    gmap = GoogleMap(center=Point(-111.8408203125,34.3797125804622), zoom=7)
+    return render_to_response('index.html', { 'form' : form, 'gmap' : gmap })
 
 def district(request, district_id=None):
     """district page"""

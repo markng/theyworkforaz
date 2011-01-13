@@ -3,6 +3,8 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>they work for arizona</title>
+    <link rel="stylesheet" href="/stylesheets/twfa.css" type="text/css" charset="utf-8">
+    <link rel="icon" href="/images/fav.png">
     <script type="text/javascript">
       function searchSubmit(event) {
         event.target.form.submit();
@@ -11,19 +13,73 @@
     {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
   </head>
   {% block bodytag %}<body id="{% block bodyid %}base{% endblock %}">{% endblock %}
-    <div class="container_12">
-      <div id="header" class="grid_12">
-        <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - find &amp; track your elected officials"></a>
-      </div>
-      <div class="clear"></div>
-      {% block content %}
-
-      {% endblock %}  
-      <div class="clear"></div>
-      <div class="grid_12" id="footer">
-        <p>They work for Arizona is a <a href="http://phxdata.org">phxdata</a> production. <a href="">About</a>.</p>
-      </div>
-      <div class="clear"></div>
-    </div>
+      <section id="main">
+          <header>
+              <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?"></a>
+              <div class="tagline">
+                <p><strong>Find</strong> your elected representatives</p>
+                <p>Keep <strong>up to date</strong> on what they do</p>
+              </div>
+          </header>
+          <nav>
+            <a href="/">Home</a>
+            <a href="/">About Us</a>
+          </nav>
+          <section>
+              {% block content %}
+              {% endblock %}          
+          </section>
+      </section>
+      <aside class="search">
+          <div id="searchform">
+              <p>What are you searching for?</p>
+              <form method="get" action="{% url haystack_search %}">
+                  {% for field in form %}
+                    {{ field }}
+                  {% endfor %}
+                  <input type="submit" value="Go">
+              </form>
+          </div>
+          <div id="searchresults">
+            <ul>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+                <li>
+                    Rep Joe Bloggs
+                </li>
+            </ul>
+          </div>
+      </aside>
   </body>
 </html>

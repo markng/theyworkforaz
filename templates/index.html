@@ -1,26 +1,22 @@
 {% extends "base.html" %}
-{% block content %}
-<style type="text/css" media="screen">
-    input{
-        line-height: 1.4em;
-        font-size: 1.5em;
+{% block bodytag %}
+  {{ gmap.body }}
+{% endblock %}
+{% block jshead %}
+  {{ gmap.api_script }}
+  <style type="text/css" media="screen">
+    div#map{
+      width: 100%;
+      height: 700px;
     }
-</style>
-  <div class="grid_12">
-    <p>Search the elected officials who work for you by:</p>
-    <ul>
-        <li>Address</li>
-        <li>ZIP Code</li>
-        <li>Name</li>
-    </ul>
-  </div>
-  <div class="grid_6 push_2">
-    <form action="{% url home %}" method="post" accept-charset="utf-8" class="whereform">
-      {% for field in form %}
-        {{ field.errors }}
-        {{ field.label_tag }}<br>{{ field }}
-      {% endfor %}
-      <input type="submit" value="Find &rarr;">
-    </form>    
-  </div>
+  </style>
+{% endblock %}
+{% block content %}
+<script type="text/javascript" charset="utf-8">
+    {{ gmap.render }}
+</script>
+<div id="map">
+  &nbsp;
+</div>
+
 {% endblock %}
