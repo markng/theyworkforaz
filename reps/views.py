@@ -5,6 +5,7 @@ from geocoders.google import geocoder
 from models import District, Representative, Bill
 from forms import WhereForm
 from django.contrib.gis.geos import Point
+from django.views.decorators.cache import cache_page
 from django.contrib.gis.maps.google.overlays import GPolygon
 from django.contrib.gis.maps.google.gmap import GoogleMap
 
@@ -28,12 +29,17 @@ def home(request):
             return HttpResponseRedirect(district.get_absolute_url())
     else:
         form = WhereForm()
-    #districts = District.objects.all()
-    #district_areas = []
-    #for district in districts:
-    #    district_areas.append(GPolygon(district.area[0]))
-    gmap = GoogleMap(center=Point(-111.8408203125,34.3797125804622), zoom=7)
+    gmap = GoogleMap()
     return render_to_response('index.html', { 'form' : form, 'gmap' : gmap })
+
+def homemap(request):
+    """javascript map render"""
+    districts = District.objects.all()
+    district_areas = []
+    for district in districts:
+        district_areas.append(GPolygon(district.area[0]))
+    gmap = GoogleMap(center=Point(-111.8408203125,34.3797125804622), zoom=7, polygons=district_areas)
+    return render_to_response('index_map.js', {'gmap' : gmap})
 
 def district(request, district_id=None):
     """district page"""

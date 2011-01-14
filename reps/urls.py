@@ -5,6 +5,7 @@ sessionquery = Session.objects.all()
 placequery = Place.objects.all()
 urlpatterns = patterns('',
     (r'^$', 'reps.views.home', {}, 'home'),
+    (r'^map.js$', 'reps.views.homemap', {}, 'homemap'),
     (r'^district/(?P<district_id>\d+)$', 'reps.views.district', {}, 'district'),
     (r'^senator/(?P<representative_id>\d+)$', 'reps.views.senator', {}, 'senator'),
     (r'^member/(?P<representative_id>\d+)$', 'reps.views.housemember', {}, 'senator'),

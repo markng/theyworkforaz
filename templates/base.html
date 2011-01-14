@@ -3,6 +3,9 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>they work for arizona</title>
+    <!--[if lt IE 9]>
+    <script src="/stylesheets/html5.js" type="text/javascript" charset="utf-8"></script>
+    <![endif]-->
     <link rel="stylesheet" href="/stylesheets/twfa.css" type="text/css" charset="utf-8">
     <link rel="icon" href="/images/fav.png">
     <script type="text/javascript">
@@ -20,6 +23,9 @@
                 <p><strong>Find</strong> your elected representatives</p>
                 <p>Keep <strong>up to date</strong> on what they do</p>
               </div>
+              <div class="clear">
+                &nbsp;
+              </div>
           </header>
           <nav>
             <a href="/">Home</a>
@@ -31,54 +37,76 @@
           </section>
       </section>
       <aside class="search">
-          <div id="searchform">
-              <p>What are you searching for?</p>
-              <form method="get" action="{% url haystack_search %}">
-                  {% for field in form %}
-                    {{ field }}
-                  {% endfor %}
-                  <input type="submit" value="Go">
-              </form>
-          </div>
-          <div id="searchresults">
-            <ul>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-                <li>
-                    Rep Joe Bloggs
-                </li>
-            </ul>
+          <div id="search">
+              <div id="searchintro">
+                  <p>What are you searching for?</p>
+              </div>
+              <div id="searchform">
+                  <form method="get" action="{% url haystack_search %}">
+                      {% for field in form %}
+                        {{ field }}
+                      {% endfor %}
+                      <input type="submit" value="Go">
+                  </form>
+              </div>
+              <div id="searchresults">
+                <ul>
+                    <li>
+                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
+                        Rep Joe Bloggs
+                        <form action="" method="post">
+                            <input type="hidden" name="type" value="rep">
+                            <input type="hidden" name="object_id" value="1">
+                            <input type="submit" name="track" value="Track" class="tracking">
+                        </form>
+                    </li>
+                    <li>
+                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
+                        Rep Joe Bloggs
+                        <form action="" method="post">
+                            <input type="hidden" name="type" value="rep">
+                            <input type="hidden" name="object_id" value="1">
+                            <input type="submit" name="track" value="Track" class="tracking">
+                        </form>
+                    </li>
+                    <li>
+                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
+                        Rep Joe Bloggs
+                        <form action="" method="post">
+                            <input type="hidden" name="type" value="rep">
+                            <input type="hidden" name="object_id" value="1">
+                            <input type="submit" name="track" value="Track" class="tracking">
+                        </form>
+                    </li>
+                    <li>
+                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
+                        Rep Joe Bloggs
+                        <form action="" method="post">
+                            <input type="hidden" name="type" value="rep">
+                            <input type="hidden" name="object_id" value="1">
+                            <input type="submit" name="track" value="Track" class="tracking">
+                        </form>
+                    </li>
+                    <li>
+                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
+                        Rep Joe Bloggs
+                        <form action="" method="post">
+                            <input type="hidden" name="type" value="rep">
+                            <input type="hidden" name="object_id" value="1">
+                            <input type="submit" name="track" value="Track" class="tracking">
+                        </form>
+                    </li>
+                    <li>
+                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
+                        Rep Joe Bloggs
+                        <form action="" method="post">
+                            <input type="hidden" name="type" value="rep">
+                            <input type="hidden" name="object_id" value="1">
+                            <input type="submit" name="track" value="Track" class="tracking">
+                        </form>
+                    </li>
+                </ul>
+              </div>
           </div>
       </aside>
   </body>

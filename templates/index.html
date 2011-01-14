@@ -12,9 +12,7 @@
   </style>
 {% endblock %}
 {% block content %}
-<script type="text/javascript" charset="utf-8">
-    {{ gmap.render }}
-</script>
+<script src="{% url homemap %}" type="text/javascript" charset="utf-8"></script>
 <div id="map">
   &nbsp;
 </div>

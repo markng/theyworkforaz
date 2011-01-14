@@ -62,11 +62,21 @@ table {
  * #b16b63 - nav background
  */
 body{
-  font-family: Abbey, Arial, sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 200;
+  letter-spacing: 1px;
+  line-height: 1.1em;
+  
+}
+strong{
+  font-weight: 500;
+}
+input[type=submit] {
+  border: 1px solid #fff;
+  color: #fff;
 }
 header{
   background: #973e33;
-  min-height: 110px;
 }
 header a img{
   margin-top: 10px;
@@ -111,31 +121,84 @@ aside.search{
 }
 aside.search input{
   line-height: 1.4em;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
-aside.search input[type=submit]{
-  background: #b16b63;
-  color: #fff;
-  border: 1px solid #fff;
+aside.search div#search{
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+}
+aside.search div#searchintro{
+  margin-top: 75px;
+  padding-top: 65px;
+  background: url('/images/top_gradient.png') repeat-x top;
+}
+aside.search div#searchintro p{
+  display: block;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5em;
 }
 aside.search div#searchform{
+  background: #811000;
+  height: 2.5em;
+}
+aside.search div#searchform form{
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 75px;
-  width: 90%;
-  text-align: center;
-  background: url('/images/bottom_gradient.png') repeat-x top;
+  width: 83%;
+}
+aside.search div#searchform input[type=submit]{
+  background: #b16b63;
+  color: #fff;
+  float: right;
+}
+aside.search div#searchform input[type=text]{
+  padding-left: 0;
+  margin-left: 0;
+  width: 80%;
 }
 aside.search div#searchresults{
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
   background: url('/images/tall_gradient.png') repeat-x bottom;
   padding-bottom: 50px;
-  text-align: center;
+}
+aside.search div#searchresults ul{
+  display: block;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+}
+aside.search div#searchresults ul li{
+  display: block;
+  border-bottom: 1px solid white;
+  line-height: 1.2em;
+  padding-top: 3px;
+  padding-bottom: 6px;
+}
+aside.search div#searchresults ul li img.icon{
+  height: 1.2em;
+}
+aside.search div#searchresults form{
+  display: inline;
+}
+aside.search div#searchresults input[type=submit]{
+  background: #a62612;
+  color: #fff;
+  float: right;
+  font-size: 0.8em;
 }
 section#main {
   float: left;
   width: 70%;
   height: 100%;
+}
+section#main section{
+  float: left;
+  width: 100%;
+}
+.clear{
+  clear: both;
+  height: 0px;
 }
