@@ -38,4 +38,11 @@ urlpatterns = patterns('',
             'template_object_name' : 'place',
         }, 
         'place'),
+    (
+        r'^about$',
+        'django.views.generic.simple.direct_to_template',
+        {
+            'template' : 'about.html',
+        },
+        'about'),
 )

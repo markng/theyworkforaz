@@ -21,6 +21,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
+	background-color: #fff;
 }
 ol, ul {
 	list-style: none;
@@ -196,7 +197,28 @@ section#main {
 }
 section#main section{
   float: left;
+  background: url('/images/content_gradient.png') top repeat-x;
   width: 100%;
+  min-height: 1000px;
+}
+section#main section h1{
+  color: #fff;
+  font-weight: 200;
+  font-size: 1.5em;
+  text-shadow: 0.1em 0.1em #4f0d00;
+  margin-bottom: 30px;
+  text-align: center;
+  margin-top: 50px;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+section#main section div.full{
+  background: #fff;
+  border: 1px solid black;
+  margin-left: 1%;
+  margin-right: 1%;
+  padding: 7px;
+  
 }
 .clear{
   clear: both;

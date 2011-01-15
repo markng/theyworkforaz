@@ -11,10 +11,11 @@ from django.core.cache import cache
 import logging
 from django.contrib.gis.maps.google.overlays import GPolygon
 from django.contrib.gis.maps.google.gmap import GoogleMap
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos import Point, Polygon, MultiPolygon
 
 logger = logging.getLogger(__name__)
 
+MASK_BASE_COORDS = ((-20.0, -81.0), (-20.0, 85.0), (-150.0, 85.0), (-150.0, -81.0), (-20.0, -81.0))
 
 # Create your models here.
 class District(geomodels.Model):
@@ -23,7 +24,7 @@ class District(geomodels.Model):
     area = geomodels.MultiPolygonField()
     objects = geomodels.GeoManager()
     #sessions = models.ManyToManyField('Session')
-
+    
     @models.permalink
     def get_absolute_url(self):
         return('reps.views.district', [str(self.id)])
@@ -83,7 +84,7 @@ class RepresentativeManager(models.Manager):
 class Representative(models.Model):
     """a representative (either house or senate)"""
     # alot of this stuff is nullable for when reps leave office
-    id = models.IntegerField("Representative ID", primary_key=True) # override default so we can keep azleg ids
+    azleg_id = models.IntegerField("Representative ID")
     name = models.CharField("Name", max_length=255)
     role = models.CharField("Role", max_length=255, blank=True, null=True)
     party = models.ForeignKey('Party')
@@ -303,14 +304,21 @@ class Place(geomodels.Model):
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
-        gmap = cache.get('place_%s_gmap' % (self.id))
-        if not gmap: 
-            area_polygons = []
-            for district in self.in_districts():
-                for polygon in district.area:
-                    area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
-            for polygon in self.area:
-                area_polygons.append(GPolygon(polygon))
-            gmap = GoogleMap(polygons=area_polygons)
-            cache.set('place_%s_gmap' % (self.id),gmap)
+        #gmap = cache.get('place_%s_gmap' % (self.id))
+        #if not gmap: 
+        area_polygons = []
+        coords = MASK_BASE_COORDS
+        for district in self.in_districts():
+            for polygon in district.area:
+                #area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
+                pass
+        for polygon in self.area:
+            for coords in polygon.coords:
+                coords.append(polygon.coords)
+            #area_polygons.append(GPolygon(polygon))
+        mask = Polygon(coords)
+        logger.info("CRAP")
+        #area_polygons.append(GPolygon(mask, "#fff", 1, 0.8, "#fff", 0.8))
+        gmap = GoogleMap(polygons=area_polygons, zoom=10, center=self.area.centroid)
+        cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap

@@ -8,6 +8,7 @@ from django.contrib.gis.geos import Point
 from django.views.decorators.cache import cache_page
 from django.contrib.gis.maps.google.overlays import GPolygon
 from django.contrib.gis.maps.google.gmap import GoogleMap
+from django.template import RequestContext
 
 def home(request):
     """home page"""
@@ -27,11 +28,10 @@ def home(request):
                 except District.DoesNotExist, e:
                     return render_to_response('index.html', { 'form' : form, })
             return HttpResponseRedirect(district.get_absolute_url())
-    else:
-        form = WhereForm()
     gmap = GoogleMap()
-    return render_to_response('index.html', { 'form' : form, 'gmap' : gmap })
+    return render_to_response('index.html', { 'gmap' : gmap }, context_instance=RequestContext(request))
 
+@cache_page(60*24)
 def homemap(request):
     """javascript map render"""
     districts = District.objects.all()
@@ -39,7 +39,7 @@ def homemap(request):
     for district in districts:
         district_areas.append(GPolygon(district.area[0]))
     gmap = GoogleMap(center=Point(-111.8408203125,34.3797125804622), zoom=7, polygons=district_areas)
-    return render_to_response('index_map.js', {'gmap' : gmap})
+    return render_to_response('index_map.js', {'gmap' : gmap}, context_instance=RequestContext(request))
 
 def district(request, district_id=None):
     """district page"""
@@ -53,19 +53,26 @@ def district(request, district_id=None):
     else:
         gmap = district.gmap()
     totemplate['gmap'] = gmap
-    return render_to_response('district.html', totemplate)
+    return render_to_response('district.html', totemplate, context_instance=RequestContext(request))
 
 def senator(request, representative_id=None):
     """senator page"""
     senator = get_object_or_404(Representative, pk=representative_id)
-    return render_to_response('senator.html', { 'senator' : senator })
+    return render_to_response('senator.html', { 'senator' : senator }, context_instance=RequestContext(request))
 
 def housemember(request, representative_id=None):
     """house member page"""
     member = get_object_or_404(Representative.objects.select_related(), pk=representative_id)
-    return render_to_response('member.html', { 'member' : member })
+    return render_to_response('member.html', { 'member' : member }, context_instance=RequestContext(request))
 
 def bill(request, bill_id=None):
     """bill page"""
     bill = get_object_or_404(Bill.objects.select_related(), pk=bill_id)
-    return render_to_response('bill.html', { 'bill' : bill })
+    return render_to_response('bill.html', { 'bill' : bill }, context_instance=RequestContext(request))
+    
+def search_form_context_processor(request):
+    from haystack.forms import SearchForm
+    from haystack.query import SearchQuerySet
+    sqs = SearchQuerySet()
+    form = SearchForm(searchqueryset=sqs)
+    return { 'search_form': form }

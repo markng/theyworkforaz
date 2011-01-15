@@ -28,8 +28,8 @@
               </div>
           </header>
           <nav>
-            <a href="/">Home</a>
-            <a href="/">About Us</a>
+            <a href="{% url home %}">Home</a>
+            <a href="{% url about %}">About Us</a>
           </nav>
           <section>
               {% block content %}
@@ -43,14 +43,21 @@
               </div>
               <div id="searchform">
                   <form method="get" action="{% url haystack_search %}">
+                      {% if form %}
                       {% for field in form %}
                         {{ field }}
                       {% endfor %}
+                      {% else %}
+                      {% for field in search_form %}
+                        {{ field }}
+                      {% endfor %}
+                      {% endif %}
                       <input type="submit" value="Go">
                   </form>
               </div>
               <div id="searchresults">
                 <ul>
+                    {% block searchresults %}
                     <li>
                         <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
                         Rep Joe Bloggs
@@ -68,43 +75,8 @@
                             <input type="hidden" name="object_id" value="1">
                             <input type="submit" name="track" value="Track" class="tracking">
                         </form>
-                    </li>
-                    <li>
-                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
-                        Rep Joe Bloggs
-                        <form action="" method="post">
-                            <input type="hidden" name="type" value="rep">
-                            <input type="hidden" name="object_id" value="1">
-                            <input type="submit" name="track" value="Track" class="tracking">
-                        </form>
-                    </li>
-                    <li>
-                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
-                        Rep Joe Bloggs
-                        <form action="" method="post">
-                            <input type="hidden" name="type" value="rep">
-                            <input type="hidden" name="object_id" value="1">
-                            <input type="submit" name="track" value="Track" class="tracking">
-                        </form>
-                    </li>
-                    <li>
-                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
-                        Rep Joe Bloggs
-                        <form action="" method="post">
-                            <input type="hidden" name="type" value="rep">
-                            <input type="hidden" name="object_id" value="1">
-                            <input type="submit" name="track" value="Track" class="tracking">
-                        </form>
-                    </li>
-                    <li>
-                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
-                        Rep Joe Bloggs
-                        <form action="" method="post">
-                            <input type="hidden" name="type" value="rep">
-                            <input type="hidden" name="object_id" value="1">
-                            <input type="submit" name="track" value="Track" class="tracking">
-                        </form>
-                    </li>
+                    </li>                        
+                    {% endblock %}
                 </ul>
               </div>
           </div>
