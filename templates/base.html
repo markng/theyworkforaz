@@ -16,70 +16,46 @@
     {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
   </head>
   {% block bodytag %}<body id="{% block bodyid %}base{% endblock %}">{% endblock %}
-      <section id="main">
-          <header>
-              <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?"></a>
-              <div class="tagline">
-                <p><strong>Find</strong> your elected representatives</p>
-                <p>Keep <strong>up to date</strong> on what they do</p>
-              </div>
-              <div class="clear">
-                &nbsp;
-              </div>
-          </header>
-          <nav>
-            <a href="{% url home %}">Home</a>
-            <a href="{% url about %}">About Us</a>
-          </nav>
-          <section>
-              {% block content %}
-              {% endblock %}          
-          </section>
-      </section>
-      <aside class="search">
-          <div id="search">
-              <div id="searchintro">
-                  <p>What are you searching for?</p>
-              </div>
-              <div id="searchform">
-                  <form method="get" action="{% url haystack_search %}">
-                      {% if form %}
-                      {% for field in form %}
+      <nav>
+          <ul>
+            <li><a href="{% url home %}">Home</a></li>
+            <li><a href="{% url addresscheck %}">Find Your District</a></li>
+            <li><a href="{% url about %}">About Us</a></li>
+          </ul>
+          <div class="searchform">
+            <form action="{% url haystack_search %}" method="get">
+                {% if form %}
+                    {% for field in form %}
                         {{ field }}
-                      {% endfor %}
-                      {% else %}
-                      {% for field in search_form %}
-                        {{ field }}
-                      {% endfor %}
-                      {% endif %}
-                      <input type="submit" value="Go">
-                  </form>
-              </div>
-              <div id="searchresults">
-                <ul>
-                    {% block searchresults %}
-                    <li>
-                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
-                        Rep Joe Bloggs
-                        <form action="" method="post">
-                            <input type="hidden" name="type" value="rep">
-                            <input type="hidden" name="object_id" value="1">
-                            <input type="submit" name="track" value="Track" class="tracking">
-                        </form>
-                    </li>
-                    <li>
-                        <img src="/images/the_man_blue.png" alt="Democrat" class="icon"/>
-                        Rep Joe Bloggs
-                        <form action="" method="post">
-                            <input type="hidden" name="type" value="rep">
-                            <input type="hidden" name="object_id" value="1">
-                            <input type="submit" name="track" value="Track" class="tracking">
-                        </form>
-                    </li>                        
-                    {% endblock %}
-                </ul>
-              </div>
+                    {% endfor %}
+                {% else %}
+                    {% for field in search_form %}
+                        {{ field}}
+                    {% endfor %}
+                {% endif %}
+                <input type="submit" value="Go">
+            </form>
           </div>
-      </aside>
+          <div class="clear">
+            &nbsp;
+          </div>
+      </nav>
+      <header>
+          <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?"></a>
+          <div class="clear">
+              &nbsp;
+          </div>
+      </header>
+      <section id="headline">
+          <div>
+              &nbsp;
+          </div>
+          {% block headline %}
+          {% endblock %}
+      </section>
+      <section id="content">
+          {% block content %}
+          {% endblock %}          
+      </section>
   </body>
 </html>

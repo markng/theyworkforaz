@@ -61,10 +61,12 @@ table {
  * #ce3d2b - lighter background colour - aside
  * #811000 - accent to lighter background - search
  * #b16b63 - nav background
+ * #d3bb7e - outside background
  */
 body{
   font-family: "Helvetica Neue", sans-serif;
   font-weight: 200;
+  background: #d3bb7e;
   letter-spacing: 1px;
   line-height: 1.1em;
   
@@ -72,155 +74,105 @@ body{
 strong{
   font-weight: 500;
 }
+input {
+  font-size: 1.5em;
+}
 input[type=submit] {
   border: 1px solid #fff;
   color: #fff;
 }
-header{
-  background: #973e33;
-}
-header a img{
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-}
-header a{
+header, nav, section#main, section#content, section#headline{
   display: block;
-  float: left;
-}
-header div.tagline{
-  height: 35px;
-  padding-top: 5px;
-  display: block;
-  float: left;
-  padding-left: 18px;
-  margin-top: 40px;
-  color: #fff;
-  margin-left: 20px;
-  border-left: 1px solid #821e20;
+  margin-left: auto;
+  margin-right: auto;
 }
 nav{
-  background: #b16b63;
-  color: #fff;
-  border-top: 1px solid #821e20;
-  border-bottom: 1px solid #821e20;
-  padding: 10px;
-  text-transform: uppercase;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 1em;
+  background: #000;
 }
-nav a{
-  padding-right: 2em;
-  font-size: 0.8em;
+nav ul li{
+  display: block;
+  float: left;
+  padding-left: 1em;
+}
+nav ul a{
   text-decoration: none;
+  font-family: "Arial Narrow";
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: #fff;
 }
-aside.search{
-  background: #ce3d2b;
-  color: #fff;
-  float: left;
-  width: 30%;
-  min-height: 100%;
+nav ul a:hover{
+  text-decoration: underline;
 }
-aside.search input{
-  line-height: 1.4em;
-  font-size: 1.2em;
-}
-aside.search div#search{
-  width: 83%;
-  margin-left: auto;
-  margin-right: auto;
-}
-aside.search div#searchintro{
-  margin-top: 75px;
-  padding-top: 65px;
-  background: url('/images/top_gradient.png') repeat-x top;
-}
-aside.search div#searchintro p{
-  display: block;
-  width: 83%;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5em;
-}
-aside.search div#searchform{
-  background: #811000;
-  height: 2.5em;
-}
-aside.search div#searchform form{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 83%;
-}
-aside.search div#searchform input[type=submit]{
-  background: #b16b63;
-  color: #fff;
+nav div{
   float: right;
+  margin-right: 5px;
+  vertical-align: middle;
 }
-aside.search div#searchform input[type=text]{
-  padding-left: 0;
-  margin-left: 0;
-  width: 80%;
+header{
+  background: #821e20;
 }
-aside.search div#searchresults{
-  background: url('/images/tall_gradient.png') repeat-x bottom;
-  padding-bottom: 50px;
+header img{
+  padding: 5px;
+  width: 300px;
 }
-aside.search div#searchresults ul{
-  display: block;
-  width: 83%;
-  margin-left: auto;
-  margin-right: auto;
+section#headline div{
+  background: url('/images/headline_top.png') top no-repeat;
 }
-aside.search div#searchresults ul li{
-  display: block;
-  border-bottom: 1px solid white;
-  line-height: 1.2em;
-  padding-top: 3px;
-  padding-bottom: 6px;
-}
-aside.search div#searchresults ul li img.icon{
-  height: 1.2em;
-}
-aside.search div#searchresults form{
-  display: inline;
-}
-aside.search div#searchresults input[type=submit]{
-  background: #a62612;
+section#headline{
+  height: 5em;
+  background: url('/images/headline_bottom.png') bottom no-repeat;
   color: #fff;
-  float: right;
-  font-size: 0.8em;
 }
-section#main {
-  float: left;
-  width: 70%;
-  height: 100%;
+section#headline p{
+  padding-left: 30px;
 }
-section#main section{
-  float: left;
-  background: url('/images/content_gradient.png') top repeat-x;
-  width: 100%;
-  min-height: 1000px;
+header, nav, section#main, section#content{
+  width: 1000px;
 }
-section#main section h1{
-  color: #fff;
-  font-weight: 200;
-  font-size: 1.5em;
-  text-shadow: 0.1em 0.1em #4f0d00;
-  margin-bottom: 30px;
-  text-align: center;
-  margin-top: 50px;
-  padding-left: 1%;
-  padding-right: 1%;
+section#headline{
+  width: 1050px;
 }
-section#main section div.full{
+section#headline h1, section#headline p{
+  padding-left: 40px;
+}
+section#content{
+  min-height: 700px;
   background: #fff;
+}
+section#content div.full{
   border: 1px solid black;
-  margin-left: 1%;
-  margin-right: 1%;
-  padding: 7px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+section#content div.half{
+  border: 1px solid black;
+  width: 45%;
+  float: left;
+  margin-left: 5%;
+}
+section#content div.full *, section#content div.half *{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+section#content h1{
   
 }
-.clear{
-  clear: both;
+/*
+ * Media queries to adjust sizes for screens
+ */
+@media only screen and (min-width: 1200px) {
+  header, nav, section#main, section#content{
+    width: 1000px;
+  }
+  section#headline{
+    width: 1050px;
+  }
+}
+div.clear{
   height: 0px;
 }

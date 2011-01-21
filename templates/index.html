@@ -3,18 +3,8 @@
   {{ gmap.body }}
 {% endblock %}
 {% block jshead %}
-  {{ gmap.api_script }}
-  <style type="text/css" media="screen">
-    div#map{
-      width: 100%;
-      height: 700px;
-    }
-  </style>
 {% endblock %}
 {% block content %}
-<script src="{% url homemap %}" type="text/javascript" charset="utf-8"></script>
-<div id="map">
-  &nbsp;
-</div>
+<h1></h1>
 
 {% endblock %}
