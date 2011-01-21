@@ -12,6 +12,11 @@ from django.template import RequestContext
 
 def home(request):
     """home page"""
+    gmap = GoogleMap()
+    return render_to_response('index.html', { 'gmap' : gmap }, context_instance=RequestContext(request))
+
+def addresschecker(request):
+    """go to district from address"""
     if request.method == 'POST':
         form = WhereForm(request.POST)
         if form.is_valid():
@@ -28,8 +33,8 @@ def home(request):
                 except District.DoesNotExist, e:
                     return render_to_response('index.html', { 'form' : form, })
             return HttpResponseRedirect(district.get_absolute_url())
-    gmap = GoogleMap()
-    return render_to_response('index.html', { 'gmap' : gmap }, context_instance=RequestContext(request))
+    form = WhereForm()
+    return render_to_response('address.html', { 'form' : form }, context_instance=RequestContext(request))
 
 @cache_page(60*24)
 def homemap(request):

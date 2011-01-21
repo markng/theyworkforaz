@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block bodytag %}
+  {{ gmap.body }}
+{% endblock %}
+{% block jshead %}
+{% endblock %}
+{% block headline %}
+    <h1>Find your district</h1>
+{% endblock %}
+{% block content %}
+<div class="full">
+    <form action="{% url addresscheck %}" method="post">
+        {{ form }}
+        <input type="submit" value="Find District">
+    </form>
+</div>
+
+{% endblock %}
