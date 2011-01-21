@@ -74,9 +74,6 @@ body{
 strong{
   font-weight: 500;
 }
-input {
-  font-size: 1.5em;
-}
 input[type=submit] {
   border: 1px solid #fff;
   color: #fff;
@@ -120,6 +117,8 @@ header img{
   width: 300px;
 }
 section#headline div{
+  padding: 0;
+  margin: 0;
   background: url('/images/headline_top.png') top no-repeat;
 }
 section#headline{
@@ -142,22 +141,24 @@ section#headline h1, section#headline p{
 section#content{
   min-height: 700px;
   background: #fff;
+  padding-bottom: 10px;
 }
 section#content div.full{
-  border: 1px solid black;
   width: 95%;
   margin-left: auto;
   margin-right: auto;
 }
 section#content div.half{
-  border: 1px solid black;
   width: 45%;
   float: left;
-  margin-left: 5%;
+  margin-left: 4%;
 }
 section#content div.full *, section#content div.half *{
   padding-left: 2px;
   padding-right: 2px;
+}
+section#content input {
+  font-size: 1.5em;
 }
 section#content h1{
   
