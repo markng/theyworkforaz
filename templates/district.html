@@ -11,18 +11,18 @@
 {% block bodytag %}
   {{ gmap.body }}
 {% endblock %}
+{% block headline %}
+    <h1>Arizona District {{ district }}</h1>
+{% endblock %}
 {% block content %}
-  <div class="grid_12">
-    <h2>Arizona District {{ district }}</h2>
+  <div class="half">
+      <script type="text/javascript" charset="utf-8">
+          {{ gmap.render }}
+      </script>
+      <div id="map">
+      </div>
   </div>
-  <div class="grid_12">
-    <script type="text/javascript" charset="utf-8">
-        {{ gmap.render }}
-    </script>
-    <div id="map">
-    </div>
-  </div>
-  <div class="grid_12">
+  <div class="half">
     <h2>Your Representatives</h2>
     <p>House: <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ district.balance.House.D }},{{ district.balance.House.R }}&amp;chs=50x50&amp;chco=0000FF,FF0000" title="D: {{ district.balance.House.D }} R: {{ district.balance.House.R }}" /> Senate: <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ district.balance.Senate.D }},{{ district.balance.Senate.R }}&amp;chs=50x50&amp;chco=0000FF,FF0000" title="D: {{ district.balance.Senate.D }} R: {{ district.balance.Senate.R }}" /> Overall: <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ district.balance.all.D }},{{ district.balance.all.R }}&amp;chs=50x50&amp;chco=0000FF,FF0000" title="D: {{ district.balance.all.D }} R: {{ district.balance.all.R }}" /></p>
     <ul>
@@ -30,5 +30,8 @@
         <li><a href="{{ rep.get_absolute_url }}">{{ rep }}</a> {{ rep.party }} ({{ rep.house }}{% if rep.role  %} {{ rep.role }}{% endif %})</li>
       {% endfor %}    
     </ul>    
+  </div>
+  <div class="clear">
+    &nbsp;
   </div>
 {% endblock %}
