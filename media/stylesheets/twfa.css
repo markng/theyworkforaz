@@ -138,6 +138,13 @@ header, nav, section#main, section#content{
 section#headline{
   width: 1050px;
 }
+section#headline h1 {
+    font-size: 25px;
+    font-family: "Helvetica Neue", sans-serif;
+    margin-left: 40px;
+    text-transform:uppercase;
+    font-weight: 300;
+}
 section#headline h1, section#headline p{
   padding-left: 40px;
 }
@@ -160,6 +167,28 @@ section#content div.full *, section#content div.half *{
   padding-left: 2px;
   padding-right: 2px;
 }
+
+section#content div.center {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+}
+
+section#content div.center h2 {
+    font-size: 25px;
+    font-family: "Helvetica Neue", sans-serif;
+    text-transform:uppercase;
+    font-weight: 300;
+    padding: 20px 0px 10px 0px;
+    line-height: 100%;
+}
+
+section#content div.center h2 a {
+    text-decoration: none;
+    color: #D3BB7E;
+}
+
 section#content input {
   font-size: 1.5em;
 }
