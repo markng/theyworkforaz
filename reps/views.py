@@ -1,7 +1,6 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.conf import settings
-from geocoders.google import geocoder
 from models import District, Representative, Bill
 from forms import WhereForm
 from django.contrib.gis.geos import Point
@@ -20,20 +19,12 @@ def addresschecker(request):
     if request.method == 'POST':
         form = WhereForm(request.POST)
         if form.is_valid():
-            geocode = geocoder(settings.GOOGLE_MAPS_API_KEY, lonlat=True)
-            location = geocode(form.cleaned_data['where'])
+            location = (form.cleaned_data['lon'], form.cleaned_data['lat'])
             request.session['location'] = location
-            try:
-                district = District.objects.get(area__contains=Point(location[1]))
-            except District.DoesNotExist, e:
-                try:
-                    location = geocode("%s, Arizona, USA" % (form.cleaned_data['where']))
-                    request.session['location'] = location
-                    district = District.objects.get(area__contains=Point(location[1]))
-                except District.DoesNotExist, e:
-                    return render_to_response('index.html', { 'form' : form, })
+            district = District.objects.get(id=form.cleaned_data['district_id'])
             return HttpResponseRedirect(district.get_absolute_url())
-    form = WhereForm()
+    else:
+        form = WhereForm()
     return render_to_response('address.html', { 'form' : form }, context_instance=RequestContext(request))
 
 @cache_page(60*24)
@@ -52,9 +43,9 @@ def district(request, district_id=None):
     district = District.objects.get(id=district_id)
     totemplate['district'] = district
     slocation = request.session.get('location', False)
-    if slocation and district.area.contains(Point(slocation[1])):
+    if slocation and district.area.contains(Point(slocation)):
         poly = GPolygon(district.area[0])
-        gmap = GoogleMap(polygons=[poly], markers=[Point(slocation[1])])
+        gmap = GoogleMap(polygons=[poly], markers=[Point(slocation)])
     else:
         gmap = district.gmap()
     totemplate['gmap'] = gmap
