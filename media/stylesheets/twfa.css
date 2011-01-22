@@ -84,25 +84,28 @@ header, nav, section#main, section#content, section#headline{
   margin-right: auto;
 }
 nav{
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height:36px;
   min-height: 1em;
   background: #000;
 }
 nav ul li{
+  height: 26px;
+  padding-top: 10px;
   display: block;
   float: left;
-  padding-left: 1em;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 nav ul a{
   text-decoration: none;
-  font-family: "Arial Narrow";
+  font-family: "Helvetica Neue";
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
 }
 nav ul a:hover{
-  text-decoration: underline;
+  background-color: #444444;
+  padding: 10px 0px 8px 0px;
 }
 nav div{
   float: right;
