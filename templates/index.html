@@ -5,11 +5,27 @@
 {% block jshead %}
 {% endblock %}
 {% block content %}
-<div class="center">
-<h2>Click <a href="{% url addresscheck %}">here</a> to find your district</h2>
-
-<h2>Search for legislators, <br />districts or bills:</h2> 
-<p><form><input type="text" name="search"></form></p>
-
+<div id="intro">
+	<p>Intro blurb describing what theyworkforAZ is about. How you can use it, what sort of information it has, and how often it's updated.</p>
+</div>
+<br class="clear" />
+<div class="half">
+	<h2>What's happening in the legislature</h2>
+	<ul>
+		<li>1/17/11</li>
+		<ul>
+			<li>This bill passed</li>
+		</ul>
+		<li>11/15/10</li>
+		<ul>
+			<li>This bill failed</li>
+			<li>There was a fistfight on the senate floor</li>
+		</ul>
+	</ul>
+</div>
+<div class="half">
+<h2>Search for legislators, districts or bills</h2> 
+<p><form><input type="text" name="search"><input type="button" value="Find it!"></form></p>
+<h3>Don't know your district? Click <a href="{% url addresscheck %}">here</a> to find it.</h3>
 </div>
 {% endblock %}
