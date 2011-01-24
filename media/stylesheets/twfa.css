@@ -26,6 +26,12 @@ body {
 ol, ul {
 	list-style: none;
 }
+
+ul {
+    margin-top: 8px;
+    margin-bottom: 25px;
+}
+
 blockquote, q {
 	quotes: none;
 }
@@ -167,20 +173,29 @@ section#content div.full *, section#content div.half *{
   padding-right: 2px;
 }
 
+section#content div.full{
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section#content div#intro {
+  width: 75%;
+  margin: 0px auto 15px auto;
+  padding-top: 40px;
+}
+
+section#content div#intro p {
+    font-size: 14pt;
+    font-weight: 400;
+    line-height: 120%;
+}
+
 section#content div.center {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
     text-align:center;
-}
-
-section#content div.center h2 {
-    font-size: 25px;
-    font-family: "Helvetica Neue", sans-serif;
-    text-transform:uppercase;
-    font-weight: 300;
-    padding: 20px 0px 10px 0px;
-    line-height: 100%;
 }
 
 section#content div.center h2 a {
@@ -191,9 +206,29 @@ section#content div.center h2 a {
 section#content input {
   font-size: 1.5em;
 }
-section#content h1{
-  
+section#content h1, h2, h3{
+ padding-top: 15px;
+ margin-bottom: 10px;
+ font-family: "Helvetica Neue", sans-serif;
+ font-weight: 500;
 }
+
+section#content h1 {
+    font-size: 25px;
+}
+
+section#content h2 {
+    font-size: 20px;
+    line-height: 100%;
+    color: #ce3d2b;
+    border-top: solid 3px #C0C0C0;
+    padding: 10px !important;
+}
+
+section#content h3 {
+    color: #a0a0a0;
+}
+
 /*
  * Media queries to adjust sizes for screens
  */
