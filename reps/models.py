@@ -304,14 +304,14 @@ class Place(geomodels.Model):
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
-        #gmap = cache.get('place_%s_gmap' % (self.id))
-        #if not gmap: 
-        area_polygons = []
-        for district in self.in_districts():
-            for polygon in district.area:
-                area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
-        for polygon in self.area:
-            area_polygons.append(GPolygon(polygon))
-        gmap = GoogleMap(polygons=area_polygons, zoom=10, center=self.area.centroid)
-        cache.set('place_%s_gmap' % (self.id),gmap)
+        gmap = cache.get('place_%s_gmap' % (self.id))
+        if not gmap: 
+            area_polygons = []
+            for district in self.in_districts():
+                for polygon in district.area:
+                    area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
+            for polygon in self.area:
+                area_polygons.append(GPolygon(polygon))
+            gmap = GoogleMap(polygons=area_polygons, zoom=10, center=self.area.centroid)
+            cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
