@@ -1,13 +1,14 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.conf import settings
-from models import District, Representative, Bill
+from models import District, Representative, Bill, Place
 from forms import WhereForm
 from django.contrib.gis.geos import Point
 from django.views.decorators.cache import cache_page
 from django.contrib.gis.maps.google.overlays import GPolygon
 from django.contrib.gis.maps.google.gmap import GoogleMap
 from django.template import RequestContext
+from haystack.query import SearchQuerySet
 
 def home(request):
     """home page"""
@@ -16,16 +17,26 @@ def home(request):
 
 def addresschecker(request):
     """go to district from address"""
+    totemplate = {}
     if request.method == 'POST':
         form = WhereForm(request.POST)
         if form.is_valid():
-            location = (form.cleaned_data['lon'], form.cleaned_data['lat'])
-            request.session['location'] = location
-            district = District.objects.get(id=form.cleaned_data['district_id'])
-            return HttpResponseRedirect(district.get_absolute_url())
+            if form.cleaned_data['lon'] and form.cleaned_data['lat']:
+                location = (form.cleaned_data['lon'], form.cleaned_data['lat'])
+                request.session['location'] = location
+            if form.cleaned_data['district_id']:
+                district = District.objects.get(id=form.cleaned_data['district_id'])
+                return HttpResponseRedirect(district.get_absolute_url())
+            elif form.cleaned_data['place_id']:
+                place = Place.objects.get(pk=form.cleaned_data['place_id'])
+                return HttpResponseRedirect(place.get_absolute_url())
+        else:
+            if form.errors['place_id']:
+                totemplate['placesearch'] = SearchQuerySet().filter(content=request.POST['where']).filter(django_ct="reps.place") # ugh.
+        totemplate['form'] = form
     else:
-        form = WhereForm()
-    return render_to_response('address.html', { 'form' : form }, context_instance=RequestContext(request))
+        totemplate['form'] = WhereForm()
+    return render_to_response('address.html', totemplate, context_instance=RequestContext(request))
 
 @cache_page(60*24)
 def homemap(request):

@@ -13,6 +13,13 @@
         {{ form }}
         <input type="submit" value="Find District">
     </form>
+    {% if placesearch %}
+    <ul>
+        {% for result in placesearch %}
+            <li><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></li>
+        {% endfor %}        
+    </ul>
+    {% endif %}
 </div>
 
 {% endblock %}
