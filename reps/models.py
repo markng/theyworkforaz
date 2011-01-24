@@ -307,18 +307,11 @@ class Place(geomodels.Model):
         #gmap = cache.get('place_%s_gmap' % (self.id))
         #if not gmap: 
         area_polygons = []
-        coords = MASK_BASE_COORDS
         for district in self.in_districts():
             for polygon in district.area:
-                #area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
-                pass
+                area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
         for polygon in self.area:
-            for coords in polygon.coords:
-                coords.append(polygon.coords)
-            #area_polygons.append(GPolygon(polygon))
-        mask = Polygon(coords)
-        logger.info("CRAP")
-        #area_polygons.append(GPolygon(mask, "#fff", 1, 0.8, "#fff", 0.8))
+            area_polygons.append(GPolygon(polygon))
         gmap = GoogleMap(polygons=area_polygons, zoom=10, center=self.area.centroid)
         cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
