@@ -11,15 +11,19 @@
 {% block bodytag %}
   {{ place.gmap.body }}
 {% endblock %}
+{% block headline %}
+    <h1>{{ place }}</h1>
+{% endblock %}
 {% block content %}
-	    <h1>{{ place }}</h1>
-	    <div class="full">
-	        <p>In district{{ place.in_districts|pluralize }} {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}.</p>
-    	    <script type="text/javascript" charset="utf-8">
+        <div class="half">
+            <script type="text/javascript" charset="utf-8">
                 {{ place.gmap.render }}
             </script>
             <div id="map">
               &nbsp;
             </div>
+        </div>
+	    <div class="half">
+	        <p>In district{{ place.in_districts|pluralize }} {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}.</p>
 	    </div>
 {% endblock %}
