@@ -9,7 +9,7 @@ import datetime, isodate, pyquery
 import pickle
 from django.core.cache import cache
 import logging
-from django.contrib.gis.maps.google.overlays import GPolygon
+from django.contrib.gis.maps.google.overlays import GPolygon, GMarker, GIcon
 from django.contrib.gis.maps.google.gmap import GoogleMap
 from django.contrib.gis.geos import Point, Polygon, MultiPolygon
 
@@ -304,14 +304,23 @@ class Place(geomodels.Model):
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
-        gmap = cache.get('place_%s_gmap' % (self.id))
-        if not gmap: 
-            area_polygons = []
-            for district in self.in_districts():
-                for polygon in district.area:
-                    area_polygons.append(GPolygon(polygon, "#000000", 1, 0.5, "#f33f00", 0.4))
-            for polygon in self.area:
-                area_polygons.append(GPolygon(polygon))
-            gmap = GoogleMap(polygons=area_polygons, zoom=10, center=self.area.centroid)
-            cache.set('place_%s_gmap' % (self.id),gmap)
+        #gmap = cache.get('place_%s_gmap' % (self.id))
+        #if not gmap:
+        area_polygons = []
+        area_markers = []
+        districts = self.in_districts()
+        for district in districts:
+            area = district.area.difference(district.area.difference(self.area)) # find the part of the district that is inside the place ( district - (district - area))
+            try:
+                gp = GPolygon(area)
+                area_polygons.append(gp)
+                #icon = GIcon('District %d' % district.id, '/images/markers/marker%d.png' % district.id)
+                #marker = GMarker(area.centroid, icon=icon)
+                #area_markers.append(marker)
+            except Exception, e:
+                for poly in area:
+                    gp = GPolygon(poly)
+                    area_polygons.append(gp)
+        gmap = GoogleMap(polygons=area_polygons, markers=area_markers)
+        cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
