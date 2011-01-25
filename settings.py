@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.gis', # GIS
     'django.contrib.admin',
+    'registration',
     'django_extensions',
     'debug_toolbar',
     'south', # migrations
@@ -76,5 +77,6 @@ INTERNAL_IPS = ('127.0.0.1',)
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS' : False,
 }
+ACCOUNT_ACTIVATION_DAYS=7
 
 from localsettings import *

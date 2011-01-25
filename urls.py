@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     (r'^stylesheets/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(settings.PROJECT_PATH, 'media/stylesheets')}),
     (r'^', include('reps.urls')),
     (r'^search/', include('haystack.urls')),
+    (r'^accounts/', include('registration.urls')),
 )
 
 urlpatterns += patterns('haystack.views',

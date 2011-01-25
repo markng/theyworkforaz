@@ -10,3 +10,4 @@ django-debug-toolbar
 isodate
 django-haystack
 whoosh
+django-registration
