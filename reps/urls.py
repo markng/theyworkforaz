@@ -46,4 +46,12 @@ urlpatterns = patterns('',
             'template' : 'about.html',
         },
         'about'),
+    (
+        r'^fsmap$',
+        'django.views.generic.simple.direct_to_template',
+        {
+            'template' : 'fullscreenmap.html',
+        },
+        'fsmap'
+    ),
 )

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>fullscreenmap</title>
+        <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAARLoA22nEYHR0NvOy5PhlABRWDWOf2uA3gIQe0Ob4j1-_Lz689BQ8_TAqLebq6sXmuJychKY0Nq7A0g" type="text/javascript"></script>
+        <script src="{% url homemap %}" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body onload="geodjango.map_load()" onunload="GUnload()">
+        <style type="text/css" media="screen">
+            #map{
+                width: 100%;
+                height: 1000px;
+            }
+        </style>
+        <div id="map">
+            &nbsp;
+        </div>
+    </body>
+</html>
