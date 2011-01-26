@@ -12,6 +12,7 @@ import logging
 from django.contrib.gis.maps.google.overlays import GPolygon, GMarker, GIcon
 from django.contrib.gis.maps.google.gmap import GoogleMap
 from django.contrib.gis.geos import Point, Polygon, MultiPolygon
+import hashlib
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +70,14 @@ class District(geomodels.Model):
             gmap = GoogleMap(polygons=area_polygons)
             cache.set('district_%s_gmap' % (self.id), gmap)
         return gmap
+
+    @property
+    def color(self):
+        """return a color code for this district"""
+        m = hashlib.md5()
+        m.update(self.area.wkt)
+        md5s = m.hexdigest()
+        return "#%s" % md5s[0:6]
 
 class RepresentativeManager(models.Manager):
     """representative manager, add selects by party for templates, etc"""
@@ -304,23 +313,23 @@ class Place(geomodels.Model):
     
     def gmap(self):
         """return a gmap object that we can use in templates"""
-        #gmap = cache.get('place_%s_gmap' % (self.id))
-        #if not gmap:
-        area_polygons = []
-        area_markers = []
-        districts = self.in_districts()
-        for district in districts:
-            area = district.area.difference(district.area.difference(self.area)) # find the part of the district that is inside the place ( district - (district - area))
-            try:
-                gp = GPolygon(area)
-                area_polygons.append(gp)
-                #icon = GIcon('District %d' % district.id, '/images/markers/marker%d.png' % district.id)
-                #marker = GMarker(area.centroid, icon=icon)
-                #area_markers.append(marker)
-            except Exception, e:
-                for poly in area:
-                    gp = GPolygon(poly)
+        gmap = cache.get('place_%s_gmap' % (self.id))
+        if not gmap:
+            area_polygons = []
+            area_markers = []
+            districts = self.in_districts()
+            for district in districts:
+                area = district.area.difference(district.area.difference(self.area)) # find the part of the district that is inside the place ( district - (district - area))
+                try:
+                    gp = GPolygon(area, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
                     area_polygons.append(gp)
-        gmap = GoogleMap(polygons=area_polygons, markers=area_markers)
-        cache.set('place_%s_gmap' % (self.id),gmap)
+                    icon = GIcon('district_%d' % district.id, '/images/markers/marker%d.png' % district.id)
+                    marker = GMarker(area.centroid, icon=icon)
+                    area_markers.append(marker)
+                except Exception, e:
+                    for poly in area:
+                        gp = GPolygon(poly, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
+                        area_polygons.append(gp)
+            gmap = GoogleMap(polygons=area_polygons, markers=area_markers)
+            cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
