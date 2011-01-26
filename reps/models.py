@@ -320,13 +320,15 @@ class Place(geomodels.Model):
             districts = self.in_districts()
             for district in districts:
                 area = district.area.difference(district.area.difference(self.area)) # find the part of the district that is inside the place ( district - (district - area))
+                icon = GIcon('district_%d' % district.id, '/images/markers/marker%d.png' % district.id)
                 try:
                     gp = GPolygon(area, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
                     area_polygons.append(gp)
-                    icon = GIcon('district_%d' % district.id, '/images/markers/marker%d.png' % district.id)
                     marker = GMarker(area.centroid, icon=icon)
                     area_markers.append(marker)
                 except Exception, e:
+                    marker = GMarker(area[0].centroid, icon=icon)
+                    area_markers.append(marker)
                     for poly in area:
                         gp = GPolygon(poly, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
                         area_polygons.append(gp)
