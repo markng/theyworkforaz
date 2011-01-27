@@ -8,6 +8,7 @@ class BillDocumentAdmin(admin.ModelAdmin):
 admin.site.register(District, geoadmin.OSMGeoAdmin)
 admin.site.register(Representative)
 admin.site.register(Party)
+admin.site.register(Place, geoadmin.OSMGeoAdmin)
 admin.site.register(Vote)
 admin.site.register(Bill)
 admin.site.register(House)
