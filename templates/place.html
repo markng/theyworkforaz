@@ -4,7 +4,7 @@
   <style type="text/css" media="screen">
     div#map{
       width: 100%;
-      min-height: 700px;
+      min-height: 400px;
     }
   </style>
 {% endblock %}
@@ -15,7 +15,7 @@
     <h1>{{ place }}</h1>
 {% endblock %}
 {% block content %}
-        <div class="half">
+        <div class="full">
             <script type="text/javascript" charset="utf-8">
                 {{ place.gmap.render }}
             </script>
@@ -23,7 +23,7 @@
               &nbsp;
             </div>
         </div>
-	    <div class="half">
+	    <div class="full">
 	        <p>In district{{ place.in_districts|pluralize }} {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}.</p>
 	    </div>
 {% endblock %}
