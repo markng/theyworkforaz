@@ -66,7 +66,7 @@ class District(geomodels.Model):
         if not gmap:
             area_polygons = []
             for polygon in self.area:
-                area_polygons.append(GPolygon(polygon))
+                area_polygons.append(GPolygon(polygon, stroke_color="#000", fill_color=self.color, fill_opacity="0.2"))
             gmap = GoogleMap(polygons=area_polygons)
             cache.set('district_%s_gmap' % (self.id), gmap)
         return gmap
