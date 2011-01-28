@@ -1,0 +1,6 @@
+Hi 
+   Thank you  for signing up with They work for Arizona. Please authenticate your account with in {{expiration_days}} days by opening {{site}} and passing activication key {{activation_key}} back to us. 
+    
+	 Regards,
+	They Work For Arizona
+  

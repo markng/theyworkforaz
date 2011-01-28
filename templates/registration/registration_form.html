@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block bodytag %}
+<!--{% block bodytag %}
   {{ gmap.body }}
-{% endblock %}
+{% endblock %}  
 {% block jshead %}
-{% endblock %}
+{% endblock %} 
 {% block headline %}
     <h1>Sign Up!</h1>
-{% endblock %}
+{% endblock %}   -->
 {% block content %}
 <div class="full">
    <form action="" method="post"> 
@@ -14,14 +14,14 @@
 	<br>
         <input type="submit" value="Create Account">
     </form>
-   {% if placesearch %}
+   {% if placesearch %} 
     <ul>
         {% for result in placesearch %}
             <li><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></li>
         {% endfor %}        
     </ul>
     {% endif %}
- 
+
 </div>
 
 {% endblock %}
