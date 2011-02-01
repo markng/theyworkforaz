@@ -15,7 +15,7 @@
     </script>
     {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
   </head>
-  {% block bodytag %}<body id="{% block bodyid %}base{% endblock %}">{% endblock %}
+  {% block bodytag %}{% if gmap %}{{ gmap.body }}{% else %}<body id="{% block bodyid %}base{% endblock %}">{% endif %}{% endblock %}
       <nav>
           <ul>
             <li><a href="{% url home %}">Home</a></li>
