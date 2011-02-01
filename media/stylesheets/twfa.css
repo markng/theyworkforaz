@@ -80,6 +80,10 @@ body{
 strong{
   font-weight: 500;
 }
+input {
+  border: 0;
+  border-bottom: 1px solid gray;
+}
 input[type=submit] {
   border: 1px solid #fff;
   color: #fff;
@@ -157,6 +161,7 @@ section#content{
   min-height: 700px;
   background: #fff;
   padding-bottom: 10px;
+  padding-top: 20px;
 }
 section#content div.full{
   width: 95%;
@@ -178,19 +183,16 @@ section#content div.full{
   margin-left: auto;
   margin-right: auto;
 }
-
 section#content div#intro {
   width: 75%;
   margin: 0px auto 15px auto;
   padding-top: 40px;
 }
-
 section#content div#intro p {
     font-size: 14pt;
     font-weight: 400;
     line-height: 120%;
 }
-
 section#content div.center {
     width: 60%;
     margin-left: auto;
@@ -204,7 +206,7 @@ section#content div.center h2 a {
 }
 
 section#content input {
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 section#content h1, h2, h3{
  padding-top: 15px;
@@ -243,3 +245,9 @@ section#content h3 {
 div.clear{
   height: 0px;
 }
+
+/*
+ * Specific site sections
+ */
+
+/* Registration Form */

@@ -5,22 +5,11 @@
 {% block jshead %}
 {% endblock %}
 {% block headline %}
-    <h1>Creat Account</h1>
+    <h1>Account Activated</h1>
 {% endblock %}
 {% block content %}
 <div class="full">
-   <form action="" method="post"> 
-        {{ form }}
-        <input type="submit" value="Create Account">
-    </form>
-   {% if placesearch %}
-    <ul>
-        {% for result in placesearch %}
-            <li><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></li>
-        {% endfor %}        
-    </ul>
-    {% endif %}
- 
+    <p>Your account has already been activated.  <a href="{% url django.contrib.auth.views.login %}">You can login now.</a></p>
 </div>
 
 {% endblock %}

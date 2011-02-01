@@ -21,18 +21,17 @@
             <li><a href="{% url home %}">Home</a></li>
             <li><a href="{% url addresscheck %}">Find Your District</a></li>
             <li><a href="{% url about %}">About Us</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url django.contrib.auth.views.logout %}">Logout {{ user }}</a></li>
+            {% else %}
+            <li><a href="{% url registration.views.register %}">Sign Up</a>/<a href="{% url django.contrib.auth.views.login %}">Log In</a></li>
+            {% endif %}
           </ul>
           <div class="searchform">
             <form action="{% url haystack_search %}" method="get">
-                {% if form %}
-                    {% for field in form %}
-                        {{ field }}
-                    {% endfor %}
-                {% else %}
-                    {% for field in search_form %}
-                        {{ field }}
-                    {% endfor %}
-                {% endif %}
+                {% for field in search_form %}
+                    {{ field }}
+                {% endfor %}
                 <input type="submit" value="Go">
             </form>
           </div>

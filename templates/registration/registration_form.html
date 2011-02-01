@@ -1,27 +1,12 @@
 {% extends "base.html" %}
-<!--{% block bodytag %}
-  {{ gmap.body }}
-{% endblock %}  
-{% block jshead %}
-{% endblock %} 
 {% block headline %}
     <h1>Sign Up!</h1>
-{% endblock %}   -->
+{% endblock %}
 {% block content %}
 <div class="full">
-   <form action="" method="post"> 
-        {{ form }}
-	<br>
-        <input type="submit" value="Create Account">
+   <form action="" id="registration_form" method="post"> 
+       <p>Sign me up for They Work for AZ! I’d like my username to be {{ form.username }} and my password to be {{ form.password1 }}.  I confirm that I want my password to be {{ form.password2 }}.  My e-mail address is {{ form.email }}.  Please <input type="submit" value="create my account">.</p>
     </form>
-   {% if placesearch %} 
-    <ul>
-        {% for result in placesearch %}
-            <li><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></li>
-        {% endfor %}        
-    </ul>
-    {% endif %}
-
 </div>
 
 {% endblock %}
