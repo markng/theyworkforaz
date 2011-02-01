@@ -320,7 +320,7 @@ class Place(geomodels.Model):
             districts = self.in_districts()
             for district in districts:
                 area = district.area.difference(district.area.difference(self.area)) # find the part of the district that is inside the place ( district - (district - area))
-                icon = GIcon('district_%d' % district.id, '/images/markers/marker%d.png' % district.id)
+                icon = GIcon('district_%d' % district.id, '/images/markers/district_markers%d.png' % district.id)
                 try:
                     gp = GPolygon(area, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
                     area_polygons.append(gp)
@@ -335,3 +335,4 @@ class Place(geomodels.Model):
             gmap = GoogleMap(polygons=area_polygons, markers=area_markers)
             cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
+
