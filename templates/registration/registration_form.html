@@ -10,7 +10,8 @@
             {{ form.non_field_errors }}
         </div>
        {% endif %} 
-       <p>Sign me up for They Work for AZ! I’d like my username to be {{ form.username }}{% for error in form.username.errors %}<span class="error">({{ error }})</span>{% endfor %} and my password to be {{ form.password1 }}{% for error in form.password1.errors %}<span class="error">({{ error }})</span>{% endfor %}.  I confirm that I want my password to be {{ form.password2 }}{% for error in form.password2.errors %}<span class="error">({{ error }})</span>{% endfor %}.  My e-mail address is {{ form.email }}{% for error in form.email.errors %}<span class="error">({{ error }})</span>{% endfor %}.  Please <input type="submit" value="create my account">.</p>
+       <p><strong>Sign me up for theyworkforAZ!</strong> I’d like my username to be {{ form.username }}{% for error in form.username.errors %}<span class="error">({{ error }})</span>{% endfor %} and my password to be {{ form.password1 }}{% for error in form.password1.errors %}<span class="error">({{ error }})</span>{% endfor %}. 
+I confirm that I want my password to be {{ form.password2 }}{% for error in form.password2.errors %}<span class="error">({{ error }})</span>{% endfor %}.  My e-mail address is {{ form.email }}{% for error in form.email.errors %}<span class="error">({{ error }})</span>{% endfor %}. Please <input type="submit" value="create my account">.</p>
     </form>
 </div>
 
