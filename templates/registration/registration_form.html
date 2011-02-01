@@ -4,8 +4,13 @@
 {% endblock %}
 {% block content %}
 <div class="full">
-   <form action="" id="registration_form" method="post"> 
-       <p>Sign me up for They Work for AZ! I’d like my username to be {{ form.username }} and my password to be {{ form.password1 }}.  I confirm that I want my password to be {{ form.password2 }}.  My e-mail address is {{ form.email }}.  Please <input type="submit" value="create my account">.</p>
+   <form action="" id="registration_form" method="post">
+       {% if form.non_field_errors %}
+        <div class="non_field_errors">
+            {{ form.non_field_errors }}
+        </div>
+       {% endif %} 
+       <p>Sign me up for They Work for AZ! I’d like my username to be {{ form.username }}{% for error in form.username.errors %}<span class="error">({{ error }})</span>{% endfor %} and my password to be {{ form.password1 }}{% for error in form.password1.errors %}<span class="error">({{ error }})</span>{% endfor %}.  I confirm that I want my password to be {{ form.password2 }}{% for error in form.password2.errors %}<span class="error">({{ error }})</span>{% endfor %}.  My e-mail address is {{ form.email }}{% for error in form.email.errors %}<span class="error">({{ error }})</span>{% endfor %}.  Please <input type="submit" value="create my account">.</p>
     </form>
 </div>
 

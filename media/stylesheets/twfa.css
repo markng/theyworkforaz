@@ -251,3 +251,10 @@ div.clear{
  */
 
 /* Registration Form */
+form#registration_form span.error{
+  font-size: 0.4em;
+  color: red;
+}
+div.non_field_errors{
+  color: red;
+}
