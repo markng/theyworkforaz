@@ -90,7 +90,7 @@ header, nav, section#main, section#content, section#headline{
 nav{
   height:2.25em;
   min-height: 1em;
-  background: url('../images/bg-nav.jpg');
+  background: #000000;
 }
 nav ul li{
   height: 26px;
