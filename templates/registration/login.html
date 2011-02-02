@@ -1,44 +1,20 @@
 {% extends "base.html" %}
-<!--{% load url from future %}  -->
-{% block bodytag %}
-  {{ gmap.body }}
-{% endblock %}
-{% block jshead %}
-{% endblock %}
 {% block headline %}
     <h1>Login</h1>
 {% endblock %}
 {% block content %}
-<!--<div class="full">
-   <form action="" method="post"> 
-        {{ form }}
-        <input type="submit" value="Log in to your account">
-    </form>
- 
+<div class="full">
+    {% if form.errors %}
+    <div class="non_field_errors">
+        <p>Sorry, we don't recognize that username and/or password.  Please try again.</p>
+    </div>
+    {% endif %}
+    <form method="post" action="">
+    {% csrf_token %}
+    <p>My username is {{ form.username }} and my password is {{ form.password }}.  <input type="submit" value="Please log me in."></p>
+    <input type="hidden" name="next" value="{% url home %}">
+    </form>    
 </div>
--->
-
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-{% csrf_token %}
-
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-
 {% endblock %}
 
 

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block headline %}
+    <h1>Activation Complete!</h1>
+{% endblock %}
+{% block content %}
+<div class="full">
+    <p>Great! You’ve registered for theyworkforAZ. From here you may want to <a href="{% url addresscheck %}">find your lawmakers</a> or <a href="{% url home %}">track issues, lawmakers and districts</a>.</p>    
+</div>
+{% endblock %}

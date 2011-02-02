@@ -4,8 +4,8 @@ from django.conf import settings
 from haystack.views import SearchView, search_view_factory
 from haystack.query import SearchQuerySet
 from haystack.forms import SearchForm
-
-# Uncomment the next two lines to enable the admin:
+from django.contrib.auth import login
+from registration.signals import user_activated
 from django.contrib.gis import admin
 admin.autodiscover()
 
@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     (r'^', include('reps.urls')),
     (r'^search/', include('haystack.urls')),
     (r'^accounts/', include('registration.urls')),
+    (r'^', include('django.contrib.auth.urls')),
 )
 
 urlpatterns += patterns('haystack.views',
@@ -42,3 +43,7 @@ urlpatterns += patterns('haystack.views',
 #  (r'^accounts/password_change/$', password_change, {'template_name': 'registration/password_change.html'}),
 #  (r'^accounts/password_change_done/$', password_change_done, {'template_name': 'registration/password_change_done.html'}),
 #)
+def login_on_activation(sender, user, request, **kwargs):
+    user.backend='django.contrib.auth.backends.ModelBackend'
+    login(request,user)
+user_activated.connect(login_on_activation)

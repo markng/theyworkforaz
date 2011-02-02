@@ -1,26 +1,12 @@
 {% extends "base.html" %}
-{% block bodytag %}
-  {{ gmap.body }}
-{% endblock %}
 {% block jshead %}
 {% endblock %}
 {% block headline %}
-    <h1>Registration Successful</h1>
+    <h1>Registration</h1>
 {% endblock %}
 {% block content %}
 <div class="full">
-<!--   <form action="" method="post"> 
-        {{ form }}
-        <input type="submit" value="Create Account">
-    </form>
-   {% if placesearch %}
-    <ul>
-        {% for result in placesearch %}
-            <li><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></li>
-        {% endfor %}        
-    </ul>
-    {% endif %}
- -->
+    <p>We have sent you an email to confirm your registration. Please click the link within that to confirm your account.</p>
 </div>
 
 {% endblock %}
