@@ -94,9 +94,9 @@ header, nav, section#main, section#content, section#headline{
   margin-right: auto;
 }
 nav{
-  height:36px;
+  height:2.25em;
   min-height: 1em;
-  background: #000;
+  background: url('../images/bg-nav.jpg');
 }
 nav ul li{
   height: 26px;
@@ -179,7 +179,7 @@ section#content div.half{
   margin-left: 4%;
 }
 section#content div.half h1 {
-    font-size: 50pt;
+    font-size: 4.2em;
     font-weight: 100;
     line-height: 70%;
 }
@@ -199,7 +199,7 @@ section#content div#intro {
   padding-top: 40px;
 }
 section#content div#intro p {
-    font-size: 14pt;
+    font-size: 1.2em;
     font-weight: 400;
     line-height: 120%;
 }
@@ -211,7 +211,7 @@ section#content div.intro-box {
     padding: 15px;
     color: #fff;
     line-height: 130%;
-    font-size: 13pt;
+    font-size: 1.2em;
 }
 
 #homepage-search {
