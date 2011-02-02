@@ -164,6 +164,9 @@ section#content{
   background: #fff;
   padding-bottom: 10px;
   padding-top: 20px;
+  border-left: solid 1px #666;
+  border-right: solid 1px #666;
+  border-bottom: solid 1px #666;
 }
 section#content div.full{
   width: 95%;
@@ -174,6 +177,11 @@ section#content div.half{
   width: 45%;
   float: left;
   margin-left: 4%;
+}
+section#content div.half h1 {
+    font-size: 50pt;
+    font-weight: 100;
+    line-height: 70%;
 }
 section#content div.full *, section#content div.half *{
   padding-left: 2px;
