@@ -26,12 +26,6 @@ body {
 ol, ul {
 	list-style: none;
 }
-
-ul {
-    margin-top: 8px;
-    margin-bottom: 25px;
-}
-
 blockquote, q {
 	quotes: none;
 }
@@ -59,7 +53,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+/* Reset END */
 /*
  * Swatch
  * #973e33 - dark background - header, footer
