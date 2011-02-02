@@ -110,8 +110,8 @@ nav ul a{
   padding-right: 5px;
 }
 nav ul a:hover{
-  background: url('../images/bg-nav-hover.jpg');
-  padding: 10px 5px 8px 5px;
+  background-color: #444444;
+  padding: 10px 0px 8px 0px;
 }
 nav div{
   float: right;
