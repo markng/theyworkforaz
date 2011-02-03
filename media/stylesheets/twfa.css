@@ -109,9 +109,8 @@ nav ul a{
   padding-left: 5px;
   padding-right: 5px;
 }
-nav ul a:hover{
+nav ul li:hover{
   background-color: #444444;
-  padding: 10px 0px 8px 0px;
 }
 nav div{
   float: right;
