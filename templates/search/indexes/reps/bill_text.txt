@@ -1,7 +1,8 @@
 {{object}}
 {{object.id}}
 {{object.short_title}}
-{% for bills in object.billdocument_set.all %}
-	{{bills}}
+{% for bill in object.billdocument_set.all %}
+	{{ bill }}
+	{{ bill.document }}
 {% endfor %}
 

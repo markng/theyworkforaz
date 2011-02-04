@@ -9,5 +9,6 @@ psycopg2
 django-debug-toolbar
 isodate
 django-haystack
-whoosh
 https://bitbucket.org/ubernostrum/django-registration/downloads/django-registration-0.8-alpha-1.tar.gz
+pysolr
+BeautifulSoup
