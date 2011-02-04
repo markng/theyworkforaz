@@ -1,6 +1,6 @@
 from haystack.indexes import *
 from haystack import site
-from models import *
+from theyworkforaz.reps.models import *
 
 class DistrictSearchIndex(ModelSearchIndex):
     class Meta:
