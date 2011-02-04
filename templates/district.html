@@ -4,7 +4,7 @@
   <style type="text/css" media="screen">
     div#map{
       width: 100%;
-      min-height: 700px;
+      height: 500px;
     }
   </style>
 {% endblock %}
@@ -13,11 +13,16 @@
 {% endblock %}
 {% block content %}
   <div class="half">
+      {% if boundary_close %}
+      <p class="error">In the Alpha stage of theyworkforaz, addresses near district boundaries are subject to inaccuracy.  We're working to resolve this problem.</p>
+      {% endif %}
       <script type="text/javascript" charset="utf-8">
           {{ gmap.render }}
       </script>
       <div id="map">
+          &nbsp;
       </div>
+      <br class="clear">
   </div>
   <div class="half">
     <h2>Your Representatives</h2>

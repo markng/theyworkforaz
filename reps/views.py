@@ -53,10 +53,13 @@ def district(request, district_id=None):
     totemplate = {}
     district = District.objects.get(id=district_id)
     totemplate['district'] = district
-    slocation = request.session.get('location', False)
-    if slocation and district.area.contains(Point(slocation)):
+    totemplate['boundary_close'] = False
+    slocation = Point(request.session.get('location', False))
+    if slocation and district.area.contains(slocation):
         poly = GPolygon(district.area[0])
-        gmap = GoogleMap(polygons=[poly], markers=[Point(slocation)])
+        gmap = GoogleMap(polygons=[poly], markers=[slocation])
+        if district.area.boundary.distance(slocation) < 0.01:
+            totemplate['boundary_close'] = True
     else:
         gmap = district.gmap()
     totemplate['gmap'] = gmap
