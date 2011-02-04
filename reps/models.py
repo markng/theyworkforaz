@@ -301,6 +301,8 @@ class Place(geomodels.Model):
     districts = models.ManyToManyField('District')
     
     def __unicode__(self):
+        if self.feature_type:
+            return "%s (%s)" % (unicode(self.name), unicode(self.feature_type))
         return self.name
     
     @models.permalink
