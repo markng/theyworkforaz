@@ -7,6 +7,7 @@
     {% if form.errors %}
     <div class="non_field_errors">
         <p>Sorry, we don't recognize that username and/or password.  Please try again.</p>
+	<p> <a href="{% url django.contrib.auth.views.password_reset %}">I forgot my password</a> </p>
     </div>
     {% endif %}
     <form method="post" action="">
