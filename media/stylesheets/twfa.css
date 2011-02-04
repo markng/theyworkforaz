@@ -165,7 +165,7 @@ section#headline h1, section#headline p{
   padding-top: 10px;
 }
 section#content{
-  min-height: 700px;
+  min-height: 500px;
   background: #fff;
   padding-bottom: 10px;
   padding-top: 20px;
@@ -263,6 +263,10 @@ section#content h3 {
     color: #a0a0a0;
 }
 
+.clear {
+    clear:both;
+}
+
 /*
  * Media queries to adjust sizes for screens
  */
@@ -273,9 +277,6 @@ section#content h3 {
   section#headline{
     width: 1050px;
   }
-}
-div.clear{
-  height: 0px;
 }
 
 /*
