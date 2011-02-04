@@ -127,10 +127,21 @@ header img{
 section#headline div{
   padding: 0;
   margin: 0;
+  padding-top: 15px;
+  padding-bottom: 45px;
   background: url('/images/headline_top.png') top no-repeat;
 }
+section#headline form{
+  padding-top: 0;
+  float: right;
+  margin-right: 30px;
+  margin-top: -25px;
+}
+section#headline input{
+  font-size: 1.5em;
+  border-radius: 0.5em;
+}
 section#headline{
-  height: 5em;
   background: url('/images/headline_bottom.png') bottom no-repeat;
   color: #fff;
 }
@@ -151,6 +162,7 @@ section#headline h1 {
 }
 section#headline h1, section#headline p{
   padding-left: 40px;
+  padding-top: 10px;
 }
 section#content{
   min-height: 700px;
@@ -268,6 +280,11 @@ div.clear{
 /*
  * Specific site sections
  */
+/* Search Form */
+nav div.searchform input{
+  margin-top: 9px;
+  border-radius: 5px;
+}
 
 /* Registration Form */
 form#registration_form 

@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 {% block jshead %}
 {% endblock %}
+{% block headline %}
+    <h1>Search for legislators, districts or bills</h1> 
+    <form action="{% url haystack_search %}"><input type="text" name="search" placeholder="search..."><input type="button" value="Search"></form>
+{% endblock %}
 {% block content %}
 <div class="half">
 		<h1>Accountability.</h1>
-	<h1>Transparency.</h1>
-
-	
+        <h1>Transparency.</h1>
 </div>
-
 <div class="half">
-	<div class="intro-box"><p>Which way are your Arizona lawmakers voting? And what’s happening on the biggest issues of the day? Search here to start tracking the action at the Capitol.</p>
-		</div>
-		<h2 id="homepage-search">Search for legislators, districts or bills</h2> 
-		<p><form><input type="text" name="search"><input type="button" value="Find it!"></form></p>
-		<h3>Don't know your district? Click <a href="{% url addresscheck %}">here</a> to find it.</h3>
+	<div class="intro-box">
+	    <p>Which way are your Arizona lawmakers voting? And what’s happening on the biggest issues of the day? Search here to start tracking the action at the Capitol.</p>
+	</div>
 </div>
 <br class="clear"/>
-
 {% endblock %}

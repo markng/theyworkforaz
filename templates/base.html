@@ -29,10 +29,8 @@
           </ul>
           <div class="searchform">
             <form action="{% url haystack_search %}" method="get">
-                {% for field in search_form %}
-                    {{ field }}
-                {% endfor %}
-                <input type="submit" value="Go">
+                <input type="search" name="q" placeholder="Search...">
+                <input type="submit" value="Search">
             </form>
           </div>
           <div class="clear">
@@ -47,10 +45,9 @@
       </header>
       <section id="headline">
           <div>
-              &nbsp;
+              {% block headline %}
+              {% endblock %}            
           </div>
-          {% block headline %}
-          {% endblock %}
       </section>
       <section id="content">
           {% block content %}
