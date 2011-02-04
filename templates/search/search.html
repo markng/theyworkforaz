@@ -8,20 +8,20 @@
 		<p>
 			<a href = "{{result.object.get_absolute_url}}">{{ result.object }}</a>
 		</p>
-		{% if page.has_previous or page.has_next %}
-    		<div>
-    			{% if page.has_previous %}
-    				<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>
-    			{% endif %}
-
-    			{% if page.has_next %}
-    				<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>
-    			{% endif %}
-    		</div>
-    	{% endif %}	   
 	{% empty %}
         <p>No results for that search</p>
 	{% endfor %}
+	{% if page.has_previous or page.has_next %}
+		<div>
+			{% if page.has_previous %}
+				<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>
+			{% endif %}
+
+			{% if page.has_next %}
+				<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>
+			{% endif %}
+		</div>
+	{% endif %}	   
 	</div>
 {% else %}
 	<h1>What would you like to search?</h1>
