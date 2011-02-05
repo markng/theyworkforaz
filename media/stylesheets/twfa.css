@@ -296,6 +296,3 @@ form#registration_form span.error{
 div.non_field_errors, .error{
   color: red;
 }
-.gmnoprint{
-  display: none;
-}
