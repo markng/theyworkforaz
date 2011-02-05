@@ -299,6 +299,7 @@ class Place(geomodels.Model):
     feature_type = models.CharField(max_length=255, blank=True, null=True)
     area = geomodels.MultiPolygonField()
     districts = models.ManyToManyField('District')
+    objects = geomodels.GeoManager()
     
     def __unicode__(self):
         if self.feature_type:
