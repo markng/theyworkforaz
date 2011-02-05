@@ -337,7 +337,7 @@ class Place(geomodels.Model):
                     marker.add_event(event)
                     area_markers.append(marker)
                 except Exception, e:
-                    marker = GMarker(area.centroid, icon=icon)
+                    marker = GMarker(area[0].centroid, icon=icon)
                     event = GEvent('click',
                                      'function() { location.href = "%s"}' % ( district.get_absolute_url() ))
                     marker.add_event(event)
