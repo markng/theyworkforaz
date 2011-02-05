@@ -7,7 +7,7 @@
 {% block content %}
 <div class="full">
     <form action="{% url addresscheck %}" method="post">
-        {{ form }}
+        {{ where_form }}
         <input type="submit" value="Find District">
     </form>
     {% if placesearch %}

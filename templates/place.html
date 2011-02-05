@@ -16,6 +16,13 @@
 {% endblock %}
 {% block content %}
         <div class="full">
+            {% if place.in_districts.count > 5 %}
+            <p><strong>{{ place.name }}</strong> is in more than 5 districts.  To get a more helpful result, please be more specific.  Try entering a zip code or full address.</p>
+            <form action="{% url addresscheck %}" method="post">
+                {{ where_form }}
+                <input type="submit" value="Find District">
+            </form>
+            {% endif %}
             <script type="text/javascript" charset="utf-8">
                 {{ place.gmap.render }}
             </script>
