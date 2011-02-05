@@ -80,9 +80,11 @@ def bill(request, bill_id=None):
     bill = get_object_or_404(Bill.objects.select_related(), pk=bill_id)
     return render_to_response('bill.html', { 'bill' : bill }, context_instance=RequestContext(request))
     
-def search_form_context_processor(request):
+def global_forms_context_processor(request):
     from haystack.forms import SearchForm
     from haystack.query import SearchQuerySet
     sqs = SearchQuerySet()
-    form = SearchForm(searchqueryset=sqs)
-    return { 'search_form': form }
+    to_context = {}
+    to_context['search_form'] = SearchForm(searchqueryset=sqs)
+    to_context['where_form'] = WhereForm()
+    return to_context
