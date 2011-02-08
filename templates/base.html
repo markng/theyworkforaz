@@ -52,7 +52,22 @@
       </section>
       <section id="content">
           {% block content %}
-          {% endblock %}          
+          {% endblock %}    
+          <a href="#" onclick="UserVoice.Popin.show(uservoiceOptions); return false;">feedback</a>      
       </section>
+      <script src="http://cdn.uservoice.com/javascripts/widgets/tab.js" type="text/javascript" charset="utf-8"></script>
+      <script type="text/javascript">
+      var uservoiceOptions = {
+        key: 'theyworkforaz',
+        host: 'theyworkforaz.uservoice.com', 
+        forum: '101169',
+        showTab: true,  
+        alignment: 'left',
+        background_color:'#f00', 
+        text_color: 'white',
+        hover_color: '#06C',
+        lang: 'en'
+      };
+      </script>
   </body>
 </html>
