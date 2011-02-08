@@ -3,7 +3,7 @@
 {% endblock %}
 {% block headline %}
     <h1>Search for legislators, districts or bills</h1> 
-    <form action="{% url haystack_search %}"><input type="text" name="search" placeholder="search..."><input type="button" value="Search"></form>
+    <form action="{% url haystack_search %}"><input type="text" name="q" placeholder="search..."><input type="submit" value="Search"></form>
 {% endblock %}
 {% block content %}
 <div class="half">

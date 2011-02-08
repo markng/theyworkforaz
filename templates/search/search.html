@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{% block headline %}
+    {% if page.object_list %}
+    <h1>Results (<strong>{{query}}</strong>)</h1>    
+    {% else %}
+    <h1>What would you like to search?</h1>
+    {% endif %}
+{% endblock %}
 {% block content %}
 {% if query %}
-	<h1>Results (<strong>{{query}}</strong>)</h1>
 	<div class="full">
-	
 	{% for result in page.object_list %}
 		<p>
 			<a href = "{{result.object.get_absolute_url}}">{{ result.object }}</a>
@@ -23,7 +28,5 @@
 		</div>
 	{% endif %}	   
 	</div>
-{% else %}
-	<h1>What would you like to search?</h1>
 {% endif %}
 {% endblock %}
