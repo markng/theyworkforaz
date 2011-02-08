@@ -20,10 +20,9 @@
           <ul>
             <li><a href="{% url home %}">Home</a></li>
             <li><a href="{% url addresscheck %}">Find Your District</a></li>
-            <li><a href="{% url about %}">About Us</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url django.contrib.auth.views.logout %}">Logout {{ user }}</a></li>
             <li><a href="{% url account %}">Account</a></li>
+            <li><a href="{% url django.contrib.auth.views.logout %}">Logout {{ user }}</a></li>
             {% else %}
             <li><a href="{% url registration.views.register %}">Sign Up</a>/<a href="{% url django.contrib.auth.views.login %}">Log In</a></li>
             {% endif %}
@@ -53,8 +52,17 @@
       <section id="content">
           {% block content %}
           {% endblock %}    
-          <a href="#" onclick="UserVoice.Popin.show(uservoiceOptions); return false;">feedback</a>      
+          
       </section>
+      <footer>
+          <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?"></a>
+          <div class="quarter">
+              <ul>
+                <li><a href="#" onclick="UserVoice.Popin.show(uservoiceOptions); return false;">Feedback</a></li>
+                <li><a href="{% url about %}">About Us</a></li>
+              </ul>
+          </div>
+      </footer>
       <script src="http://cdn.uservoice.com/javascripts/widgets/tab.js" type="text/javascript" charset="utf-8"></script>
       <script type="text/javascript">
       var uservoiceOptions = {

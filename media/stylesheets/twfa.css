@@ -82,7 +82,7 @@ input[type=submit] {
   border: 1px solid #fff;
   color: #fff;
 }
-header, nav, section#main, section#content, section#headline{
+header, nav, section#main, section#content, section#headline, footer{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -125,10 +125,12 @@ header img{
   width: 300px;
 }
 section#headline div{
+  position: relative;
+  top: -18px;
   padding: 0;
   margin: 0;
   padding-top: 15px;
-  padding-bottom: 45px;
+  padding-bottom: 25px;
   background: url('/images/headline_top.png') top no-repeat;
 }
 section#headline form{
@@ -263,6 +265,35 @@ section#content h3 {
     color: #a0a0a0;
 }
 
+footer {
+  background: #821e20;
+  min-height: 200px;
+  color: #fff;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+footer img {
+  width: 220px;
+  padding: 10px;
+  padding-bottom: 0px;
+  margin: 0;
+}
+footer div.quarter {
+  width: 23%;
+  padding: 1%;
+}
+footer div.quarter ul {
+  border-left: 1px solid white;
+  padding-left: 7px;
+}
+footer div.quarter ul li {
+  font-size: 0.8em;
+  margin-top: 1em;
+}
 .clear {
     clear:both;
 }
@@ -271,7 +302,7 @@ section#content h3 {
  * Media queries to adjust sizes for screens
  */
 @media only screen and (min-width: 1200px) {
-  header, nav, section#main, section#content{
+  header, nav, section#main, section#content, footer{
     width: 1000px;
   }
   section#headline{
