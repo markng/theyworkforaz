@@ -54,4 +54,12 @@ urlpatterns = patterns('',
         },
         'fsmap'
     ),
+    (
+        r'^account$',
+        'django.views.generic.simple.direct_to_template',
+        {
+            'template' : 'account/account.html',
+        },
+        'account',
+    ),
 )

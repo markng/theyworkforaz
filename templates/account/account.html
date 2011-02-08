@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block headline %}
+    <h1>Your account</h1>
+{% endblock %}
+{% block content %}
+<div class="full">
+    {% if user.is_authenticated %}
+        <p><a href="{% url django.contrib.auth.views.password_change %}">Change your password</a></p>
+    {% else %}
+        <p>In order to be able to access your account, <a href="{% url django.contrib.auth.views.login %}">please log in</a></p>
+    {% endif %}    
+</div>
+{% endblock %}

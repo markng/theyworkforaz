@@ -23,6 +23,7 @@
             <li><a href="{% url about %}">About Us</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url django.contrib.auth.views.logout %}">Logout {{ user }}</a></li>
+            <li><a href="{% url account %}">Account</a></li>
             {% else %}
             <li><a href="{% url registration.views.register %}">Sign Up</a>/<a href="{% url django.contrib.auth.views.login %}">Log In</a></li>
             {% endif %}
