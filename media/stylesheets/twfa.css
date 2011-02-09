@@ -294,8 +294,17 @@ footer div.quarter ul li {
   font-size: 0.8em;
   margin-top: 1em;
 }
+
 .clear {
     clear:both;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
 }
 
 /*
