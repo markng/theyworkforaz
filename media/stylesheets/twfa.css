@@ -150,7 +150,7 @@ section#headline{
 section#headline p{
   padding-left: 30px;
 }
-header, nav, section#main, section#content{
+header, nav, section#main, section#content, footer{
   width: 1000px;
 }
 section#headline{
