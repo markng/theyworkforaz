@@ -1,7 +1,7 @@
 Hi,
 
-Thank you for signing up with theyworkforaz. Please confirm your account by going to http://{{ site.domain }}/accounts/activate/{{ activation_key }} 
+Thank you for signing up with TheyWorkForAZ. Please confirm your account by going to http://{{ site.domain }}/accounts/activate/{{ activation_key }} 
 
 Regards,
 
-theyworkforaz staff
+TheyWorkForAZ staff
