@@ -97,8 +97,8 @@ class Command(NoArgsCommand):
         if title == "Show Sponsors":
             # deal with sponsors
             for link in links:
-                r = re.search('Member_ID=(?P<member_id>\d+)&legislature=(?P<legislature_id>\d+)$', link.attrib['href'])
-                representative = Representative(pk=r.groupdict()['member_id'])
+                r = re.search('Member_ID=(?P<member_id>\d+)&legislature=(?P<legislature_id>\d+)&Session=(?P<session_id>.*)$', link.attrib['href'])
+                representative, createdrep = Representative.objects.get_or_create(azleg_id=r.groupdict()['member_id'])
                 sponstype = link.getparent().getnext().text_content()
                 sponsorship, created = Sponsorship.objects.get_or_create(representative=representative, bill=bill, defaults={'type' : str(sponstype)})
         #elif title == u'\xa0Show Versions':
