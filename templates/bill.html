@@ -1,20 +1,24 @@
 {% extends "base.html" %}
+{% block headline %}
+    <h1>{{ bill }}</h1>
+{% endblock %}
 {% block content %}
-<div class="grid_12">
-  <h2>{{ bill }}</h2>
-  {% if bill.billdocument_set.versions.count %}
-  <h3>Versions</h3>
-  <ul>
+{% if bill.billdocument_set.versions.count %}
+<div class="half">
+    <h2>Versions</h2>
+    <ul>
     {% for document in bill.billdocument_set.versions %}
       <li><a href="{{ document.url }}">{{ document }}</a></li>
     {% endfor %}            
-  </ul>
-  {% endif %}
-  <h3>{{ bill.sponsorship_set.count }} Sponsor{{ bill.sponsorship_set.count|pluralize }} 
+    </ul>
+    {% endif %}    
+</div>
+<div class="half">
+    <h2>{{ bill.sponsorship_set.count }} Sponsor{{ bill.sponsorship_set.count|pluralize }} 
     {% if bill.sponsorship_set.democrats.count %}({{ bill.sponsorship_set.democrats.count }} democrat{{ bill.sponsorship_set.democrats.count|pluralize }}){% endif %} 
     {% if bill.sponsorship_set.republicans.count %}({{ bill.sponsorship_set.republicans.count }} republican{{ bill.sponsorship_set.republicans.count|pluralize }}){% endif %}
     <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ bill.sponsorship_set.democrats.count }},{{ bill.sponsorship_set.republicans.count }}&amp;chs=50x50&amp;chco=0000FF,FF0000" alt="" />
-    </h3>
+    </h2>
     <p>Primary Sponsors</p>
     <ul id='psponsors' class='longlist'>
     {% for sponsor in bill.sponsorship_set.primary %}
@@ -29,7 +33,7 @@
       <li class="grid_3"><a href="{{ sponsor.representative.get_absolute_url }}">{{ sponsor.representative }} ({{ sponsor.representative.party.code }})</a></li>
     {% endfor %}
     </ul>
-<br class="clear" />     
-    {% endif %}
 </div>
+<br class="clear">
+{% endif %}
 {% endblock %}
