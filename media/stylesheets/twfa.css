@@ -68,8 +68,10 @@ body{
   font-weight: 200;
   background: url('../images/bg-stripe.jpg');
   letter-spacing: 1px;
-  line-height: 1.1em;
-  
+  line-height: 1.1em; 
+}
+p{
+  margin-bottom: 0.5em;
 }
 strong{
   font-weight: 500;
