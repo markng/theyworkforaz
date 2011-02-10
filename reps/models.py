@@ -105,7 +105,7 @@ class Representative(models.Model):
     house = models.ForeignKey('House', blank=True, null=True)
     current = models.BooleanField('Current House Member', default=True)
     link = models.URLField('Link to Bio', blank=True, null=True) # not sure if azleg will remove bios after left
-    sessions = models.ManyToManyField('Session')
+    #sessions = models.ManyToManyField('Session')
     objects = RepresentativeManager()
 
     @models.permalink
