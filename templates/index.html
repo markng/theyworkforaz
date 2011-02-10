@@ -2,18 +2,32 @@
 {% block jshead %}
 {% endblock %}
 {% block headline %}
-    <h1>Search for legislators, districts or bills</h1> 
-    <form action="{% url haystack_search %}"><input type="text" name="q" placeholder="search..."><input type="submit" value="Search"></form>
+    <h1>Track Arizona lawmakers and issues</h1> 
 {% endblock %}
 {% block content %}
-<div class="half">
-		<h1>Accountability.</h1>
-        <h1>Transparency.</h1>
-</div>
 <div class="half">
 	<div class="intro-box">
 	    <p>Which way are your Arizona lawmakers voting? And what’s happening on the biggest issues of the day? Search here to start tracking the action at the Capitol.</p>
 	</div>
+</div>
+<div class="half">
+		<h1>Accountability.</h1>
+        <h1>Transparency.</h1>
+</div>
+<br class="clear">
+<div class="half frontsearch">
+    <h2>Don't know who your legislators are?</h2>
+    <form action="{% url addresscheck %}" method="post" accept-charset="utf-8">
+        {{ where_form.where }}<input type="submit" value="Find District">
+    </form>
+    <p>For example : "555 N Central Ave, Phoenix, 85004", "85304", "Lake Havasu City"</p>
+</div>
+<div class="half frontsearch">
+    <h2>Want to track a bill, issue or legislator?</h2>
+    <form action="{% url haystack_search %}" method="get" accept-charset="utf-8">
+        {{ search_form.q }} <input type="submit" value="Search here">
+    </form>
+    <p>For example : "Education", "Russell Pearce", "HB2001"</p>
 </div>
 <br class="clear" />
 {% endblock %}

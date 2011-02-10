@@ -43,12 +43,14 @@
               &nbsp;
           </div>
       </header>
+      {% if not noheadline %}
       <section id="headline">
           <div>
               {% block headline %}
               {% endblock %}            
           </div>
-      </section>
+      </section>        
+      {% endif %}
       <section id="content">
           {% block content %}
           {% endblock %}    

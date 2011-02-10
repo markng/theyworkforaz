@@ -188,7 +188,7 @@ section#content div.half{
   float: left;
   margin-left: 4%;
 }
-section#content div.half h1 {
+section#content div h1 {
     font-size: 4.2em;
     font-weight: 100;
     line-height: 70%;
@@ -213,7 +213,14 @@ section#content div#intro p {
     font-weight: 400;
     line-height: 120%;
 }
-
+img.sparkpie{
+  margin: 0;
+  padding: 0;
+  margin-top: -54px;
+  position: relative;
+  height: 45px;
+  top: 20px;
+}
 section#content div.intro-box {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -249,6 +256,7 @@ section#content h1, h2, h3{
  margin-bottom: 10px;
  font-family: "Helvetica Neue", sans-serif;
  font-weight: 500;
+ line-height: 1.2em;
 }
 
 section#content h1 {
@@ -265,6 +273,10 @@ section#content h2 {
 
 section#content h3 {
     color: #a0a0a0;
+}
+
+section#content div.frontsearch{
+  margin-top: 4em;
 }
 
 footer {

@@ -13,7 +13,7 @@ from haystack.query import SearchQuerySet
 def home(request):
     """home page"""
     gmap = GoogleMap()
-    return render_to_response('index.html', { 'gmap' : gmap }, context_instance=RequestContext(request))
+    return render_to_response('index.html', { 'gmap' : gmap, 'noheadline' : True }, context_instance=RequestContext(request))
 
 def addresschecker(request):
     """go to district from address"""
@@ -54,7 +54,10 @@ def district(request, district_id=None):
     district = District.objects.get(id=district_id)
     totemplate['district'] = district
     totemplate['boundary_close'] = False
-    slocation = Point(request.session.get('location', False))
+    try:
+        slocation = Point(request.session.get('location', False))
+    except Exception, e:
+        slocation = False
     if slocation and district.area.contains(slocation):
         poly = GPolygon(district.area[0])
         gmap = GoogleMap(polygons=[poly], markers=[slocation])
