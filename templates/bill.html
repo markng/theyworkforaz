@@ -17,7 +17,7 @@
     <h2>{{ bill.sponsorship_set.count }} Sponsor{{ bill.sponsorship_set.count|pluralize }} 
     {% if bill.sponsorship_set.democrats.count %}({{ bill.sponsorship_set.democrats.count }} democrat{{ bill.sponsorship_set.democrats.count|pluralize }}){% endif %} 
     {% if bill.sponsorship_set.republicans.count %}({{ bill.sponsorship_set.republicans.count }} republican{{ bill.sponsorship_set.republicans.count|pluralize }}){% endif %}
-    <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ bill.sponsorship_set.democrats.count }},{{ bill.sponsorship_set.republicans.count }}&amp;chs=50x50&amp;chco=0000FF,FF0000" alt="" />
+    <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ bill.sponsorship_set.democrats.count }},{{ bill.sponsorship_set.republicans.count }}&amp;chs=50x50&amp;chco=0000FF,FF0000&amp;chf=bg,s,ffffff00" alt="" class="sparkpie">
     </h2>
     <p>Primary Sponsors</p>
     <ul id='psponsors' class='longlist'>
