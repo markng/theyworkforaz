@@ -31,6 +31,6 @@
             </div>
         </div>
 	    <div class="full">
-	        <p>In district{{ place.in_districts|pluralize }} {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}.</p>
+	        <p>In {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}.</p>
 	    </div>
 {% endblock %}

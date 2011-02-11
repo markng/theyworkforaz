@@ -9,12 +9,12 @@
   </style>
 {% endblock %}
 {% block headline %}
-    <h1>Arizona District {{ district }}</h1>
+    <h1>Arizona {{ district }}</h1>
 {% endblock %}
 {% block content %}
   <div class="half">
       {% if boundary_close %}
-      <p class="error">In the Alpha stage of theyworkforaz, addresses near district boundaries are subject to inaccuracy.  We're working to resolve this problem.</p>
+      <p class="error">In the Alpha stage of TheyWorkForAZ, addresses near district boundaries are subject to inaccuracy.  We're working to resolve this problem.</p>
       {% endif %}
       <script type="text/javascript" charset="utf-8">
           {{ gmap.render }}

@@ -104,7 +104,6 @@ nav ul li{
 }
 nav ul a{
   text-decoration: none;
-  font-family: "Helvetica Neue";
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
@@ -160,16 +159,16 @@ section#headline{
 }
 section#headline h1 {
     font-size: 25px;
-    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    font-stretch:normal;
     margin-left: 40px;
-    font-weight: 300;
 }
 section#headline h1, section#headline p{
   padding-left: 40px;
   padding-top: 10px;
 }
 section#content{
-  min-height: 500px;
+  min-height: 300px;
   background: #fff;
   padding-bottom: 10px;
   padding-top: 20px;
@@ -218,8 +217,8 @@ img.sparkpie{
   padding: 0;
   margin-top: -54px;
   position: relative;
-  height: 45px;
-  top: 20px;
+  height: 40px;
+  top: 10px;
 }
 section#content div.intro-box {
     -moz-border-radius: 5px;
@@ -254,7 +253,7 @@ section#content input {
 section#content h1, h2, h3{
  padding-top: 15px;
  margin-bottom: 10px;
- font-family: "Helvetica Neue", sans-serif;
+ font-family: "Helvetica Neue", ‘Lucida Sans Unicode’, sans-serif;
  font-weight: 500;
  line-height: 1.2em;
 }
@@ -276,7 +275,14 @@ section#content h3 {
 }
 
 section#content div.frontsearch{
-  margin-top: 4em;
+  margin-top: 3em;
+  margin-bottom: 5em;
+}
+section#content div.frontsearch h2{
+  border-top: none;
+}
+section#content div.frontsearch input[type=text] {
+  border: 1px black solid;
 }
 
 footer {
@@ -285,6 +291,7 @@ footer {
   color: #fff;
   border-left: 1px solid black;
   border-right: 1px solid black;
+  clear: both;
 }
 footer a {
   color: #fff;

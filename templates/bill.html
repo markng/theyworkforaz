@@ -11,18 +11,17 @@
       <li><a href="{{ document.url }}">{{ document }}</a></li>
     {% endfor %}            
     </ul>
-    {% endif %}    
 </div>
+{% endif %}    
 <div class="half">
-    <h2>{{ bill.sponsorship_set.count }} Sponsor{{ bill.sponsorship_set.count|pluralize }} 
-    {% if bill.sponsorship_set.democrats.count %}({{ bill.sponsorship_set.democrats.count }} democrat{{ bill.sponsorship_set.democrats.count|pluralize }}){% endif %} 
-    {% if bill.sponsorship_set.republicans.count %}({{ bill.sponsorship_set.republicans.count }} republican{{ bill.sponsorship_set.republicans.count|pluralize }}){% endif %}
-    <img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ bill.sponsorship_set.democrats.count }},{{ bill.sponsorship_set.republicans.count }}&amp;chs=50x50&amp;chco=0000FF,FF0000&amp;chf=bg,s,ffffff00" alt="" class="sparkpie">
+    <h2><img src="http://chart.apis.google.com/chart?cht=p&amp;chd=t:{{ bill.sponsorship_set.democrats.count }},{{ bill.sponsorship_set.republicans.count }}&amp;chs=50x50&amp;chco=0000FF,FF0000&amp;chf=bg,s,ffffff00" alt="" class="sparkpie"> {{ bill.sponsorship_set.count }} Sponsor{{ bill.sponsorship_set.count|pluralize }} 
+    {% if bill.sponsorship_set.democrats.count %}({{ bill.sponsorship_set.democrats.count }} Democrat{{ bill.sponsorship_set.democrats.count|pluralize }}){% endif %} 
+    {% if bill.sponsorship_set.republicans.count %}({{ bill.sponsorship_set.republicans.count }} Republican{{ bill.sponsorship_set.republicans.count|pluralize }}){% endif %}
     </h2>
     <p>Primary Sponsors</p>
     <ul id='psponsors' class='longlist'>
     {% for sponsor in bill.sponsorship_set.primary %}
-      <li class="grid_3"><a href="{{ sponsor.representative.get_absolute_url }}">{{ sponsor.representative }} ({{ sponsor.representative.party.code }})</a></li>
+      <li><a href="{{ sponsor.representative.get_absolute_url }}">{{ sponsor.representative }} ({{ sponsor.representative.party.code }})</a></li>
     {% endfor %}
     </ul>
     <br class="clear">
@@ -30,10 +29,12 @@
     <p>Co-sponsors</p>
     <ul id='csponsors' class='longlist'>
     {% for sponsor in bill.sponsorship_set.cosponsors %}
-      <li class="grid_3"><a href="{{ sponsor.representative.get_absolute_url }}">{{ sponsor.representative }} ({{ sponsor.representative.party.code }})</a></li>
+      <li><a href="{{ sponsor.representative.get_absolute_url }}">{{ sponsor.representative }} ({{ sponsor.representative.party.code }})</a></li>
     {% endfor %}
     </ul>
+    <br class="clear">
+    {% endif %}
+    
 </div>
 <br class="clear">
-{% endif %}
 {% endblock %}
