@@ -5,13 +5,19 @@
 {% block content %}
 <div class="full">
 {% if senator.role %}
-  <p><strong>{{ senator.role }}</strong>, Senate District {{ senator.district }}</p>
+  <p><strong>{{ senator.role }}</strong>, Senate <a href="{{ senator.district.get_absolute_url }}">{{ senator.district }}</a></p>
 {% else %}
-  <p><strong>Senator</strong> for District {{ senator.district }}</p>
+  <p><strong>Senator</strong> for <a href="{{ senator.district.get_absolute_url }}">{{ senator.district }}</a></p>
 {% endif %}
-<p>Tel: {{ member.phone }}</p>
-<p>Email: <a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
-<p><a href="{{ member.link_to_bio }}">Official Bio</a></p>
+{% if member.phone %}
+<p>Tel: {{ member.phone }}</p>    
+{% endif %}
+{% if member.email %}
+<p>Email: <a href="mailto:{{ member.email }}">{{ member.email }}</a></p>    
+{% endif %}
+{% if member.link_to_bio %}
+<p><a href="{{ member.link_to_bio }}">Official Bio</a></p>    
+{% endif %}
 </div>
 {% if senator.sponsored_bills.count %}
 <div class="half">
