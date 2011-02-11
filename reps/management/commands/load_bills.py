@@ -42,11 +42,16 @@ class Command(NoArgsCommand):
                 if ids['start_id'][0:2] == "SB":
                     if ids['end_id'][2:] > sbs['end'] or not sbs['end']:
                         sbs['end'] = ids['end_id'][2:]
-        for hbno in range(int(hbs['start']), int(hbs['end']) + 1):
-            self.process_bill("HB%s" % (hbno))
         for sbno in range(int(sbs['start']), int(sbs['end']) + 1):
-            self.process_bill("SB%s" % (sbno))
-        
+            try:
+                self.process_bill("SB%s" % (sbno))
+            except Exception, e:
+                pass # FIXME
+        for hbno in range(int(hbs['start']), int(hbs['end']) + 1):
+            try:
+                self.process_bill("HB%s" % (hbno))
+            except Exception, e:
+                pass # FIXME
     
     def process_bill(self, bill_name):
         """get and process a bill"""
