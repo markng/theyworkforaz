@@ -1,6 +1,5 @@
 {{ object.name }}
 {{ object.role }}
-{{ object.house }}
 {{ object.district }}
 {{ object.current }}
 {{ object.party }}
