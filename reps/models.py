@@ -32,7 +32,7 @@ class District(geomodels.Model):
 
     def __unicode__(self):
         """unicode representation"""
-        return str(self.id)
+        return "District %d" % self.id
         
     def balance(self):
         """return power balance"""
