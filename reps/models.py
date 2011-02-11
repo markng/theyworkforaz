@@ -325,26 +325,33 @@ class Place(geomodels.Model):
                 try:
                     area = district.area.difference(district.area.difference(self.area)) # find the part of the district that is inside the place ( district - (district - area))
                 except Exception, e:
-                    # the above sometimes flips out with a geometry error.  For the moment, just send the whole district.
-                    area = district.area
+                    # the above sometimes flips out with a geometry error with particularly odd shapes. (See flagstaff.)
+                    # in that case, get the bounding box for an area and use that as the cut-out shape instead.
+                    area = district.area.difference(district.area.difference(self.area.envelope))
                 icon = GIcon('district_%d' % district.id, '/images/markers/district_markers%d.png' % district.id, iconsize=(50, 35), iconanchor=(20,0))
-                try:
-                    gp = GPolygon(area, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
-                    area_polygons.append(gp)
-                    marker = GMarker(area.centroid, icon=icon)
-                    event = GEvent('click',
-                                     'function() { location.href = "%s"}' % ( district.get_absolute_url() ))
-                    marker.add_event(event)
-                    area_markers.append(marker)
-                except Exception, e:
-                    marker = GMarker(area[0].centroid, icon=icon)
-                    event = GEvent('click',
-                                     'function() { location.href = "%s"}' % ( district.get_absolute_url() ))
-                    marker.add_event(event)
-                    area_markers.append(marker)
-                    for poly in area:
-                        gp = GPolygon(poly, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
+                if area.area > 0.0005:
+                    try:
+                        gp = GPolygon(area, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
                         area_polygons.append(gp)
+                        marker = GMarker(area.centroid, icon=icon)
+                        event = GEvent('click',
+                                         'function() { location.href = "%s"}' % ( district.get_absolute_url() ))
+                        marker.add_event(event)
+                        print("check %s %s" % (district.id, area.area))
+                        area_markers.append(marker)
+                    except Exception, e:
+                        marker = GMarker(area[0].centroid, icon=icon)
+                        event = GEvent('click',
+                                         'function() { location.href = "%s"}' % ( district.get_absolute_url() ))
+                        marker.add_event(event)
+                        area_markers.append(marker)
+                        for poly in area:
+                            try:
+                                gp = GPolygon(poly, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
+                                area_polygons.append(gp)
+                                print("check %s %s" % (district.id, poly.area))
+                            except Exception, e:
+                                print e
             gmap = GoogleMap(polygons=area_polygons, markers=area_markers)
             cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
