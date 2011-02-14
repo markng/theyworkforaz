@@ -328,7 +328,7 @@ class Place(geomodels.Model):
                     # the above sometimes flips out with a geometry error with particularly odd shapes. (See flagstaff.)
                     # in that case, get the bounding box for an area and use that as the cut-out shape instead.
                     area = district.area.difference(district.area.difference(self.area.envelope))
-                icon = GIcon('district_%d' % district.id, '/images/markers/district_markers%d.png' % district.id, iconsize=(50, 35), iconanchor=(20,0))
+                icon = GIcon('district_%d' % district.id, '/images/markers/district_markers%d.png' % district.id, iconsize=(50, 35), iconanchor=(20,0), shadow='/images/markers/shadow.png')
                 if area.area > 0.0005:
                     try:
                         gp = GPolygon(area, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
