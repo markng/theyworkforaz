@@ -12,6 +12,7 @@ import logging
 from django.contrib.gis.maps.google.overlays import GPolygon, GMarker, GIcon, GEvent
 from django.contrib.gis.maps.google.gmap import GoogleMap
 from django.contrib.gis.geos import Point, Polygon, MultiPolygon
+from django.contrib.auth.models import User
 import hashlib
 
 logger = logging.getLogger(__name__)
@@ -362,3 +363,10 @@ class Place(geomodels.Model):
             gmap = GoogleMap(polygons=area_polygons, markers=area_markers)
             cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
+
+class Bookmark(models.Model):
+	content_type = models.ForeignKey(ContentType)
+	object_id = models.IntegerField()
+	content_object = generic.GenericForeignKey('content_type', 'object_id')
+	user = models.ForeignKey(User)
+	date_added = models.DateTimeField(default=datetime.datetime.now)

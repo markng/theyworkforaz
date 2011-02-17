@@ -181,6 +181,10 @@ section#content{
   border-right: solid 1px #666;
   border-bottom: solid 1px #666;
 }
+section#content ul li{
+  margin-left: 20px;
+  list-style-type: circle;
+}
 section#content div.full{
   width: 95%;
   margin-left: auto;
@@ -308,9 +312,17 @@ footer img {
   padding-bottom: 0px;
   margin: 0;
 }
+footer img.lowerlogo {
+  display: block;
+  clear: both;
+}
 footer div.quarter {
   width: 23%;
   padding: 1%;
+  float:left;
+}
+footer div.half {
+  clear: both;
 }
 footer div.quarter ul {
   border-left: 1px solid white;
