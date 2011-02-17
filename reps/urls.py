@@ -62,4 +62,12 @@ urlpatterns = patterns('',
         },
         'account',
     ),
+    (
+        r'^planned_features',
+        'django.views.generic.simple.direct_to_template',
+        {
+            'template' : 'planned_features.html',
+        },
+        'planned_features',
+    ),
 )
