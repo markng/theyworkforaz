@@ -83,9 +83,12 @@ input {
 input[type=submit] {
   border: 1px solid #fff;
   color: #fff;
-  background:#8B3A3A;
+  background:#8B1A1A;
   border-radius:3px;
 }
+
+
+
 header, nav, section#main, section#content, section#headline, footer{
   display: block;
   margin-left: auto;
@@ -109,8 +112,8 @@ nav ul a{
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 nav ul li:hover{
   background-color: #444444;
