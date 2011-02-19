@@ -13,6 +13,8 @@
         event.target.form.submit();
       }
     </script>
+	<script src="/js/jquery-1.5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/twaz.general.js" type="text/javascript" charset="utf-8"></script>
     {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
   </head>
 {% block bodytag %}{% if gmap %}{{ gmap.body }}{% else %}<body id="{% block bodyid %}base{% endblock %}">{% endif %}{% endblock %}
