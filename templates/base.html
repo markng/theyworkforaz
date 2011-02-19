@@ -62,11 +62,16 @@
           
       </section>
       <footer>
-          <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?"></a>
+          <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?" class="lowerlogo"></a>
           <div class="quarter">
               <ul>
                 <li><a href="#" onclick="UserVoice.Popin.show(uservoiceOptions); return false;">Feedback</a></li>
                 <li><a href="{% url about %}">About Us</a></li>
+              </ul>
+          </div>
+          <div class="quarter">
+              <ul>
+                <li><a href="{% url planned_features %}">Planned Features</a></li>
               </ul>
           </div>
 		<div class="half right">

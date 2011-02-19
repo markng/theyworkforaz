@@ -12,6 +12,7 @@ import logging
 from django.contrib.gis.maps.google.overlays import GPolygon, GMarker, GIcon, GEvent
 from django.contrib.gis.maps.google.gmap import GoogleMap
 from django.contrib.gis.geos import Point, Polygon, MultiPolygon
+from django.contrib.auth.models import User
 import hashlib
 
 logger = logging.getLogger(__name__)
@@ -328,19 +329,26 @@ class Place(geomodels.Model):
                     # the above sometimes flips out with a geometry error with particularly odd shapes. (See flagstaff.)
                     # in that case, get the bounding box for an area and use that as the cut-out shape instead.
                     area = district.area.difference(district.area.difference(self.area.envelope))
-                icon = GIcon('district_%d' % district.id, '/images/markers/district_markers%d.png' % district.id, iconsize=(50, 35), iconanchor=(20,0), shadow='/images/markers/shadow.png')
+                icon = GIcon('district_%d' % district.id, '/images/markers/district_markers%d.png' % district.id, iconsize=(29, 32), iconanchor=(0,32), shadow='/images/markers/shadow_fake.png')
                 if area.area > 0.0005:
                     try:
                         gp = GPolygon(area, stroke_color="#000", fill_color=district.color, fill_opacity="0.2")
                         area_polygons.append(gp)
-                        marker = GMarker(area.centroid, icon=icon)
+                        # if the centroid is not on the surface of the shape, get a point on the surface
+                        if area.centroid.within(area):
+                            marker = GMarker(area.centroid, icon=icon)
+                        else:
+                            marker = GMarker(area.point_on_surface, icon=icon)
                         event = GEvent('click',
                                          'function() { location.href = "%s"}' % ( district.get_absolute_url() ))
                         marker.add_event(event)
                         print("check %s %s" % (district.id, area.area))
                         area_markers.append(marker)
                     except Exception, e:
-                        marker = GMarker(area[0].centroid, icon=icon)
+                        if area.centroid.within(area):
+                            marker = GMarker(area.centroid, icon=icon)
+                        else:
+                            marker = GMarker(area.point_on_surface, icon=icon)
                         event = GEvent('click',
                                          'function() { location.href = "%s"}' % ( district.get_absolute_url() ))
                         marker.add_event(event)
@@ -356,3 +364,9 @@ class Place(geomodels.Model):
             cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
 
+class Bookmark(models.Model):
+	content_type = models.ForeignKey(ContentType)
+	object_id = models.IntegerField()
+	content_object = generic.GenericForeignKey('content_type', 'object_id')
+	user = models.ForeignKey(User)
+	date_added = models.DateTimeField(default=datetime.datetime.now)

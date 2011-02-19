@@ -12,7 +12,7 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
 	margin: 0;
-	padding: 0;
+	padding:0;
 	border: 0;
 	outline: 0;
 	font-size: 100%;
@@ -77,13 +77,18 @@ strong{
   font-weight: 500;
 }
 input {
-  border: 0;
-  border-bottom: 1px solid gray;
+  border:;
+  border: 1px solid gray;
 }
 input[type=submit] {
   border: 1px solid #fff;
   color: #fff;
+  background:#8B1A1A;
+  border-radius:3px;
 }
+
+
+
 header, nav, section#main, section#content, section#headline, footer{
   display: block;
   margin-left: auto;
@@ -107,8 +112,8 @@ nav ul a{
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 nav ul li:hover{
   background-color: #444444;
@@ -175,6 +180,10 @@ section#content{
   border-left: solid 1px #666;
   border-right: solid 1px #666;
   border-bottom: solid 1px #666;
+}
+section#content ul li{
+  margin-left: 20px;
+  list-style-type: circle;
 }
 section#content div.full{
   width: 95%;
@@ -303,9 +312,17 @@ footer img {
   padding-bottom: 0px;
   margin: 0;
 }
+footer img.lowerlogo {
+  display: block;
+  clear: both;
+}
 footer div.quarter {
   width: 23%;
   padding: 1%;
+  float:left;
+}
+footer div.half {
+  clear: both;
 }
 footer div.quarter ul {
   border-left: 1px solid white;
