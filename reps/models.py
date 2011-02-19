@@ -363,10 +363,13 @@ class Place(geomodels.Model):
             gmap = GoogleMap(polygons=area_polygons, markers=area_markers)
             cache.set('place_%s_gmap' % (self.id),gmap)
         return gmap
-
+        
 class Bookmark(models.Model):
 	content_type = models.ForeignKey(ContentType)
-	object_id = models.IntegerField()
+	object_id = models.CharField(max_length=255)
 	content_object = generic.GenericForeignKey('content_type', 'object_id')
 	user = models.ForeignKey(User)
 	date_added = models.DateTimeField(default=datetime.datetime.now)
+
+	def __unicode__(self):
+	   return "%s bookmarked %s" % (unicode(self.user), unicode(self.content_object))

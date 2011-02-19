@@ -8,27 +8,50 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Bookmark'
-        db.create_table('reps_bookmark', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
-            ('object_id', self.gf('django.db.models.fields.IntegerField')()),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('date_added', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-        ))
-        db.send_create_signal('reps', ['Bookmark'])
+        # Deleting field 'Bookmark.id'
+        db.delete_column('reps_bookmark', 'id')
+
+        # Changing field 'Bookmark.content_type'
+        db.alter_column('reps_bookmark', 'content_type_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'], primary_key=True))
+
+        # Adding unique constraint on 'Bookmark', fields ['content_type']
+        db.create_unique('reps_bookmark', ['content_type_id'])
+
+        # Changing field 'Bookmark.object_id'
+        db.alter_column('reps_bookmark', 'object_id', self.gf('django.db.models.fields.IntegerField')(primary_key=True))
+
+        # Adding unique constraint on 'Bookmark', fields ['object_id']
+        db.create_unique('reps_bookmark', ['object_id'])
+
+        # Changing field 'Bookmark.user'
+        db.alter_column('reps_bookmark', 'user_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], primary_key=True))
+
+        # Adding unique constraint on 'Bookmark', fields ['user']
+        db.create_unique('reps_bookmark', ['user_id'])
+
 
     def backwards(self, orm):
         
-        # Deleting model 'Bookmark'
-        db.delete_table('reps_bookmark')
+        # Removing unique constraint on 'Bookmark', fields ['user']
+        db.delete_unique('reps_bookmark', ['user_id'])
 
-        # Adding M2M table for field sessions on 'Representative'
-        db.create_table('reps_representative_sessions', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('representative', models.ForeignKey(orm['reps.representative'], null=False)),
-            ('session', models.ForeignKey(orm['reps.session'], null=False))
-        ))
+        # Removing unique constraint on 'Bookmark', fields ['object_id']
+        db.delete_unique('reps_bookmark', ['object_id'])
+
+        # Removing unique constraint on 'Bookmark', fields ['content_type']
+        db.delete_unique('reps_bookmark', ['content_type_id'])
+
+        # Adding field 'Bookmark.id'
+        db.add_column('reps_bookmark', 'id', self.gf('django.db.models.fields.AutoField')(default=1, primary_key=True), keep_default=False)
+
+        # Changing field 'Bookmark.content_type'
+        db.alter_column('reps_bookmark', 'content_type_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType']))
+
+        # Changing field 'Bookmark.object_id'
+        db.alter_column('reps_bookmark', 'object_id', self.gf('django.db.models.fields.IntegerField')())
+
+        # Changing field 'Bookmark.user'
+        db.alter_column('reps_bookmark', 'user_id', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User']))
 
 
     models = {
@@ -84,11 +107,10 @@ class Migration(SchemaMigration):
         },
         'reps.bookmark': {
             'Meta': {'object_name': 'Bookmark'},
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
+            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']", 'primary_key': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'object_id': ('django.db.models.fields.IntegerField', [], {}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+            'object_id': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'primary_key': 'True'})
         },
         'reps.district': {
             'Meta': {'object_name': 'District'},

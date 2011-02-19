@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block headline %}
     <h1>{{ member }} ({{ member.party.code }})</h1>
+    {% if bookmark %}<form action="{% url unbookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmarked"></form>{% else %}<form action="{% url bookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmark"></form>{% endif %}    
 {% endblock %}
 {% block content %}
 <div class="full">
@@ -26,7 +27,7 @@
       {% for sponsorship in member.sponsored_bills.all %}
       <li class="grid_3"><a href="{{ sponsorship.bill.get_absolute_url }}">{{ sponsorship.bill }}</a></li>
       {% endfor %}
-    </ul>    
+    </ul>
 </div>
 {% endif %}
 {% if member.cosponsored_bills.count %}

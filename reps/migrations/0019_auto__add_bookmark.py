@@ -18,17 +18,11 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('reps', ['Bookmark'])
 
+
     def backwards(self, orm):
         
         # Deleting model 'Bookmark'
         db.delete_table('reps_bookmark')
-
-        # Adding M2M table for field sessions on 'Representative'
-        db.create_table('reps_representative_sessions', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('representative', models.ForeignKey(orm['reps.representative'], null=False)),
-            ('session', models.ForeignKey(orm['reps.session'], null=False))
-        ))
 
 
     models = {

@@ -8,6 +8,16 @@
         <p><a href="{% url django.contrib.auth.views.password_change %}">Change your password</a></p>
     {% else %}
         <p>In order to be able to access your account, <a href="{% url django.contrib.auth.views.login %}">please log in</a></p>
-    {% endif %}    
+    {% endif %}
 </div>
+{% if user.bookmark_set.count %}
+<div class="half">
+    <h2>Tracking</h2>
+    <ul>
+      {% for bookmark in user.bookmark_set.all %}
+        <li><a href="{{ bookmark.get_absolute_url }}">{{ bookmark.content_object }}</a></li>
+      {% endfor %}  
+    </ul>
+</div>    
+{% endif %}
 {% endblock %}

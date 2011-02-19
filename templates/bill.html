@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block headline %}
-    <h1>{{ bill }}</h1>
+    <h1>{{ bill }}</h1></h1>{% if bookmark %}<form action="{% url unbookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmarked"></form>{% else %}<form action="{% url bookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmark"></form>{% endif %}
 {% endblock %}
 {% block content %}
 {% if bill.billdocument_set.versions.count %}

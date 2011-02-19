@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from geocoders.google import geocoder
-from reps.models import District
+from reps.models import District, Bookmark
 from django.contrib.gis.geos import Point
 from haystack.query import SearchQuerySet
 
@@ -51,3 +51,12 @@ class WhereForm(forms.Form):
             if not (cleaned_data.get('lat') and cleaned_data.get('lon')):
                 self._errors['where'] = self.error_class(['Please fill in an address'])
         return cleaned_data
+        
+class BookmarkForm(forms.ModelForm):
+    class Meta:
+        model = Bookmark
+        fields = ['content_type', 'object_id']
+        widgets = {
+            'content_type' : forms.HiddenInput(),
+            'object_id' : forms.HiddenInput(),
+        }

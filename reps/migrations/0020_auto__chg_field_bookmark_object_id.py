@@ -8,27 +8,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Bookmark'
-        db.create_table('reps_bookmark', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
-            ('object_id', self.gf('django.db.models.fields.IntegerField')()),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('date_added', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-        ))
-        db.send_create_signal('reps', ['Bookmark'])
+        # Changing field 'Bookmark.object_id'
+        db.alter_column('reps_bookmark', 'object_id', self.gf('django.db.models.fields.CharField')(max_length=255))
+
 
     def backwards(self, orm):
         
-        # Deleting model 'Bookmark'
-        db.delete_table('reps_bookmark')
-
-        # Adding M2M table for field sessions on 'Representative'
-        db.create_table('reps_representative_sessions', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('representative', models.ForeignKey(orm['reps.representative'], null=False)),
-            ('session', models.ForeignKey(orm['reps.session'], null=False))
-        ))
+        # Changing field 'Bookmark.object_id'
+        db.alter_column('reps_bookmark', 'object_id', self.gf('django.db.models.fields.IntegerField')())
 
 
     models = {
@@ -87,7 +74,7 @@ class Migration(SchemaMigration):
             'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'object_id': ('django.db.models.fields.IntegerField', [], {}),
+            'object_id': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
         'reps.district': {
