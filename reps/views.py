@@ -33,7 +33,7 @@ def addresschecker(request):
                 place = Place.objects.get(pk=form.cleaned_data['place_id'])
                 return HttpResponseRedirect(place.get_absolute_url())
         else:
-            if form.errors['place_id']:
+            if form.errors.get('place_id', False):
                 totemplate['placesearch'] = SearchQuerySet().filter(content=request.POST['where']).filter(django_ct="reps.place") # ugh.
         totemplate['form'] = form
     else:

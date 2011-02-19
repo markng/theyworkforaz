@@ -8,8 +8,8 @@ from haystack.query import SearchQuerySet
 class WhereForm(forms.Form):
     """form for where a user lives"""
     where = forms.CharField(required=False, label="Where do you live ?", widget=forms.TextInput(attrs={'x-webkit-speech':True}))
-    lat = forms.IntegerField(required=False, label="Latitude", widget=forms.HiddenInput())
-    lon = forms.IntegerField(required=False, label="Longitude", widget=forms.HiddenInput())
+    lat = forms.CharField(required=False, label="Latitude", widget=forms.HiddenInput())
+    lon = forms.CharField(required=False, label="Longitude", widget=forms.HiddenInput())
     district_id = forms.IntegerField(required=False, label="District", widget=forms.HiddenInput())
     place_id = forms.IntegerField(required=False, label="Place", widget=forms.HiddenInput())
     
@@ -50,6 +50,14 @@ class WhereForm(forms.Form):
         else:
             if not (cleaned_data.get('lat') and cleaned_data.get('lon')):
                 self._errors['where'] = self.error_class(['Please fill in an address'])
+            else:
+                cleaned_data['lat'] = float(cleaned_data.get('lat'))
+                cleaned_data['lon'] = float(cleaned_data.get('lon'))
+                try:
+                    district = District.objects.get(area__contains=Point(cleaned_data.get('lon'),cleaned_data.get('lat')))
+                    cleaned_data['district_id'] = district.id                    
+                except District.DoesNotExist, e:
+                    self._errors['where'] = self.error_class(['We can\'t find your location. Are you in Arizona?'])
         return cleaned_data
         
 class BookmarkForm(forms.ModelForm):
