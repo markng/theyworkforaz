@@ -11,8 +11,6 @@
 {% block headline %}
     <h1>Arizona {{ district }}</h1>
 {% endblock %}
-{% block bookmark  %}{% if bookmark %}<form action="{% url unbookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmarked"></form>{% else %}<form action="{% url bookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmark"></form>{% endif %}
-  {% endblock %}
 {% block content %}
   <div class="half">
       {% if boundary_close %}

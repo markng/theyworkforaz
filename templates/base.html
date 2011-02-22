@@ -48,10 +48,10 @@
       <section id="headline">
           <div>
               {% block headline %}
-              {% endblock %}     
-	      {% block bookmark  %}
-              {% endblock  %}    
-       
+              {% endblock %}
+              {% if bookmarkform %}
+                {% if bookmark %}<form action="{% url unbookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Stop Tracking"></form>{% else %}<form action="{% url bookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Track"></form>{% endif %}
+              {% endif %}     
           </div>
       </section>        
       {% endif %}

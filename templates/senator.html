@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block headline %}
-    <h1>{{ senator }} ({{ senator.party }})</h1>{% if bookmark %}<form action="{% url unbookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmarked"></form>{% else %}<form action="{% url bookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Bookmark"></form>{% endif %}
+    <h1>{{ senator }} ({{ senator.party }})</h1>
 {% endblock %}
 {% block content %}
 <div class="full">
