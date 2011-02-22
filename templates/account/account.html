@@ -15,7 +15,7 @@
     <h2>Tracking</h2>
     <ul>
       {% for bookmark in user.bookmark_set.all %}
-        <li><a href="{{ bookmark.get_absolute_url }}">{{ bookmark.content_object }}</a></li>
+        <li><a href="{{ bookmark.content_object.get_absolute_url }}">{{ bookmark.content_object }}</a></li>
       {% endfor %}  
     </ul>
 </div>    
