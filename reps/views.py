@@ -14,8 +14,7 @@ from haystack.query import SearchQuerySet
 
 def home(request):
     """home page"""
-    gmap = GoogleMap()
-    return render_to_response('index.html', { 'gmap' : gmap, 'noheadline' : True }, context_instance=RequestContext(request))
+    return render_to_response('index.html', { 'noheadline' : True }, context_instance=RequestContext(request))
 
 def addresschecker(request):
     """go to district from address"""
