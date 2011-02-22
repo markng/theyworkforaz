@@ -68,6 +68,19 @@ def district(request, district_id=None):
     else:
         gmap = district.gmap()
     totemplate['gmap'] = gmap
+
+    try:
+        bookmark = Bookmark.objects.get(
+            user=request.user,
+            content_type=ContentType.objects.get_for_model(District),
+            object_id=totemplate['district'].id,
+        )
+        totemplate['bookmark'] = bookmark
+    except Exception, e:
+        bookmark = Bookmark()
+        bookmark.content_object = totemplate['district']
+    totemplate['bookmarkform'] = BookmarkForm(instance=bookmark)
+
     return render_to_response('district.html', totemplate, context_instance=RequestContext(request))
 
 def senator(request, representative_id=None):
@@ -96,7 +109,7 @@ def housemember(request, representative_id=None):
             user=request.user, 
             content_type=ContentType.objects.get_for_model(Representative),
             object_id=to_response['member'].id,
-        )
+        ) 
         to_response['bookmark'] = bookmark
     except Exception, e:
         bookmark = Bookmark()
