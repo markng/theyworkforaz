@@ -357,6 +357,19 @@ footer div.quarter ul li {
   }
 }
 
+@media only screen and (max-width: 500px) {
+  header, nav, section#main, section#content, footer{
+    width: 100%;
+  }
+  nav{
+    display: block;
+    float: none;
+  }
+  section#headline, section#content div.half, .quarter, section#content div.full{
+    width: 100%;
+  }
+}
+
 /*
  * Specific site sections
  */
