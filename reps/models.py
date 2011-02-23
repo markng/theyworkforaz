@@ -373,3 +373,11 @@ class Bookmark(models.Model):
 
 	def __unicode__(self):
 	   return "%s bookmarked %s" % (unicode(self.user), unicode(self.content_object))
+
+class SavedSearch(models.Model):
+	search = models.TextField()
+	
+	def __unicode__(self):
+	   return "%s" % (unicode(self.name)
+	
+ 	
