@@ -365,19 +365,34 @@ class Place(geomodels.Model):
         return gmap
         
 class Bookmark(models.Model):
-	content_type = models.ForeignKey(ContentType)
-	object_id = models.CharField(max_length=255)
-	content_object = generic.GenericForeignKey('content_type', 'object_id')
-	user = models.ForeignKey(User)
-	date_added = models.DateTimeField(default=datetime.datetime.now)
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.CharField(max_length=255)
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    user = models.ForeignKey(User)
+    date_added = models.DateTimeField(default=datetime.datetime.now)
 
-	def __unicode__(self):
-	   return "%s bookmarked %s" % (unicode(self.user), unicode(self.content_object))
+    def __unicode__(self):
+        return "%s bookmarked %s" % (unicode(self.user), unicode(self.content_object))
 
 class SavedSearch(models.Model):
-	search = models.TextField()
-	
-	def __unicode__(self):
-	   return "%s" % (unicode(self.name)
-	
- 	
+    hashed_search = models.CharField(unique=True, max_length=255)
+    search = models.TextField()
+    
+    def __unicode__(self):
+        return "%s" % (unicode(self.search))
+    
+    def save(self, *args, **kwargs):
+        """docstring for save"""
+        self.hashed_search = SavedSearch.create_hash(self.search)
+        return super(SavedSearch, self).save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return ('/search/whole?q=%s' % (self.search)) # can we do this with a reverse search for haystack?
+    
+    @classmethod
+    def create_hash(cls, text):
+        """create a hash based on a search string"""
+        m = hashlib.md5()
+        m.update(text)
+        md5s = m.hexdigest()
+        return "%s%s" % (text[0], md5s)

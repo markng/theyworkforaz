@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from models import District, Representative, Bill, Place, Bookmark
+from models import District, Representative, Bill, Place, Bookmark, SavedSearch
 from django.contrib.contenttypes.models import ContentType
 from forms import WhereForm, BookmarkForm
 from django.contrib.gis.geos import Point
@@ -10,6 +10,7 @@ from django.views.decorators.cache import cache_page
 from django.contrib.gis.maps.google.overlays import GPolygon
 from django.contrib.gis.maps.google.gmap import GoogleMap
 from django.template import RequestContext
+from haystack.views import SearchView
 from haystack.query import SearchQuerySet
 
 def home(request):
@@ -133,8 +134,9 @@ def bill(request, bill_id=None):
     to_response['bookmarkform'] = BookmarkForm(instance=bookmark)
     return render_to_response('bill.html', to_response, context_instance=RequestContext(request))
 
-@login_required
 def bookmark(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login/?next=%s' % request.META['HTTP_REFERER'])
     try:
         bookmark = Bookmark.objects.get(
             user=request.user,
@@ -162,6 +164,27 @@ def unbookmark(request):
     except Exception, e:
         return HttpResponseRedirect('/')
 
+class TWFASearchView(SearchView):
+    """override search view to include bookmarks and other"""
+    def extra_context(self, *args, **kwargs):
+        """return the context for the search view"""
+        context = super(TWFASearchView, self).extra_context(*args, **kwargs)
+        saved_search, created = SavedSearch.objects.get_or_create(
+                                hashed_search=SavedSearch.create_hash(self.query),
+                                search=self.query,
+                                )
+        try:
+            bookmark = Bookmark.objects.get(
+                user=self.request.user,
+                content_type=ContentType.objects.get_for_model(SavedSearch),
+                object_id=saved_search.id,
+            )
+            context['bookmark'] = bookmark
+        except Exception, e:
+            bookmark = Bookmark()
+            bookmark.content_object = saved_search
+        context['bookmarkform'] = BookmarkForm(instance=bookmark)
+        return context
     
 def global_forms_context_processor(request):
     from haystack.forms import SearchForm

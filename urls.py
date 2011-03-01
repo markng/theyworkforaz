@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 import os
 from django.conf import settings
 from haystack.views import SearchView, search_view_factory
+from reps.views import TWFASearchView
 from haystack.query import SearchQuerySet
 from haystack.forms import SearchForm
 from django.contrib.auth import login
@@ -30,7 +31,7 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('haystack.views',
     url(r'^search/whole$', search_view_factory(
-        view_class=SearchView,
+        view_class=TWFASearchView,
         searchqueryset=sqs,
         form_class=SearchForm
     ), name='haystack_search'),
