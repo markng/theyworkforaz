@@ -1,8 +1,10 @@
 from django.conf.urls.defaults import *
-from models import Session, Place
+from models import Session, Place, Representative
 
 sessionquery = Session.objects.all()
 placequery = Place.objects.all()
+senatequery = Representative.objects.all()
+housequery = Representative.objects.all()
 urlpatterns = patterns('',
     (r'^$', 'reps.views.home', {}, 'home'),
     (r'^address$', 'reps.views.addresschecker', {}, 'addresscheck'),
@@ -51,6 +53,26 @@ urlpatterns = patterns('',
             'template_object_name' : 'place',
         }, 
         'place'),
+   (
+        r'^senate$',
+        'django.views.generic.list_detail.object_list',
+        {
+            'queryset' : senatequery,
+            'template_name' : 'senate.html',
+            'template_object_name' : 'senate',
+        },
+        'senate'),
+
+   (
+        r'^house$',
+        'django.views.generic.list_detail.object_list',
+        {
+            'queryset' : housequery,
+            'template_name' : 'house.html',
+            'template_object_name' : 'house',
+        },
+        'house'),
+
     (
         r'^about$',
         'django.views.generic.simple.direct_to_template',
