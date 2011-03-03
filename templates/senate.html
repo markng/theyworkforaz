@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="grid_12">
+	    <h2>Senates</h2>
+		{% for senate in senate_list %}
+	      	<li class="grid_3"><a href="{{ senate.get_absolute_url }}">{{ senate.name }}</a></li>
+		{% endfor %}
+	</div>
+{% endblock %}
