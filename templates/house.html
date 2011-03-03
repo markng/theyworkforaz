@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="grid_12">
+	    <h2>House</h2>
+		{% for house in house_list %}
+	      	<li class="grid_3"><a href="{{ house.get_absolute_url }}">{{ house.name }}</a></li>
+		{% endfor %}
+	</div>
+{% endblock %}
