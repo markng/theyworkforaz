@@ -20,10 +20,7 @@
     <form action="{% url addresscheck %}" method="post" accept-charset="utf-8">
         {{ where_form.lat }}{{ where_form.lon }}{{ where_form.where }}<input type="submit" value="Find District"><input type="button" value="Use current location" class="geolocator">
         <p>For example : "555 N Central Ave, Phoenix, 85004", "85304", "Lake Havasu City"</p>
-     </form> </br>
-<p> <a href="{% url senate %}">List of Senate members</a> </br>
-	<a href="{% url house %}"> List of House members</a> </p>
-    
+     </form> 
 </div>
 <div class="half frontsearch">
     <h2>Want to track a bill, issue or legislator?</h2>
