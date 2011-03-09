@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class="grid_12">
+	<div class="full">
 	    <h2>House</h2>
 		{% for house in house_list %}
 	      	<li class="grid_3"><a href="{{ house.get_absolute_url }}">{{ house.name }}</a></li>
