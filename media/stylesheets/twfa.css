@@ -77,7 +77,6 @@ strong{
   font-weight: 500;
 }
 input {
-  border:;
   border: 1px solid gray;
 }
 input[type=submit] {
@@ -386,4 +385,12 @@ form#registration_form span.error{
 }
 div.non_field_errors, .error{
   color: red;
+}
+
+/* untrack buttons in list */
+ul.trackinglist li form{
+  display: inline;
+}
+section#content ul.trackinglist li form input{ 
+  font-size: 0.4em;
 }

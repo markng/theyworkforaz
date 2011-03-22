@@ -13,9 +13,10 @@
 {% if user.bookmark_set.count %}
 <div class="half">
     <h2>Tracking</h2>
-    <ul>
+    <ul class="trackinglist">
       {% for bookmark in user.bookmark_set.all %}
-        <li><a href="{{ bookmark.content_object.get_absolute_url }}">{{ bookmark.content_object }}</a></li>
+        <li><a href="{{ bookmark.content_object.get_absolute_url }}">{{ bookmark.content_object }}</a> <form action="{% url unbookmark %}" method="post"><input type="hidden" name="content_type" value="{{ bookmark.content_type.id }}"><input type="hidden" name="object_id" value="{{ bookmark.object_id }}"><input type="submit" value="x"></form>
+        </li>
       {% endfor %}  
     </ul>
 </div>   

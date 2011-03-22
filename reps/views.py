@@ -160,7 +160,10 @@ def unbookmark(request):
         )
         url = bookmark.content_object.get_absolute_url()
         bookmark.delete()
-        return HttpResponseRedirect(url)        
+        try:
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        except Exception, e:
+            return HttpResponseRedirect(url)
     except Exception, e:
         return HttpResponseRedirect('/')
 
