@@ -2,9 +2,9 @@
 
 {% block content %}
 	<div class="full">
-	    <h2>House</h2>
-		{% for house in house_list %}
-	      	<li class="grid_3"><a href="{{ house.get_absolute_url }}">{{ house.name }}</a></li>
+	    <h2>Representatives</h2>
+		{% for rep in house_list %}
+	      	<li class="grid_3"><a href="{{ rep.get_absolute_url }}">{{ rep.name }}</a>  {{ rep.party }}{% if rep.role %}, {{ rep.role }}{% endif %}</li>
 		{% endfor %}
 	</div>
 {% endblock %}

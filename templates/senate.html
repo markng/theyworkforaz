@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 	<div class="full">
-	    <h2>Senates</h2>
-		{% for senate in senate_list %}
-	      	<li class="grid_3"><a href="{{ senate.get_absolute_url }}">{{ senate.name }}</a></li>
+	    <h2>Senators</h2>
+		{% for senator in senate_list %}
+	      	<li class="grid_3"><a href="{{ senator.get_absolute_url }}">{{ senator.name }}</a> {{ senator.party }}{% if senator.role %}, {{ senator.role }}{% endif %}</li>
 		{% endfor %}
 	</div>
 {% endblock %}

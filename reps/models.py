@@ -80,16 +80,25 @@ class District(geomodels.Model):
         md5s = m.hexdigest()
         return "#%s" % md5s[0:6]
 
-class RepresentativeManager(models.Manager):
-    """representative manager, add selects by party for templates, etc"""
-    use_for_related_fields = True
-    def democrats(self):
-        """add a filter for democrats"""
-        return self.filter(party__code='D')
-    
-    def republicans(self):
-        """add a filter for republicans"""
-        return self.filter(party__code='R')
+class RepublicanManager(models.Manager):
+    """return republicans"""
+    def get_query_set(self):
+        return super(RepublicanManager, self).get_query_set().filter(party__code='R')
+
+class DemocratManager(models.Manager):
+    """return republicans"""
+    def get_query_set(self):
+        return super(DemocratManager, self).get_query_set().filter(party__code='D')
+
+class HouseManager(models.Manager):
+    """return republicans"""
+    def get_query_set(self):
+        return super(HouseManager, self).get_query_set().filter(house__code='H')
+
+class SenateManager(models.Manager):
+    """return republicans"""
+    def get_query_set(self):
+        return super(SenateManager, self).get_query_set().filter(house__code='S')
     
 class Representative(models.Model):
     """a representative (either house or senate)"""
@@ -107,7 +116,11 @@ class Representative(models.Model):
     current = models.BooleanField('Current House Member', default=True)
     link = models.URLField('Link to Bio', blank=True, null=True) # not sure if azleg will remove bios after left
     #sessions = models.ManyToManyField('Session')
-    objects = RepresentativeManager()
+    objects = models.Manager()
+    republicans = RepublicanManager()
+    democrats = DemocratManager()
+    reps = HouseManager()
+    senators = SenateManager()
 
     @models.permalink
     def get_absolute_url(self):

@@ -3,8 +3,8 @@ from models import Session, Place, Representative
 
 sessionquery = Session.objects.all()
 placequery = Place.objects.all()
-senatequery = Representative.objects.all()
-housequery = Representative.objects.all()
+senatequery = Representative.senators.all()
+housequery = Representative.reps.all()
 urlpatterns = patterns('',
     (r'^$', 'reps.views.home', {}, 'home'),
     (r'^address$', 'reps.views.addresschecker', {}, 'addresscheck'),
