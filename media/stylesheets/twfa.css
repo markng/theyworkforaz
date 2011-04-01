@@ -1,112 +1,34 @@
-/* Eric Meyer's reset - http://meyerweb.com/eric/tools/css/reset/ */
-html, body{
-  height: 100%;
+html, body {
+	height:100%;
 }
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding:0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
-}
+
 body {
-	line-height: 1;
-	background-color: #fff;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+    background-color: #ffffff;	
+    background: url("../images/bg-stripe.jpg") repeat scroll 0 0 transparent; 
+    margin: 0;
+    padding: 0;
 }
 
-/* remember to define focus styles! */
-:focus {
-	outline: 0;
-}
-
-/* remember to highlight inserts somehow! */
-ins {
-	text-decoration: none;
-}
-del {
-	text-decoration: line-through;
-}
-
-/* tables still need 'cellspacing="0"' in the markup */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/* Reset END */
-/*
- * Swatch
- * #973e33 - dark background - header, footer
- * #821e20 - accent to darker background - used for borders for above
- * #ce3d2b - lighter background colour - aside
- * #811000 - accent to lighter background - search
- * #b16b63 - nav background
- * #d3bb7e - outside background
- */
-body{
-  font-family: "Helvetica Neue", sans-serif;
-  font-weight: 200;
-  background: url('../images/bg-stripe.jpg');
-  letter-spacing: 1px;
-  line-height: 1.3em; 
-}
-p{
-  margin-bottom: 0.5em;
-}
-strong{
-  font-weight: 500;
-}
-input {
-  border: 1px solid gray;
-}
-input[type=submit] {
-  border: 1px solid #fff;
-  color: #fff;
-  background:#8B1A1A;
-  border-radius:3px;
-}
-
-
-
-header, nav, section#main, section#content, section#headline, footer{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-nav{
+.nav{
   height:2.25em;
   min-height: 1em;
   background: #000000;
+  font-family: "Helvetica Neue",sans-sirif;
+  font-weight: 200;
+  
+  
 }
-nav ul li{
+
+
+.nav ul li{
   height: 26px;
   padding-top: 10px;
   display: block;
   float: left;
-  margin-right: 1em;
-  margin-left: 1em;
+  margin-right: auto;
+  margin-left: auto;
 }
-nav ul a{
+.nav ul a{
   text-decoration: none;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -114,283 +36,106 @@ nav ul a{
   padding-left: 10px;
   padding-right: 10px;
 }
-nav ul li:hover{
-  background-color: #444444;
+.nav ul li:hover{
+  background-color: #5f3c33;
+  opacity:1;
 }
-nav div{
+
+
+.search_button{
+  background-image: url("../images/search_button.png");
+  vertical-align: top;
+  background-color: #b73626;
+  height: 36px;
+  width: 27%;	
   float: right;
-  margin-right: 5px;
-  vertical-align: middle;
-}
-header{
-  background: #821e20;
-}
-header img{
-  padding: 10px;
-  width: 300px;
-}
-section#headline div{
-  position: relative;
-  top: -18px;
-  padding: 0;
-  margin: 0;
-  padding-top: 15px;
-  padding-bottom: 25px;
-  background: url('/images/headline_top.png') top no-repeat;
-}
-section#headline form{
-  padding-top: 0;
-  float: right;
-  margin-right: 30px;
-  margin-top: -25px;
-}
-section#headline input{
-  font-size: 1.5em;
-  border-radius: 0.5em;
-}
-section#headline{
-  background: url('/images/headline_bottom.png') bottom no-repeat;
-  color: #fff;
-}
-section#headline p{
-  padding-left: 30px;
-}
-header, nav, section#main, section#content, footer{
-  width: 1000px;
-}
-section#headline{
-  width: 1050px;
-}
-section#headline h1 {
-    font-size: 25px;
-    font-weight: 100;
-    font-stretch:normal;
-    margin-left: 40px;
-}
-section#headline h1, section#headline p{
-  padding-left: 40px;
-  padding-top: 10px;
-}
-section#content{
-  min-height: 300px;
-  background: #fff;
-  padding-bottom: 10px;
-  padding-top: 20px;
-  border-left: solid 1px #666;
-  border-right: solid 1px #666;
-  border-bottom: solid 1px #666;
-}
-section#content ul li{
-  margin-left: 20px;
-  list-style-type: circle;
-}
-section#content div.full{
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
-}
-section#content div.half{
-  width: 45%;
-  float: left;
-  margin-left: 4%;
-}
-section#content div h1 {
-    font-size: 4.2em;
-    font-weight: 100;
-    line-height: 70%;
-}
-section#content div.full *, section#content div.half *{
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 5px;
+  font-size: 10px;
+  font-family: "Helvetica Neue",sans-sirif;
+  font-weight: 200;
+  color: #a8a8a8;
 }
 
-section#content div.full{
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-}
-section#content div#intro {
-  width: 75%;
-  margin: 0px auto 15px auto;
-  padding-top: 40px;
-}
-section#content div#intro p {
-    font-size: 1.2em;
-    font-weight: 400;
-    line-height: 120%;
-}
-img.sparkpie{
-  margin: 0;
-  padding: 0;
-  margin-top: -54px;
-  position: relative;
-  height: 40px;
-  top: 10px;
-}
-section#content div.intro-box {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    background: #666;
-    padding: 15px;
-    color: #fff;
-    line-height: 130%;
-    font-size: 1.2em;
+
+
+
+
+
+.background{
+	background: url("../images/background_top.png") no-repeat #f6edda;
+	position: relative;
+	height: 382px;	
 }
 
-#homepage-search {
-    margin-top: 60px;
+.innertop{
+	display: inline;
+	background:none;
+	margin-left: auto;
+    margin-right: auto; 
+    top: 10px; 
+    position: absolute;
+    overflow: hidden;
+    height: 160px;
+   
 }
 
-section#content div.center {
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align:center;
+#logo_background {
+	padding-bottom 200px;
+	background-color: #8e0a1d;
+	padding-top: 10px;
+	padding-left: 15px;
+	height: 136px;
+	width: 100%;
+	background: url("../images/logo_background.png") no-repeat #f6edda;
 }
 
-section#content div.center h2 a {
-    text-decoration: none;
-    color: #D3BB7E;
+#intro{
+	color: #5f5151;
+	font-size: 17px;
+	font-family: "Helvetica Neue",sans-sirif;
+	font-weight: 200;
+	line-height: 25px;
+	padding-left: 500px;
+	padding-top: 7px;
+	width: 100%;
+	top: 5px;
+	text-align: left;
+	
 }
 
-section#content input {
-  font-size: 1.4em;
+header, .nav, footer, .background, .innertop, .search_home {
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+	
 }
 
-section#content h1, h2, h3{
- padding-top: 15px;
- margin-bottom: 10px;
- font-family: "Helvetica Neue", ‘Lucida Sans Unicode’, sans-serif;
- font-weight: 500;
- line-height: 1.2em;
+header, .nav, footer, .background, .innertop, .search_home{
+width:1008px;
 }
 
-section#content h1 {
-    font-size: 25px;
+.search_home{
+	height: 200px;
+	background-color: #ffffff;
+	
+		
 }
 
-section#content h2 {
-    font-size: 20px;
-    line-height: 100%;
-    color: #ce3d2b;
-    border-top: solid 3px #C0C0C0;
-    padding: 10px !important;
-}
-
-section#content h3 {
-    color: #a0a0a0;
-}
-
-section#content div.frontsearch{
-  margin-top: 3em;
-  margin-bottom: 5em;
-}
-section#content div.frontsearch h2{
-  border-top: none;
-}
-section#content div.frontsearch input[type=text] {
-  border: 1px black solid;
-}
 
 footer {
-  background: #821e20;
+  background: #810f02;
   min-height: 200px;
   color: #fff;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
   clear: both;
 }
 footer a {
   color: #fff;
   text-decoration: none;
 }
-footer img {
-  width: 220px;
-  padding: 10px;
-  padding-bottom: 0px;
-  margin: 0;
-}
-footer img.lowerlogo {
-  display: block;
-  clear: both;
-}
-footer div.quarter {
-  width: 23%;
-  padding: 1%;
-  float:left;
-}
-footer div.half {
-  clear: both;
-}
-footer div.quarter ul {
-  border-left: 1px solid white;
-  padding-left: 7px;
-}
-footer div.quarter ul li {
-  font-size: 0.8em;
-  margin-top: 1em;
-}
 
-.clear {
-    clear:both;
-}
 
-.right {
-    float: right;
-}
 
-.left {
-    float: left;
-}
 
-/*
- * Media queries to adjust sizes for screens
- */
-@media only screen and (min-width: 1200px) {
-  header, nav, section#main, section#content, footer{
-    width: 1000px;
-  }
-  section#headline{
-    width: 1050px;
-  }
-}
 
-@media only screen and (max-width: 500px) {
-  header, nav, section#main, section#content, footer{
-    width: 100%;
-  }
-  nav{
-    display: block;
-    float: none;
-  }
-  section#headline, section#content div.half, .quarter, section#content div.full{
-    width: 100%;
-  }
-}
 
-/*
- * Specific site sections
- */
-/* Search Form */
-nav div.searchform input{
-  margin-top: 9px;
-  border-radius: 5px;
-}
 
-/* Registration Form */
-form#registration_form 
-form#registration_form span.error{
-  font-size: 0.4em;
-}
-div.non_field_errors, .error{
-  color: red;
-}
-
-/* untrack buttons in list */
-ul.trackinglist li form{
-  display: inline;
-}
-section#content ul.trackinglist li form input{ 
-  font-size: 0.4em;
-}
