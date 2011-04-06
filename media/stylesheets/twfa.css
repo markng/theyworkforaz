@@ -2,6 +2,19 @@ html, body {
 	height:100%;
 }
 
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, 
+pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, 
+samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, 
+form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+
 body {
     background-color: #ffffff;	
     background: url("../images/bg-stripe.jpg") repeat scroll 0 0 transparent; 
@@ -43,7 +56,8 @@ body {
 
 
 .search_button{
-  background-image: url("../images/search_button.png");
+  background: url("../images/search_button.png") no-repeat;
+  cursor: pointer;
   vertical-align: top;
   background-color: #b73626;
   height: 36px;
@@ -55,6 +69,52 @@ body {
   font-weight: 200;
   color: #a8a8a8;
 }
+
+
+#search a{
+  text-decoration: none;
+  
+  color: #fff; 	
+}
+
+#search{
+  height:2.25em;
+  min-height: 1em;
+  font-family: "Helvetica Neue",sans-sirif;
+  font-weight: 100;
+  padding-left: 39px;
+  padding-top: 5px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  
+}
+
+
+
+
+
+
+
+#but_search.but_search_on, .expanded_search.but_search_on {
+background-position: 0 -27px !important;
+}
+#but_search {
+float: left;
+width: 189px;
+height: 27px;
+cursor: pointer;
+zoom: 1;
+position: relative;
+background: url(/global-landing/global/images/btns/btn_search.png) no-repeat 0px 0px;
+}
+
+.but_search_on {
+}
+
+
+.but_search_off {
+}
+
 
 
 
@@ -69,20 +129,19 @@ body {
 
 .innertop{
 	display: inline;
-	background:none;
 	margin-left: auto;
     margin-right: auto; 
     top: 10px; 
     position: absolute;
     overflow: hidden;
-    height: 160px;
+    height: 140px;
    
 }
 
 #logo_background {
 	padding-bottom 200px;
 	background-color: #8e0a1d;
-	padding-top: 10px;
+	padding-top: 20px;
 	padding-left: 15px;
 	height: 136px;
 	width: 100%;
