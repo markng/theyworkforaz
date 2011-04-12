@@ -1,11 +1,10 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang = "en" xmlns="http://www.w3.org/1999/xhtml" xml:lang"en">
   <head>
 	<meta content="en-us" http-equiv="Content-Language" /> 
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=8">
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=1;"/>
     <title>they work for arizona</title>
     <!--[if lt IE 9]>
@@ -20,12 +19,14 @@
     </script>
 	<script src="/js/jquery-1.5.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/twaz.general.js" type="text/javascript" charset="utf-8"></script>
+    {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
     
   </head>
 
+  {% block bodytag %}{% if gmap %}{{ gmap.body }}{% else %}<body id="{% block bodyid %}base{% endblock %}">{% endif %}{% endblock %}
  
 
-      <div class="nav">
+      <nav>
           <ul>
             <li><a href="{% url home %}">Home</a></li>
             <li><a href="{% url addresscheck %}">Find Your District</a></li>
@@ -56,51 +57,17 @@
 		</div>
 		
           <br class="clear">
-      </div>
+      </nav>
       
+      {% block header_content %}
+        
+      {% endblock %}
+      <section id="content">
+          {% block content %}
 
-
-    
-
- <div class="background">
-	   <div class="innertop">
-           <div id="logo_background">	
-	              <h1> 
-		<img align= "Left" img src ="../images/twfaz_logo.png"/>
-	              </h1>
-	
-	                 <div id= "intro">
-	               Which way are your Arizona lawmakers voting?</br> And what's happening on the biggest issues of the day?</br> Search here to start tracking the action of the     capitol.			
-	                 </div>
-	        </div>
-       
-       </div> 	
- </div>
-    
-
-   <div class="search_home"> 
-	   <div class="inner_home">
-	   	   <div id="headline"> 		
-				<div class="half2"><h2>FIND</h2> your districts and issues </div>
-				<div class="half2"><h3>TRACK</h3> their bills and Legislator</div>
-			</div>
-			
-	               <div class="search_container">
-	       	  	<div class="half frontsearch_boxes">Here you can find out exactly which district you are in</br>and who is taking care of it by typing in your location</div>
-				<div class="half frontsearch_boxes">Here you  can track what's happening by searching the bills by issue or an elected official</div>
-	               </div>
-	            
-	   </div>
-		    <div id="example">
-	       		<div class="half3">For example: "555 N Central Ave.,Phoenix, 85004", "85304"</div>
-				<div class="half3">For example: "Education", "Russell Pearce", "HB2001"</div>
-	        </div>
-	
-	
-   </div>
-	  
-	      
-
+          {% endblock %}        
+          <br class="clear">
+      </section>
       <footer>
 		
 		<div class="half right">

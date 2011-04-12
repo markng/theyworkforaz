@@ -4,32 +4,43 @@
 {% block headline %}
     <h1>Track what your legislators are doing</h1> 
 {% endblock %}
+{% block header_content %}
+    <div class="background">
+   	   <div class="innertop">
+              <div id="logo_background">	
+   	              <h1> 
+   		<img align= "Left" img src ="../images/twfaz_logo.png"/>
+   	              </h1>
+
+   	                 <div id= "intro">
+   	               Which way are your Arizona lawmakers voting?</br> And what's happening on the biggest issues of the day?</br> Search here to start tracking the action of the capitol.			
+   	                 </div>
+   	        </div>
+
+          </div> 	
+    </div>
+{% endblock %}
 {% block content %}
-<div class="half">
-	<div class="intro-box">
-	    <p>Which way are your Arizona lawmakers voting? And what’s happening on the biggest issues of the day? Search here to start tracking the action at the Capitol.</p>
-	</div>
+<div class="search_home"> 
+	   <div class="inner_home">
+	   	   <div id="headline"> 		
+				<div class="half2"><h2>FIND</h2> your districts and issues </div>
+				<div class="half2"><h3>TRACK</h3> their bills and Legislator</div>
+			</div>
+			
+	               <div class="search_container">
+	       	  	<div class="half frontsearch_boxes">Here you can find out exactly which district you are in</br>and who is taking care of it by typing in your location</div>
+				<div class="half frontsearch_boxes">Here you  can track what's happening by searching the bills by issue or an elected official</div>
+	               </div>
+	            
+	   </div>
+		    <div id="example">
+	       		<div class="half3">For example: "555 N Central Ave.,Phoenix, 85004", "85304"</div>
+				<div class="half3">For example: "Education", "Russell Pearce", "HB2001"</div>
+	        </div>
+	
+	
 </div>
-<div class="half">
-		<h1>Accountability.</h1>
-        <h1>Transparency.</h1>
-</div>
-<br class="clear">
-<div class="half frontsearch">
-    <h2>Don't know who your legislators are?</h2>
-    <form action="{% url addresscheck %}" method="post" accept-charset="utf-8">
-        {{ where_form.lat }}{{ where_form.lon }}{{ where_form.where }}<input type="submit" value="Find District"><input type="button" value="Use current location" class="geolocator">
-        <p>For example : "555 N Central Ave, Phoenix, 85004", "85304", "Lake Havasu City"</p>
-     </form> 
-</div>
-<div class="half frontsearch">
-    <h2>Want to track a bill, issue or legislator?</h2>
-    <form action="{% url haystack_search %}" method="get" accept-charset="utf-8">
-        {{ search_form.q }} <input type="submit" value="Search here">
-    </form>
-    <p>For example : "Education", "Russell Pearce", "HB2001"</p>
-</div>
-<br class="clear" />
 {% endblock %}
 
 
