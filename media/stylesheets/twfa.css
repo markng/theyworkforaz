@@ -328,5 +328,23 @@ footer a {
 
 
 
-
-
+@media only screen and (max-width: 500px) {
+  * {
+    float: none;
+    max-width: 95%;
+  }
+  header, nav, section#main, section#content, footer{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+  }
+  nav{
+    display: block;
+    float: none;
+  }
+  section#headline, section#content div.half, .quarter, section#content div.full{
+    width: 400px;
+    float: none;
+  }
+}
