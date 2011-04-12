@@ -135,11 +135,11 @@ class Representative(models.Model):
         
     def sponsored_bills(self):
         """return a queryset with sponsored bills"""
-        return self.sponsorship_set.filter(type="P")
+        return self.sponsorship_set.filter(type="P").select_related()
 
     def cosponsored_bills(self):
         """return a queryset with sponsored bills"""
-        return self.sponsorship_set.filter(type="C")
+        return self.sponsorship_set.filter(type="C").select_related()
     
 
 class House(models.Model):
