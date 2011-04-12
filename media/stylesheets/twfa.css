@@ -55,8 +55,8 @@ body {
 }
 
 
-.search_button{
-  background: url("../images/search_button.png") no-repeat;
+#search_button{
+  background: url("../images/search_button.png") no-repeat ;
   cursor: pointer;
   vertical-align: top;
   background-color: #b73626;
@@ -95,25 +95,67 @@ body {
 
 
 
-#but_search.but_search_on, .expanded_search.but_search_on {
+
+
+#search_button.search_button_on,
+.expanded_search.search_button_on {
+    background-position: 0 -27px !important;
+}
+.search_button_off {
+}
+
+
+.expanded_search div { width: 337px !important; }
+
+.search_button_off div { 
+    color: #fff;
+    background: none;
+}
+.search_button_on div { 
+    /*background: url(/global-landing/na/en_US/images/btns/btn_search_on.png) no-repeat -4px -3px;*/
+}
+
+.search_button_on {
+    /*background: url(/global-landing/na/en_US/images/btns/btn_search_on.png) no-repeat 0px 0px;*/
+}
+/** html .but_search_on {background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/global-landing/na/en_US/images/btns/btn_search_on.png', sizingMethod="scale");}*/
+#button_search_area {  position: absolute; top: 26px; right: -1px; z-index: 901; width: 360px; height: 66px; 
+    background: url(/global-landing/global/images/btns/btn_search_field.png) no-repeat;
+    background-position: 0px 0px; 
+    display: none;}
+/** html #but_search_area {background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/global-landing/na/en_US/images/btns/btn_search_field.png', sizingMethod="crop");} */
+/** html #but_search {background-image: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/global-landing/na/en_US/images/btns/btn_search.png', sizingMethod="crop");}*/
+#button_search_area_in {position: relative;}
+#button_search_field {position: absolute;top: 12px; left: 20px; z-index: 950; border: none; width: 280px; height: 40px; font-size: 36px; color: #fff; background: #f95300;}
+#button_search_area_submit {position: absolute;top: 19px; right: 20px; z-index: 910; width: 30px; height: 30px;cursor:pointer;}
+
+/* Expanded search overrules */
+.expanded_search {
+    background: url(../images/drop_form.png) no-repeat 0px 0px !important;
+    width: 353px !important;
+}
+
+.but_sa_expanded { background-position: 0px -67px !important; }
+
+
+
+#search_button.search_button_on, .expanded_search.search_button_on {
 background-position: 0 -27px !important;
 }
-#but_search {
-float: left;
-width: 189px;
-height: 27px;
-cursor: pointer;
-zoom: 1;
-position: relative;
-background: url(/global-landing/global/images/btns/btn_search.png) no-repeat 0px 0px;
-}
 
-.but_search_on {
+
+.search_button_on {
 }
 
 
-.but_search_off {
+.search_button_off {
 }
+
+
+
+
+
+
 
 
 
@@ -135,11 +177,12 @@ background: url(/global-landing/global/images/btns/btn_search.png) no-repeat 0px
     position: absolute;
     overflow: hidden;
     height: 140px;
+
    
 }
 
 #logo_background {
-	padding-bottom 200px;
+	padding-bottom: 200px;
 	background-color: #8e0a1d;
 	padding-top: 20px;
 	padding-left: 15px;
@@ -176,9 +219,98 @@ width:1008px;
 .search_home{
 	height: 200px;
 	background-color: #ffffff;
-	
-		
+	padding-top: 30px;		
 }
+
+
+.inner_home{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	height: 120px;
+	width: 85%;
+}
+
+#headline{
+	height: 40px;
+}
+
+.search_container{
+	display: inline;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #b63524;
+	height: 85px;
+	width: 100%;
+
+}
+
+
+.frontsearch_boxes{
+	background: none;
+}
+
+.half2{
+	float: left;
+	text-align: left;
+	margin-left: 0%;
+	width: 50%;
+	font-family: "Helvetica Neue",sans-sirif;
+	color: #000;
+	font-size: 26px;
+	font-weight: 200;
+	
+}
+
+.half3{
+	float: left;
+	text-align: left;
+	margin-left: 6%;
+	width: 42%;
+	font-family: "Helvetica Neue",sans-sirif;
+	color: #000;
+	font-size: 12px;
+	
+}
+
+.half2 h2{
+	display: inline;
+	color: #065b2c;
+	
+}
+
+.half2 h3{
+	display: inline;
+	color: #f7d309;
+	
+}
+
+
+.half{
+	float: left;
+	margin-left: 6%;
+	width: 42%;
+	font-family: "Helvetica Neue",sans-sirif;
+	color: #b9b9b9;
+	padding-top: 17px;
+	font-size: 15px;
+	
+}
+
+
+
+#example{
+	font-family: "Helvetica Neue",sans-sirif;
+	color: #5f5151;
+	font-size: 17px;
+	padding-left: 20px;
+	padding-top: 5px;
+	text-align: left;
+	width: 100%;
+}
+
+
 
 
 footer {
