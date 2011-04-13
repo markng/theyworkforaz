@@ -315,7 +315,7 @@ section#content div.full {
 	width: 85%;
 }
 
-#headline{
+#headline_container{
 	height: 40px;
 }
 
@@ -336,7 +336,7 @@ section#content div.full {
 	color: #b9b9b9;
 }
 
-.half2{
+.find_and_track_headlines_font_treatment{
 	float: left;
 	text-align: left;
 	margin-left: 0%;
@@ -345,30 +345,31 @@ section#content div.full {
 	font-size: 26px;	
 }
 
-.half3{
+.search_input_example{
 	float: left;
 	text-align: left;
 	margin-left: 6%;
-	width: 42%;
+	width: 40%;
 	color: #000;
 	font-size: 12px;
+	padding-top: 5px;
 	
 }
 
-.half2 h2{
+.find_and_track_headlines_font_treatment h2{
 	display: inline;
 	color: #065b2c;
 	
 }
 
-.half2 h3{
+.find_and_track_headlines_font_treatment h3{
 	display: inline;
 	color: #f7d309;
 	
 }
 
 
-.half{
+.search_instructions_font_treatment{
 	float: left;
 	margin-left: 6%;
 	width: 42%;
