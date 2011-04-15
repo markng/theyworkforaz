@@ -371,9 +371,9 @@ section#content div.full {
 
 .search_instructions_font_treatment{
 	float: left;
-	margin-left: 6%;
+	margin-left: 5%;
 	width: 42%;
-	padding-top: 17px;
+	padding-top: 22px;
 	font-size: 15px;
 	
 }
@@ -389,9 +389,6 @@ section#content div.full {
 	width: 100%;
 }
 
-
-
-
 footer {
   background: #810f02;
   min-height: 200px;
@@ -403,8 +400,44 @@ footer a {
   text-decoration: none;
 }
 
+footer img {
+  width: 220px;
+  padding: 10px;
+  padding-bottom: 0px;
+  margin: 0;
+}
+footer img.lowerlogo {
+  display: block;
+  clear: both;
+}
+
+footer div.quarter {
+  width: 23%;
+  padding: 1%;
+  float:left;
+}
+footer div.half {
+  clear: both;
+}
+footer div.quarter ul {
+  border-left: 1px solid white;
+  padding-left: 7px;
+}
+footer div.quarter ul li {
+  font-size: 0.8em;
+  margin-top: 1em;
+}
+
 .clear {
   clear: both;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
 }
 
 
