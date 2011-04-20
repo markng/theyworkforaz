@@ -63,6 +63,10 @@ body {
     margin: 0;
     padding: 0;
 }
+a {
+	text-decoration: none;
+	color: #b73626;
+}
 
 nav{
   height:2.25em;
@@ -203,6 +207,19 @@ background-position: 0 -27px !important;
 	height: 382px;	
 }
 
+.default_background{
+	background: #810f02;
+	position: relative;
+	height: 100px;	
+}
+
+.default_background h1{
+	padding-left: 10px;
+    padding-top: 10px;
+}
+
+
+
 .innertop{
 	display: inline;
 	margin-left: auto;
@@ -211,9 +228,9 @@ background-position: 0 -27px !important;
     position: absolute;
     overflow: hidden;
     height: 140px;
-
-   
 }
+
+
 
 #logo_background {
 	padding-bottom: 200px;
@@ -224,6 +241,12 @@ background-position: 0 -27px !important;
 	width: 100%;
 	background: url("../images/logo_background.png") no-repeat #f6edda;
 }
+
+
+
+
+
+
 
 #intro{
 	color: #5f5151;
@@ -255,31 +278,104 @@ section#content ul li{
 }
 	
 }
-section#content div.full{
+
+
+/* divs for stack layout */
+section#content div#about_intro {
   width: 95%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
 }
+
+section#content div#about_intro p{
+  font-size: 25px;
+  padding-left: 65px;
+  padding-right: 65px;
+  padding-top: 50px;
+  line-height: 32px;
+}
+
+section#content div#about_intro a{
+  padding-left: 0px;
+  color: #8e0a1d;
+
+}
+
+section#content div#bodycopy{
+  width: 100%;
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+section#content div#bodycopy p{
+  font-size: 12pt;
+  padding-left: 65px;
+  padding-right: 65px;
+  line-height: 22px;
+  letter-spacing: 1px;
+}
+
+section#content div#bodycopy p b{
+  font-weight: bold;
+}
+
+section#content div#bodycopy ul{
+  font-size: 12pt;
+  line-height: 16px;
+  padding-left: 65px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  
+}
+
+
+section#content div h1 {
+    font-size: 4.2em;
+    line-height: 70%;
+}
+
+
+
+/* this is div for column layout */
+section#content div.full {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+section#content div.full p{
+  font-size: 25px;
+  padding-left: 65px;
+  padding-right: 65px;
+  padding-top: 50px;
+  line-height: 32px;
+}
+
+section#content div.half *{
+  font-size: 12px;
+  padding-left: 45px;
+  padding-right: 45px;
+  line-height: 16px;
+}
+
 section#content div.half{
   width: 45%;
   float: left;
   margin-left: 4%;
 }
-section#content div h1 {
-    font-size: 4.2em;
-    line-height: 70%;
-}
-section#content div.full *, section#content div.half *{
-  padding-left: 2px;
-  padding-right: 2px;
+
+
+
+section#content div.full a{
+  padding-left: 0px;
+  color: #8e0a1d;
+
 }
 
-section#content div.full{
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-}
+
+
 section#content div#intro {
   width: 75%;
   margin: 0px auto 15px auto;
