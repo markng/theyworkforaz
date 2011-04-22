@@ -307,6 +307,8 @@ section#content div#bodycopy{
   float: left;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  min-height: 400px;
 }
 section#content div#bodycopy p{
   font-size: 12pt;
@@ -487,9 +489,10 @@ section#content div.full {
 
 footer {
   background: #810f02;
-  min-height: 200px;
+  height: 200px;
   color: #fff;
   clear: both;
+  position: relative;
 }
 footer a {
   color: #fff;

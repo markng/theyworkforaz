@@ -1,9 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-	<div class="full">
-	    <h2>Senators</h2>
+<div class="default_background"> 
+     	<h1> 
+           <img align= "Left" img src ="../images/default_logo.png"/>
+       </h1>
+</div>
+
+	<div id="bodycopy">
+	    <p><b>Senators</b></p>
+	
+	    <br>
+	
+		
 		{% for senator in senate_list %}
+		<p>
+		<ul>
 	      	<li class="grid_3"><a href="{{ senator.get_absolute_url }}">{{ senator.name }}</a> {{ senator.party }}{% if senator.role %}, {{ senator.role }}{% endif %}</li>
+	
+	    </ul>
+		</p>    
+			
+
 		{% endfor %}
-	</div>
+	    </div>	 
 {% endblock %}
+
+
