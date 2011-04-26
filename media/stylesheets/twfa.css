@@ -269,7 +269,7 @@ header, nav, footer, section#main, section#content, .background, .innertop, .sea
 }
 
 section#content{
-  min-height: 300px;
+  min-height: 230px;
   background: #fff;
 }
 section#content ul li{
@@ -277,7 +277,7 @@ section#content ul li{
   list-style-type: circle;
 }
 	
-}
+}z
 
 
 /* divs for stack layout */
@@ -309,10 +309,13 @@ section#content div#bodycopy{
   margin-right: auto;
   position: relative;
   min-height: 400px;
+  padding-left: 65px;
+  padding-top: 30px;
+
 }
 section#content div#bodycopy p{
   font-size: 12pt;
-  padding-left: 65px;
+  
   padding-right: 65px;
   line-height: 22px;
   letter-spacing: 1px;
@@ -325,7 +328,6 @@ section#content div#bodycopy p b{
 section#content div#bodycopy ul{
   font-size: 12pt;
   line-height: 16px;
-  padding-left: 65px;
   line-height: 20px;
   letter-spacing: 1px;
   
@@ -434,6 +436,12 @@ section#content div.full {
 	color: #b9b9b9;
 }
 
+.search_icon_boxes{
+	background: url("../images/search_icon_button.png") no-repeat;
+	float: left;
+	width: 50%;
+}
+
 .find_and_track_headlines_font_treatment{
 	float: left;
 	text-align: left;
@@ -469,12 +477,16 @@ section#content div.full {
 
 .search_instructions_font_treatment{
 	float: left;
-	margin-left: 5%;
-	width: 42%;
+	margin-left: 1%;
+	line-height: 20px;
+	width: 45%;
 	padding-top: 22px;
 	font-size: 15px;
 	
 }
+
+
+
 
 
 
