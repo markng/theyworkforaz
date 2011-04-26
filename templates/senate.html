@@ -18,11 +18,12 @@
 	      	<li class="grid_3"><a href="{{ senator.get_absolute_url }}">{{ senator.name }}</a> {{ senator.party }}{% if senator.role %}, {{ senator.role }}{% endif %}</li>
 	
 	    </ul>
-		</p>    
-			
+		</p>  		
+        {% endfor %}
 
-		{% endfor %}
-	    </div>	 
+        <br>
+	    <br>    
+	</div>	 
 {% endblock %}
 
 
