@@ -12,18 +12,25 @@
 	       </h1>
 	</div>
 
-<div id="bodycopy">
-    <form action="{% url addresscheck %}" method="post">
+
+<div id="bodycopy"> 
+   
+   	<form action="{% url addresscheck %}" method="post">
         {{ where_form }}
         <input type="submit" value="Find District">
     </form>
+    
+    <br>
+
     {% if placesearch %}
     <ul>
         {% for result in placesearch %}
             <li><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></li>
         {% endfor %}        
     </ul>
+
     {% endif %}
+
 </div>
 <br class="clear" />  
 {% endblock %}
