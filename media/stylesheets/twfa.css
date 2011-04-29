@@ -277,8 +277,7 @@ section#content ul li{
   list-style-type: circle;
 }
 	
-}z
-
+}
 
 /* divs for stack layout */
 section#content div#about_intro {
@@ -310,12 +309,11 @@ section#content div#bodycopy{
   position: relative;
   min-height: 400px;
   padding-left: 65px;
-  padding-top: 30px;
+  padding-top: 20px;
 
 }
 section#content div#bodycopy p{
-  font-size: 12pt;
-  
+  font-size: 12pt; 
   padding-right: 65px;
   line-height: 22px;
   letter-spacing: 1px;
