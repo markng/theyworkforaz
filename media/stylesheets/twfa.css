@@ -276,8 +276,7 @@ section#content ul li{
   margin-left: 20px;
   list-style-type: circle;
 }
-	
-}
+
 
 /* divs for stack layout */
 section#content div#about_intro {
@@ -307,11 +306,41 @@ section#content div#bodycopy{
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  min-height: 400px;
-  padding-left: 65px;
+  min-height: 500px;
+  padding-left: 20px;
   padding-top: 20px;
 
 }
+
+section#content div#bodycopy1{
+  width: 100%;
+  float: left;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  min-height: 500px;
+  padding-top: 20px;
+  
+}
+
+
+section#content div.bodymap{
+	width: 100%;
+	  float: left;
+	  margin-left: auto;
+	  margin-right: auto;
+	  position: relative;
+	  min-height: 500px;
+	  padding: 10px;
+	  border: 1px;
+  
+  
+}
+
+
+
+
+
 section#content div#bodycopy p{
   font-size: 12pt; 
   padding-right: 65px;
@@ -482,10 +511,6 @@ section#content div.full {
 	font-size: 15px;
 	
 }
-
-
-
-
 
 
 #example{
