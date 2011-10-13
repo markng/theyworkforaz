@@ -1,10 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class="full">
-	    <h2>Representatives</h2>
+<div class="default_background"> 
+     	<h1> 
+           <img align= "Left" img src ="../images/default_logo.png"/>
+       </h1>
+</div>
+
+
+	<div id="bodycopy">
+	    <p><b>Representatives</b></p>
+	   
+	    <br>
+	
+	
 		{% for rep in house_list %}
+		<p>
+		<ul>
 	      	<li class="grid_3"><a href="{{ rep.get_absolute_url }}">{{ rep.name }}</a>  {{ rep.party }}{% if rep.role %}, {{ rep.role }}{% endif %}</li>
+	
+	    </p>
+		</ul>
+		
 		{% endfor %}
+		
+		<br>
+		<br>
+		
 	</div>
 {% endblock %}
