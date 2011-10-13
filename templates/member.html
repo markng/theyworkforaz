@@ -3,40 +3,53 @@
     <h1>{{ member }} ({{ member.party.code }})</h1>
 {% endblock %}
 {% block content %}
-<div class="full">
+
+<div class="default_background"> 
+     	<h1> 
+           <img align= "Left" img src ="../images/default_logo.png"/>
+       </h1>
+</div>
+
+<div id="bodycopy">
   {% if member.role %}
     <p><strong>{{ member.role }}</strong>, House <a href="{{ member.district.get_absolute_url }}">{{ member.district }}</a></p>
   {% else %}
     <p><strong>Representative</strong> for <a href="{{ member.district.get_absolute_url }}">{{ member.district }}</a></p>
-  {% endif %}
-  {% if member.phone %}
+  {% endif %}    
+  {% if member.phone %}  
   <p>Tel: {{ member.phone }}</p>    
-  {% endif %}
+  {% endif %}    
   {% if member.email %}
   <p>Email: <a href="mailto:{{ member.email }}">{{ member.email }}</a></p>    
-  {% endif %}
+  {% endif %}    
   {% if member.link_to_bio %}
   <p><a href="{{ member.link_to_bio }}">Official Bio</a></p>    
-  {% endif %}
-</div>
+  {% endif %}    
+
+   <br>
+
 {% if member.sponsored_bills.count %}
-<div class="half">
+
     <h2>Sponsored Bills</h2>
     <ul class="sponsorships">
       {% for sponsorship in member.sponsored_bills.all %}
       <li class="grid_3"><a href="{{ sponsorship.bill.get_absolute_url }}">{{ sponsorship.bill }}</a></li>
       {% endfor %}
     </ul>
-</div>
+
 {% endif %}
+
+<br>
+<br>
 {% if member.cosponsored_bills.count %}
-<div class="half">
+
     <h2>Co-sponsored Bills</h2>
     <ul class="sponsorships">
       {% for sponsorship in member.cosponsored_bills.all %}
       <li class="grid_3"><a href="{{ sponsorship.bill.get_absolute_url }}">{{ sponsorship.bill }}</a></li>
       {% endfor %}
     </ul>    
+
 </div>
 <br class="clear">
 {% endif %}

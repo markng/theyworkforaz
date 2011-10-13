@@ -4,7 +4,7 @@
   <style type="text/css" media="screen">
     div#map{
       width: 100%;
-      min-height: 400px;
+      min-height: 500px;
     }
   </style>
 {% endblock %}
@@ -15,22 +15,36 @@
     <h1>{{ place }}</h1>
 {% endblock %}
 {% block content %}
-        <div class="full">
+
+<div class="default_background"> 
+     	<h1> 
+           <img align= "Left" img src ="../images/default_logo.png"/>
+       </h1>
+</div>
+
+
+        <div id="bodymap">
             {% if place.in_districts.count > 5 %}
-            <p><strong>{{ place.name }}</strong> is in more than 5 districts.  To get a more helpful result, please be more specific.  Try entering a zip code or full address.</p>
+            <p><strong>{{ place.name }}</strong> is in more than 5 districts. 	To get a more helpful result, please be more specific.  Try entering a zip code or full address.</p>
             <form action="{% url addresscheck %}" method="post">
                 {{ where_form }}
                 <input type="submit" value="Find District">
             </form>
             {% endif %}
+    
+           
+            
             <script type="text/javascript" charset="utf-8">
                 {{ place.gmap.render }}
             </script>
             <div id="map">
-              &nbsp;
+             	
             </div>
-        </div>
-	    <div class="full">
-	        <p>In {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}.</p>
+           
+            <br>
+	    
+	        <p>In {% for district in place.in_districts %}{% if not forloop.first %}, {% endif %}<a href="{{ district.get_absolute_url }}">{{district}}</a>{% endfor %}.</p> 
+	        <br>
 	    </div>
+	        
 {% endblock %}

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en" xmlns="http://www.w3.org/1999/xhtml" xml:lang"en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta content="en-us" http-equiv="Content-Language" /> 
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
     <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=1;"/>
     <title>they work for arizona</title>
     <!--[if lt IE 9]>
@@ -17,8 +20,12 @@
 	<script src="/js/jquery-1.5.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/twaz.general.js" type="text/javascript" charset="utf-8"></script>
     {% block jshead %}{% endblock %}{% block extrastyle %}{% endblock %}
+    
   </head>
-{% block bodytag %}{% if gmap %}{{ gmap.body }}{% else %}<body id="{% block bodyid %}base{% endblock %}">{% endif %}{% endblock %}
+
+  {% block bodytag %}{% if gmap %}{{ gmap.body }}{% else %}<body id="{% block bodyid %}base{% endblock %}">{% endif %}{% endblock %}
+ 
+
       <nav>
           <ul>
             <li><a href="{% url home %}">Home</a></li>
@@ -29,62 +36,64 @@
             {% else %}
             <li><a href="{% url registration.views.register %}">Sign Up</a>/<a href="{% url django.contrib.auth.views.login %}">Log In</a></li>
             {% endif %}
+			
           </ul>
-          <div class="searchform">
-            <form action="{% url haystack_search %}" method="get">
-                <input type="search" name="q" placeholder="Search...">
-                <input type="submit" value="Search">
-            </form>
-          </div>
+
+        <div id="search_button">
+		   <a href="http:theyworkforaz.us" title="null" id="search-button"></a>
+		
+		     <div id="search_button2" class="search_button_off"> 
+		         </div>
+		     <div id="search">Search
+		         </div>
+		</div>
+		
+		<div id="button_search_area" style="display: none; ">
+			
+		     <div id="button_search_area_in">
+			     <div id="button_search_area_submit"> 
+		         </div>	
+		     </div>
+		</div>
+		
           <br class="clear">
       </nav>
-      <header>
-          <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?"></a>
-          <div class="clear">
-              &nbsp;
-          </div>
-      </header>
-      {% if not noheadline %}
-      <section id="headline">
-          <div>
-              {% block headline %}
-              {% endblock %}
-              {% if bookmarkform %}
-                {% if bookmark %}<form action="{% url unbookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Stop Tracking"></form>{% else %}<form action="{% url bookmark %}" method="post">{{ bookmarkform }}<input type="submit" value="Track"></form>{% endif %}
-              {% endif %}     
-          </div>
-      </section>        
-      {% endif %}
+      
+      {% block header_content %}
+        
+      {% endblock %}
       <section id="content">
-          <div class="error full">
-            <p>We're still building TheyWorkForAZ, so you may encounter incorrect or outdated information. We <a href="#" onclick="UserVoice.Popin.show(uservoiceOptions); return false;">welcome your feedback</a> on how the site works and what features you'd like to see on it.</p>
-          </div>
           {% block content %}
-          {% endblock %}    
-          
+
+          {% endblock %}        
+          <br class="clear">
       </section>
       <footer>
-          <a href="{% url home %}"><img src="/images/logo.png" alt="theyworkforaz - what are your elected officials doing?" class="lowerlogo"></a>
-          <div class="quarter">
-              <ul>
-                <li><a href="#" onclick="UserVoice.Popin.show(uservoiceOptions); return false;">Feedback</a></li>
-                <li><a href="{% url about %}">About Us</a></li>
-              </ul>
-          </div>
-          <div class="quarter">
-              <ul>
-                <li><a href="{% url planned_features %}">Planned Features</a></li>
-                <li><a href="{% url senate %}">All Senators</a></li>
-        	    <li><a href="{% url house %}">All Representatives</a></li>		
-              </ul>
-          </div>
+	
+	<a href="/"><img src="/images/az_logo_small	.png" alt="theyworkforaz - what are your elected officials doing?" class="lowerlogo"></a>
+	
+	  	<div class="quarter"> 
+		              <ul> 
+		                <li><a href="#" onclick="UserVoice.Popin.show(uservoiceOptions); return false;">Feedback</a></li> 
+		                <li><a href="/about">About Us</a></li> 
+		              </ul> 
+		          </div> 
+		          <div class="quarter"> 
+		              <ul> 
+		                <li><a href="/planned_features">Planned Features</a></li> 
+		                <li><a href="/senate">All Senators</a></li> 
+		        	    <li><a href="/house">All Representatives</a></li>		
+		              </ul> 
+		 </div>
+	
 		
 		<div class="half right">
 		<a href="http://phxdata.org"><img src="/images/phxdata_logo.png" alt="PHXdata.org"></a>
-		  <a href="http://cronkite.asu.edu/"><img src="/images/cronkite-logo.png" alt="Walter Cronkite School of Journalism"></a>
+		<a href="http://cronkite.asu.edu/"><img src="/images/cronkite-logo.png" alt="Walter Cronkite School of Journalism"></a>
 		</div>
 		<br class="clear">
       </footer>
+
       <script src="http://cdn.uservoice.com/javascripts/widgets/tab.js" type="text/javascript" charset="utf-8"></script>
       <script type="text/javascript">
       var uservoiceOptions = {

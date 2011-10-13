@@ -3,20 +3,61 @@
 {% endblock %}
 {% block headline %}
     <h1>Find your district</h1>
-{% endblock %}
-{% block content %}
-<div class="full">
-    <form action="{% url addresscheck %}" method="post">
+	{% endblock %}
+	{% block content %}
+	
+	<div class="default_background"> 
+	     	<h1> 
+	           <img align= "Left" img src ="../images/default_logo.png"/>
+	       </h1>
+	</div>
+
+
+<div id="bodycopy"> 
+   
+   	<form action="{% url addresscheck %}" method="post">
         {{ where_form }}
         <input type="submit" value="Find District">
     </form>
+    
+    <br>
+
     {% if placesearch %}
     <ul>
         {% for result in placesearch %}
             <li><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></li>
         {% endfor %}        
     </ul>
+
     {% endif %}
+
 </div>
 <br class="clear" />  
 {% endblock %}
+
+
+
+<!--  <div class="default_background"> 
+     	<h1> 
+           <img align= "Left" img src ="../images/default_logo.png"/>
+       </h1>
+</div>
+
+	<div id="bodycopy">
+	    <p><b>Senators</b></p>
+	
+	    <br>
+	
+		
+		{% for senator in senate_list %}
+		<p>
+		<ul>
+	      	<li class="grid_3"><a href="{{ senator.get_absolute_url }}">{{ senator.name }}</a> {{ senator.party }}{% if senator.role %}, {{ senator.role }}{% endif %}</li>
+	
+	    </ul>
+		</p>    
+			
+
+		{% endfor %}
+	    </div>	 
+-->
